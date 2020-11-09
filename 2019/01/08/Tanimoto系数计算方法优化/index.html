@@ -213,6 +213,23 @@
   </article>
 </div>
 
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+
+<div id="gitalk-container"></div>     
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+    // gitalk的主要参数
+      clientID: "0a49af9bb6f0f449c739",   //上面获取到的值
+      clientSecret: "eba687c9bc5eee834a1a943768daf16a80c033c9",//上面获取到的值
+      repo: "blog_comment",  //您刚才建立仓库的名字
+      owner: "kotori-y",   //你的GitHub用户名字
+      admin: ["kotori-y"],  //你的GitHub用户的名字
+      id: 'indow.location.pathname', //id不能重复，如果重复就会把其他页面的评论引进来
+        });
+      gitalk.render('gitalk-container');
+</script>
+
     <!-- footer container -->
 <footer id="footer" class="footer">
   <div class="footer-container">

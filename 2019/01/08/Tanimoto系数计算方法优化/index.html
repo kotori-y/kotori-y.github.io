@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+
+  
+
+  
+
+  
+    <meta name="author" content="Kotori Y">
+  
+
+  
+
+  
+
+  <title>Tanimoto系数计算方法优化的思路 | Kotori</title>
+
+  
+
+  
+    <link rel="icon" href="/avatar.png">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <!--将该代码放入博客模板的head中即可-->
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	tex2jax: {
+	inlineMath: [['$','$'], ['\\(','\\)']],
+	processEscapes: true
+	}
+	});
+	</script>
+	<!--latex数学显示公式-->
+	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Kotori
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">HOME</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      
+        <div class="post-image" style="background-image: url(https://gitee.com/kotori-y/image/raw/master/tanimoto.png)"></div>
+      
+
+      <div class="post-text">
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/Tech/">Tech</a>
+        </div>
+        <h1 class="title-wrap">Tanimoto系数计算方法优化的思路</h1>
+        <h2 class="title-sub-wrap">
+          <strong>Kotori Y</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2019-01-08T03:21:44.000Z" itemprop="datePublished">2019-01-08</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <p>将原本的嵌套循环简化成一个循环，大幅缩短计算时间，提高效率~</p>
+<a id="more"></a>
+<p><del><font color='#ff9ecb' size=2><em>作为本Blog的第一篇正式文章，就写写前一阵子，我优化一个嵌套for循环的思路吧。な、始まるよ</em></font></del></p>
+<h2 id="相关背景"><a href="#相关背景" class="headerlink" title="相关背景"></a>相关背景</h2><h3 id="雅卡尔指数"><a href="#雅卡尔指数" class="headerlink" title="雅卡尔指数"></a>雅卡尔指数</h3><p><strong>雅卡尔指数</strong>（Jaccard index），又称为并交比（Intersection over Union）、雅卡尔相似系数（Jaccard similarity coefficient），是用于比较样本集的相似性与多样性的统计量。雅卡尔系数能够量度有限样本集合的相似度，其定义为两个集合交集大小与并集大小之间的比例：</p>
+<p><div align=center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Intersection_of_sets_A_and_B.svg/400px-Intersection_of_sets_A_and_B.svg.png" width = "200" height = "153" alt="Intersection"></div></p>
+<p><div align=center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Union_of_sets_A_and_B.svg/400px-Union_of_sets_A_and_B.svg.png" width = "200" height = "153" alt = "Union"></div></p>
+<script type="math/tex; mode=display">J(A,B) = \frac{\vert{A}\cap{B}\vert}{\vert{A}\cup{B}\vert} =  \frac{\vert{A}\cap{B}\vert}{\vert{A}\vert + \vert{B}\vert - \vert{A}\cap{B}\vert}</script><p>若样本A与样本B完全重叠，显然 $J(A,B) = 1$，所以有：$0 \leq J(A,B) \leq1$</p>
+<h3 id="Tanimoto-系数"><a href="#Tanimoto-系数" class="headerlink" title="Tanimoto 系数"></a>Tanimoto 系数</h3><p>Tanimoto 相似性（Tanimoto similarity），雅卡尔相似性经常被误解成Tanimoto 相似性，又或者说两者的界限其实很模糊？（好吧，其实我也弄不懂……)</p>
+<p>Tanimoto 相似性$T_s(X,Y) = \frac{\sum_i\left({X_i}\land{Y_i}\right)}{\sum_i\left({X_i}\lor{Y_i}\right)}$     &ensp;&ensp;Tanimoto 距离$T_d = -\log_2 \left(T_s\left(X,Y\right)\right)$</p>
+<p>如果通过bit vector比较雅卡尔相似性Tanimoto 相似性，那它们可以表示成：$f(A,B) = \frac{A \cdot B}{\vert A \vert^2 + \vert B \vert^2 - A \cdot B}$</p>
+<p>其中，$A \cdot B = \sum_i A_i B_i = \sum_i\left(A_i \land B_i \right); \vert A \vert^2 = \sum_i A_i^2$</p>
+<p>我们要计算的就是这个系数~</p>
+<h3 id="CATS-描述符"><a href="#CATS-描述符" class="headerlink" title="CATS 描述符"></a>CATS 描述符</h3><p>CATS(Chemically Advanced Template Search) 描述符是一种基于药效团的描述符，下面介绍一种计算方法：</p>
+<p>我们定义五种原子类型：氢键供体（hydrogen-bond donor, <font color='red'>D</font>）、氢键受体（hydrogen-bond acceptor, <font color='red'>A</font>）、正电荷（positively charged,  <font color='red'>P</font>）、负电荷（negatively charged, <font color='red'>N</font>）和亲脂性（lipophilic,  <font color='red'>L</font>）。</p>
+<p><div align=center><img src="https://github.com/kotori-y/image/blob/master/cats.png?raw=true" width = "316.5" height = "174.5" alt="Example"></div></p>
+<p><div align=center><font size=2>将二维平面的分子（A）转换成molecular graph(B)</div><br>那么一共可以产生15对原子类型对（DD, DA, DP, DN, DL, AA, AP, AN, AL, PP, PN, PL, NN, NL, LL），即$C_5^2 + 5$。对于每个被划分到上述五种类型的原子，我们从n = 1遍历到n = 10，统计以某个原子为中心，统计n个键的范围内15种原子类型对的数量。这样我们会的到10个频数分布直方图，用每个直方图的高度除以分子中非氢原子的数量，最后得到一个150维（$15 \times 10$）的特征向量，用以表征一个分子，供计算机识别。</p>
+<p>MOE(2018.01)插件中计算得到的是一个210维的CATS 描述符，所以我猜测（ん？）MOE中定义了6种原子类型（$\left(C_6^2 + 6 \right) \times 10 = 210$)。而这次项目要计算1660个分子间Tanimoto相似性，即处理一个1660行，210列的二维数组。</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><h3 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h3><p>MOE计算的CATS描述符（部分）如下：</p>
+<p><div align=center><img src="https://github.com/kotori-y/image/blob/master/llllllll.png?raw=true" alt="CATS"></div><br>可见，CATS中是含有0的，由此我们便陷入了一个误区——对于计算A, B两个分子的Tanimoto系数，我们要找出A, B两分子的CATS中都不为0特征，即找出A, B的交集以计算$A \cdot B$、$\vert A \vert^2$、$\vert B \vert^2$。为此，我想了很多方法，但效果甚微（其中有个要运行20+h……）。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>其实，我们根本不需要找出A, B两分子的CATS中都不为0特征。对于两个分子的特征向量，我们可以直接进行数组间的运算，即$arr1 \times arr2$， $arr1^2$，$arr2^2$，<strong>因为0在乘法运算中就是在做交集运算!</strong></p>
+<p>接下来，我们只需要解决排列组合问题即可。我在<a target="_blank" rel="noopener" href="https://www.cnblogs.com/x931890193/p/9402136.html">网上</a>发现了product这个函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> product([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],repeat= <span class="hljs-number">2</span>):<br>    print(i)<br></code></pre></td></tr></table></figure>
+<p><details>  
+    <summary><font color='#d46d6e'>点击查看运行结果</font></summary>  
+    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)<br>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>)<br>(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)<br>(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+</details><br>虽然，乍一看重复计算了将近一倍（(1,2), (2,1)…），但它是按<code>“顺序”</code>经行遍历的，最后的结果刚好能输出成一个$n \times n$的矩阵。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">CalTanimoto</span>(<span class="hljs-params">data</span>):</span><br>    arr = np.array(data) <span class="hljs-comment">#data为1660个分子的CATS描述符，dataframe型</span><br>    <br>    start = time.clock()<br>    <br>    values = [] <span class="hljs-comment">#用于存放每个得到的Tanimoto相似度</span><br>    <span class="hljs-keyword">for</span> pair <span class="hljs-keyword">in</span> product(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1660</span>)), repeat=<span class="hljs-number">2</span>): <span class="hljs-comment">#进行排列组合运</span><br>            up = arr[pair[<span class="hljs-number">0</span>]]*arr[pair[<span class="hljs-number">-1</span>]] <span class="hljs-comment">#获取两个特征向量的数组，进行相关运算，下同</span><br>            down = arr[pair[<span class="hljs-number">0</span>]]**<span class="hljs-number">2</span> + arr[pair[<span class="hljs-number">-1</span>]]**<span class="hljs-number">2</span><br>            value = up.<span class="hljs-built_in">sum</span>()/(down.<span class="hljs-built_in">sum</span>()-up.<span class="hljs-built_in">sum</span>())<span class="hljs-comment">#计算	</span><br>            values.append(value)<br>            <br>    Tani = np.array(values).reshape((<span class="hljs-number">1660</span>,<span class="hljs-number">1660</span>))<br>    <br>    end = time.clock()<br>    print(start-end)<br>	<br>    <span class="hljs-keyword">return</span> Tani<br></code></pre></td></tr></table></figure>
+<p>总计用时：约240s</p>
+<h3 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> warnings<br>warnings.filterwarnings(<span class="hljs-string">&#x27;ignore&#x27;</span>)<br><br><span class="hljs-comment"># 更新时间：11/09/20</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getSimilarity</span>(<span class="hljs-params">data, binary=<span class="hljs-literal">True</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    Parameters</span><br><span class="hljs-string">    ----------</span><br><span class="hljs-string">    data : numpy.ndarray</span><br><span class="hljs-string">        fingrtprint or descriptor in 2d-arrry.</span><br><span class="hljs-string">    Yields</span><br><span class="hljs-string">    ------</span><br><span class="hljs-string">    value : numpy.ndarray</span><br><span class="hljs-string">        the similarity between a molecule and the lib.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> arr <span class="hljs-keyword">in</span> data:<br>        up = arr*data <span class="hljs-comment">#获取两个特征向量的数组，进行相关运算，下同</span><br>        <br>        <span class="hljs-keyword">if</span> binary:<br>            down = arr + data<br>        <span class="hljs-keyword">else</span>:<br>            down = arr**<span class="hljs-number">2</span> + data**<span class="hljs-number">2</span><br>            <br>        value = up.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>)/(down.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>)-up.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>))<span class="hljs-comment">#计算公式</span><br>        <span class="hljs-keyword">yield</span> value<br>   <br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(<span class="hljs-params">data, binary=<span class="hljs-literal">True</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Parameters</span><br><span class="hljs-string">    ----------</span><br><span class="hljs-string">    data : numpy.ndarray</span><br><span class="hljs-string">        DESCRIPTION.</span><br><span class="hljs-string">    Returns</span><br><span class="hljs-string">    -------</span><br><span class="hljs-string">    Similarity matrix.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    simi = getSimilarity(data, binary)<br>    <span class="hljs-keyword">try</span>:<br>        simi = np.vstack(simi)<br>    <span class="hljs-keyword">except</span>:<br>        simi = np.array(<span class="hljs-built_in">list</span>(simi))<br>    <br>    <span class="hljs-keyword">return</span> simi<br>        <br>        <br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;__main__&quot;</span> == __name__:<br>    <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>    data = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(<span class="hljs-number">1660</span>,<span class="hljs-number">1660</span>)) <span class="hljs-comment">#fake data</span><br>    simi = main(data)<br></code></pre></td></tr></table></figure>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><strong>1.<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9B%85%E5%8D%A1%E5%B0%94%E6%8C%87%E6%95%B0">雅卡尔指数wiki</a></strong></p>
+<p><strong>2.<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index wiki</a></strong></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>Reutlinger, M., Koch, C. P., Reker, D., Todoroff, N., Schneider, P., Rodrigues, T., &amp; Schneider, G. (2013). Chemically advanced template search (CATS) for scaffold‐hopping and prospective target prediction for ‘orphan’molecules. <em>Molecular informatics</em>, <em>32</em>(2), 133-138.</li>
+<li>Schneider, G., Neidhart, W., Giller, T., &amp; Schmid, G. (1999). “Scaffold‐hopping” by topological pharmacophore search: a contribution to virtual screening. <em>Angewandte Chemie International Edition</em>, <em>38</em>(19), 2894-2896.</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这篇文章到就差不多了，作为第一篇文章，写了好几天（才不是因为我懒呢……)。为了写这篇文章，也看了不少东西：MathJax语法，HTML，还有两篇文献。还参照了<a target="_blank" rel="noopener" href="https://blog.catkin.moe/">dalao</a>的写作格式。另外，感觉能有更好的方法来替代排列组合运算，进一步提高效率。但是，等我想出改进方法，恐怕我都算完20+个矩阵了。最后，我想说：“挖坑一时爽，一直挖坑一直爽”。</p>
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jaccard-index/" rel="tag">#Jaccard index</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/" rel="tag">#Optimization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">#Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tanimoto-coefficient/" rel="tag">#Tanimoto coefficient</a></li></ul>
+      </section>
+
+      <section class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-list">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://gitee.com/kotori-y/image/raw/master/hello.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/10/29/Hello/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              Hello World!
+            
+          </p>
+        </article>
+      </div>
+    
+    
+  </div>
+</nav>
+
+      </section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+     
+    <p>&copy; 2020 <a href="/" target="_blank">Kotori Y</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+    
+    <!--
+    <div class="footer-container__texts">
+      <p>ヽ｀、ヽ｀｀、ヽ｀ヽ｀、、ヽ｀ヽ、ヽ｀、ヽ｀｀、ヽ、｀｀、、ヽ｀ヽ、｀｀、、ヽ｀ヽ、｀ヽ、｀ヽ、｀ヽ</p>
+      <p>｀、ヽ｀｀、ヽ、｀｀｀、｀、ヽ🌙｀｀、｀ヽ｀ヽ、ヽ｀、ヽ｀ヽ、ヽ｀、ヽ｀ヽ、ヽ｀、ヽ｀｀、｀ヽ、｀</p>
+      <p>｀、｀｀、｀、ヽ｀｀、、ヽヽ｀、｀ヽ｀ヽ、ヽ｀、ヽ｀ヽ、ヽ｀、、、ヽヽ、｀｀、、ヽ｀、ヽ｀｀、ヽ｀ヽ｀</p>
+      <p>ヽ｀、｀｀、｀、ヽ｀｀、、ヽヽ｀、｀、、ヽヽ、｀Time waits for on one 🍓｀、、ヽ｀、ヽ｀｀、ヽ｀ヽ｀</p>
+      <p>｀ヽ｀｀、ヽ｀ヽ｀、、ヽ｀ヽ｀ヽ｀ヽ、ヽ｀、ヽ｀｀、ヽ、｀｀、、ヽ｀ヽ、｀｀、、ヽ｀ヽ、｀ヽ、｀ヽ、｀ヽ</p>
+    </div>
+    -->
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+</svg> 
+  </div>
+
+  
+  
+<!-- valine 评论 start -->
+<script type="text/javascript" src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+    el: "#valine_thread",
+    appId: "PokIBWBsezFIJkEUHCrb45z8-gzGzoHsz",
+    appKey: "CyyqRI0uQcM2KAq6XWNudF89",
+    avatar: "mm",
+    placeholder: "随便说点什么叭～",
+    notify: true,
+    visitor: true,
+    pageSize: 10,
+  });
+</script>
+<!-- valine 评论 end -->
+
+
+
+
+<!-- dplayer 视频 start -->
+<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      let subtitle = el.dataset.subtitle;
+
+      let options = {
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      }
+
+      if (subtitle) {
+        options.subtitle = {
+          url: el.dataset.subtitle,
+        }
+      }
+      new DPlayer(options);
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+
+<script src="/lib/waterfall.min.js"></script>
+
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  
+<script src="/lib/zoom.min.js"></script>
+
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

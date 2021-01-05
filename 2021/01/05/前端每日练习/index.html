@@ -121,7 +121,7 @@
   
     <div class="header-content">
       
-        <div class="post-image" style="background-image: url(images/banner.jpg)"></div>
+        <div class="post-image" style="background-image: url(https://gitee.com/kotori-y/image/raw/master/front-end.png)"></div>
       
 
       <div class="post-text">
@@ -137,7 +137,7 @@
     <time datetime="2021-01-05T08:31:09.000Z" itemprop="datePublished">2021-01-05</time>
   </a>
 
-          <span class="post-count">| 本文总字数：266，</span><span class="post-count">大约需花费1分钟</span>
+          <span class="post-count">| 本文总字数：271，</span><span class="post-count">大约需花费1分钟</span>
         </h2>
       </div>
     </div>
@@ -197,19 +197,19 @@
     <h2>Day 1. 卡片折叠</h2>
     <h3>效果</h3>
     <div class="container">
-      <div class="panel active" style="background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')">
+      <div class="panel active" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img1.jpg')">
         <h3>Explore The World</h3>
       </div>
-      <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')">
+      <div class="panel" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img2.jpg')">
         <h3>Wild Forest</h3>
       </div>
-      <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80')">
+      <div class="panel" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img3.jpg')">
         <h3>Sunny Beach</h3>
       </div>
     </div>
     <div class="codeBlock" style="float: left;">
       <h3>JavaScript</h3>
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><br><span class="hljs-comment">// 点击时，去掉所有active，再往点击对象里添加active</span><br><br><br><br><br><br></code></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><br><span class="hljs-comment">// 鼠标移动到元素时，去掉所有active，再往点击对象里添加active</span><br><br><br><br><br><br></code></pre></td></tr></table></figure>
     </div>
     <div class="codeBlock" style="float: right">
       <h3>CSS (部分)</h3>
@@ -219,7 +219,7 @@
     <h4>DOM</h4>
     <ul>
       <li>通过<code>querySelectorAll()</code>方法获取全部class为<i>panel</i>的div对象;</li>
-      <li>通过<code>addEventListener()</code>方法添加事件句柄，此处为<i>click</i>，
+      <li>通过<code>addEventListener()</code>方法添加事件句柄，此处为<i>mouseenter</i>，
         <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/jsref/dom-obj-event.html">更多事件。</a><br>
         <div class="codeBlock" style="padding-left: 1rem;">
           <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">document.add<span class="hljs-constructor">EventListener(<span class="hljs-params">event</span>, <span class="hljs-params">function</span>, <span class="hljs-params">useCapture</span>)</span><br></code></pre></td></tr></table></figure>

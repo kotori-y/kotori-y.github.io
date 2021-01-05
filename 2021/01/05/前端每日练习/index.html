@@ -137,7 +137,7 @@
     <time datetime="2021-01-05T08:31:09.000Z" itemprop="datePublished">2021-01-05</time>
   </a>
 
-          <span class="post-count">| 本文总字数：61，</span><span class="post-count">大约需花费1分钟</span>
+          <span class="post-count">| 本文总字数：266，</span><span class="post-count">大约需花费1分钟</span>
         </h2>
       </div>
     </div>
@@ -174,6 +174,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styleDay1.css" />
     <title>Expanding Cards</title>
+    <style type="text/css">
+      div.codeBlock {
+        display: inline-block;
+        width: 49%;
+        /* padding-bottom: 100%;
+        margin-bottom: -100%; */
+        /* padding: 1rem; */
+        position: relative;
+        font-size: 10px;
+      }
+
+      p.title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <h1>前言</h1>
@@ -191,8 +207,26 @@
         <h3>Sunny Beach</h3>
       </div>
     </div>
+    <div class="codeBlock" style="float: left;">
+      <h3>JavaScript</h3>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><br><span class="hljs-comment">// 点击时，去掉所有active，再往点击对象里添加active</span><br><br><br><br><br><br></code></pre></td></tr></table></figure>
+    </div>
+    <div class="codeBlock" style="float: right">
+      <h3>CSS (部分)</h3>
+      <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.panel</span> &#123;<br>  <span class="hljs-attribute">background-size</span>: cover;<br>  <span class="hljs-attribute">background-position</span>: center;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">8vh</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">flex</span>: <span class="hljs-number">0.5</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">transition</span>: flex <span class="hljs-number">0.7s</span> ease-in;<br>&#125;<br><br><span class="hljs-selector-class">.panel</span><span class="hljs-selector-class">.active</span> &#123;<br>  <span class="hljs-attribute">flex</span>: <span class="hljs-number">5</span>;<br>&#125;<br><br><span class="hljs-selector-class">.panel</span><span class="hljs-selector-class">.active</span> <span class="hljs-selector-tag">h3</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">0.3s</span> ease-in <span class="hljs-number">0.4s</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+    </div>
     <h3>小结</h3>
-    <li>flex</li>
+    <h4>DOM</h4>
+    <ul>
+      <li>通过<code>querySelectorAll()</code>方法获取全部class为<i>panel</i>的div对象;</li>
+      <li>通过<code>addEventListener()</code>方法添加事件句柄，此处为<i>click</i>，
+        <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/jsref/dom-obj-event.html">更多事件。</a><br>
+        <div class="codeBlock" style="padding-left: 1rem;">
+          <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">document.add<span class="hljs-constructor">EventListener(<span class="hljs-params">event</span>, <span class="hljs-params">function</span>, <span class="hljs-params">useCapture</span>)</span><br></code></pre></td></tr></table></figure>
+        </div>
+      </li>
+      <li>通过<code>classList.remove()</code>和<code>classList.add()</code>方法去除/添加class中的<i>active</i></li>
+    </ul>
     <script src="/js/scriptDay1.js"></script>
   </body>
 </html>

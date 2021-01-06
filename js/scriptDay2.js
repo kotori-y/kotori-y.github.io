@@ -14,19 +14,21 @@ next.addEventListener("click", () => {
 
 prev.addEventListener("click", () => {
   currentActive--;
-  currentActive =
-    currentActive <= 0 ? 0 : currentActive;
+  currentActive = currentActive <= 0 ? 0 : currentActive;
   update();
 });
 
-function update() {
+progress.addEventListener("transitionend", () => {
   circles.forEach((circle, idx) => {
     idx <= currentActive
       ? circle.classList.add("active")
       : circle.classList.remove("active");
   });
+})
 
-  progress.style.width = `${currentActive*100/(circles.length-1)}%`
+function update() {
+
+  progress.style.width = `${(currentActive * 100) / (circles.length - 1)}%`;
 
   prev.disabled = currentActive === 0;
   next.disabled = currentActive === circles.length - 1;

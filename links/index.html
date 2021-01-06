@@ -147,7 +147,16 @@
   <article class="content-container article-container">
     <div class="article-content">
       <div class="article-entry">
-</div>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"0a49af9bb6f0f449c739","clientSecret":"eba687c9bc5eee834a1a943768daf16a80c033c9","repo":"blog_comment","owner":"kotori-y","admin":["kotori-y"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script></div>
     </div>
   </article>
   

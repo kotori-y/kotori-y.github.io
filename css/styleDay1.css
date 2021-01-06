@@ -4,7 +4,7 @@
 
 
 
-.container {
+.container.day1 {
   display: flex;
   width: auto;
 }

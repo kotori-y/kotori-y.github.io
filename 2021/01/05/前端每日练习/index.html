@@ -137,7 +137,7 @@
     <time datetime="2021-01-05T08:31:09.000Z" itemprop="datePublished">2021-01-05</time>
   </a>
 
-          <span class="post-count">| 本文总字数：312，</span><span class="post-count">大约需花费1分钟</span>
+          <span class="post-count">| 本文总字数：309，</span><span class="post-count">大约需花费1分钟</span>
         </h2>
       </div>
     </div>
@@ -176,15 +176,13 @@
     <title>Expanding Cards</title>
     <style type="text/css">
       div.codeBlock {
-        /* display: inline-block; */
-        /* width: 50%; */
         position: relative;
         font-size: 10px;
         justify-content: space-between;
         display: flex;
       }
 
-      #mainCode .highlight {
+      .codeBlock.mainCode .highlight {
         overflow: scroll;
         height: 400px;
       }
@@ -198,6 +196,7 @@
         font-size: 16px;
         font-weight: bold;
       }
+      
     </style>
   </head>
   <body>
@@ -216,10 +215,10 @@
         <h3>Sunny Beach</h3>
       </div>
     </div>
-    <div class="codeBlock" id="mainCode">
+    <div class="codeBlock mainCode">
       <div class="codeBlock-js">
         <h3>JavaScript</h3>
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><span class="hljs-comment">// 鼠标移动到元素时，去掉所有active，再往点击对象里添加active</span><br></code></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><span class="hljs-comment">// 鼠标移动到元素时，去掉所有active，再往点击对象里添加active XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><br></code></pre></td></tr></table></figure>
       </div>
       <div class="codeBlock-css">
         <h3>CSS (部分)</h3>

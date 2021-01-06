@@ -137,7 +137,7 @@
     <time datetime="2021-01-05T08:31:09.000Z" itemprop="datePublished">2021-01-05</time>
   </a>
 
-          <span class="post-count">| 本文总字数：308，</span><span class="post-count">大约需花费1分钟</span>
+          <span class="post-count">| 本文总字数：324，</span><span class="post-count">大约需花费1分钟</span>
         </h2>
       </div>
     </div>
@@ -173,6 +173,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styleDay1.css" />
+    <link rel="stylesheet" href="/css/styleDay2.css" />
     <title>Expanding Cards</title>
     <style type="text/css">
       div.codeBlock {
@@ -244,8 +245,27 @@
         <li>本练习通过css的<i>flex</i>属性来实现折叠效果。</li>
       </ul>
     </div>
+    <hr>
+    <div class="container day2">
+      <h2>Day 2. 步骤进度条</h2>
+      <h3>效果</h3>
+      <div class="container day2 progress">
+        <div class="progress" id="progress"></div>
+        <div class="circle active">1</div>
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+        <div class="circle">4</div>
+        <div class="circle">5</div>
+      </div>
+      
+      <div class="btnDay2">
+        <button id="prev" disabled>Prev</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
 
     <script src="/js/scriptDay1.js"></script>
+    <script src="/js/scriptDay2.js"></script>
   </body>
 
 </html>
@@ -269,6 +289,19 @@
         
 <nav class="card-container card-article-nav">
   <div class="card-list">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2021/01/06/draft/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              (no title)
+            
+          </p>
+        </article>
+      </div>
     
     
       <div id="article-nav-older" class="card-item img">

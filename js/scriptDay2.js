@@ -24,10 +24,9 @@ progress.addEventListener("transitionend", () => {
       ? circle.classList.add("active")
       : circle.classList.remove("active");
   });
-})
+});
 
 function update() {
-
   progress.style.width = `${(currentActive * 100) / (circles.length - 1)}%`;
 
   prev.disabled = currentActive === 0;

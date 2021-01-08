@@ -5,11 +5,12 @@ const containerD3Main = document.querySelector(".mainPageDay3");
 
 open.addEventListener("click", () => {
   containerD3.classList.add("show-nav");
-  containerD3Main.style["background-image"] =
-    "url('https://gitee.com/kotori-y/image/raw/master/hello.jpg')";
+  // containerD3Main.style["background-image"] =
+  //   "url('https://gitee.com/kotori-y/image/raw/master/hello.jpg')";
+  containerD3Main.style["background-color"] = "#b883a9";
 });
 
 close.addEventListener("click", () => {
   containerD3.classList.remove("show-nav");
-  containerD3Main.style["background-image"] = null;
+  containerD3Main.style["background-color"] = " #fafafa";
 });

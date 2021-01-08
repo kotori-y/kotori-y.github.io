@@ -17,7 +17,6 @@
   height: calc(20vh + 60px); /* MUST */
   z-index: 0;
   filter: blur(30px);
-  cursor: pointer;
 }
 
 .loading-text {
@@ -44,6 +43,7 @@
 
 .btn-day5 button {
   color: #fff;
+  font-family: "Fira Code";
   border: 0;
   font-size: 14px;
   border-radius: 10px;

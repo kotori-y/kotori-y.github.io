@@ -1,0 +1,71 @@
+<h2>Day 1. 卡片折叠</h2>
+<h3>效果</h3>
+<div class="container day1 img">
+  <div
+    class="panel active"
+    style="
+      background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img1.jpg');
+    "
+  >
+    <h3>Explore The World</h3>
+  </div>
+  <div
+    class="panel"
+    style="
+      background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img2.jpg');
+    "
+  >
+    <h3>Wild Forest</h3>
+  </div>
+  <div
+    class="panel"
+    style="
+      background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img3.jpg');
+    "
+  >
+    <h3>Sunny Beach</h3>
+  </div>
+</div>
+<div class="codeBlock mainCode">
+  <h3>JavaScript</h3>
+  <div class="codeBlock-js">
+    {% codeblock JS javascript %}
+    alert("Hello"); 
+    alert("Hello");
+    {% endcodeblock %}
+  </div>
+  <div class="codeBlock-css">
+    <h3>CSS (部分)</h3>
+    ```css
+    .panel { background-size: cover; background-position: center;
+    background-repeat: no-repeat; height: 8vh; border-radius: 50px; color: #fff;
+    cursor: pointer; flex: 0.5; margin: 10px; position: relative; transition:
+    flex 0.7s ease-in; } .panel.active { flex: 5; } .panel.active h3 { opacity:
+    1; transition: opacity 0.3s ease-in 0.4s; }
+    ```
+  </div>
+</div>
+<h3>小结</h3>
+<h4>DOM</h4>
+<ul>
+  <li>
+    通过<code>querySelectorAll()</code>方法获取全部class为<i>panel</i>的div对象;
+  </li>
+  <li>
+    通过<code>addEventListener()</code>方法添加事件句柄，此处为<i>mouseenter</i>，
+    <a href="https://www.w3cschool.cn/jsref/dom-obj-event.html">更多事件</a
+    >；<br />
+    <div class="codeBlock">
+      ``` document.addEventListener(event, function, useCapture) ```
+    </div>
+  </li>
+  <li>
+    通过<code>classList.remove()</code>和<code>classList.add()</code>方法去除/添加class中的<i
+      >active.</i
+    >
+  </li>
+</ul>
+<h4>CSS</h4>
+<ul>
+  <li>本练习通过css的<i>flex</i>属性来实现折叠效果。</li>
+</ul>

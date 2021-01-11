@@ -57,8 +57,20 @@
 	</script>
 	
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <script type='text/javascript'>
+  <!-- <script type='text/javascript'>
   !console.log("  ██████╗██████╗ ██████╗ ██████╗ \n██╔════╝██╔══██╗██╔══██╗██╔══██╗\n██║     ██████╔╝██║  ██║██║  ██║\n██║     ██╔══██╗██║  ██║██║  ██║\n╚██████╗██████╔╝██████╔╝██████╔╝\n ╚═════╝╚═════╝ ╚═════╝ ╚═════╝ \n                                \n   \nCBDD(Computational Biology & Drug Design Group):\n※From Xiangya School of Pharmaceutical Sciences, Central South University;\n※A vibrant team dedicated to research on leading-edge in pharmaceutical field;\n※Led by the tutor with priorest academic-ability in Xiangya system.\n\nIt's time to join us, sailing your research life!\n\nHomepage: http://www.scbdd.com\nContact us: oriental-cds@163.com; kotori@cbdd.me")
+  </script> -->
+
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "https://v1.jinrishici.com/all.txt");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        // var gushici = document.getElementById("gushici");
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send();
   </script>
 
 	<script>

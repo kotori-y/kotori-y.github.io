@@ -57,8 +57,20 @@
 	</script>
 	
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <script type='text/javascript'>
+  <!-- <script type='text/javascript'>
   !console.log("  ██████╗██████╗ ██████╗ ██████╗ \n██╔════╝██╔══██╗██╔══██╗██╔══██╗\n██║     ██████╔╝██║  ██║██║  ██║\n██║     ██╔══██╗██║  ██║██║  ██║\n╚██████╗██████╔╝██████╔╝██████╔╝\n ╚═════╝╚═════╝ ╚═════╝ ╚═════╝ \n                                \n   \nCBDD(Computational Biology & Drug Design Group):\n※From Xiangya School of Pharmaceutical Sciences, Central South University;\n※A vibrant team dedicated to research on leading-edge in pharmaceutical field;\n※Led by the tutor with priorest academic-ability in Xiangya system.\n\nIt's time to join us, sailing your research life!\n\nHomepage: http://www.scbdd.com\nContact us: oriental-cds@163.com; kotori@cbdd.me")
+  </script> -->
+
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "https://v1.jinrishici.com/all.txt");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        // var gushici = document.getElementById("gushici");
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send();
   </script>
 
 	<script>
@@ -137,7 +149,7 @@
     <time datetime="2021-01-05T08:31:09.000Z" itemprop="datePublished">2021-01-05</time>
   </a>
 
-          <span class="post-count">| 本文总字数：1.8k，</span><span class="post-count">大约需花费10分钟</span>
+          <span class="post-count">| 本文总字数：235，</span><span class="post-count">大约需花费1分钟</span>
         </h2>
       </div>
     </div>
@@ -167,280 +179,167 @@
       
 
       <section class="article-entry">
-        <!DOCTYPE html>
+        
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.bootcdn.net/ajax/libs/firacode/5.1.0/fira_code.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styleDay1.css" />
-    <link rel="stylesheet" href="/css/styleDay2.css" />
-    <link rel="stylesheet" href="/css/styleDay3.css" />
-    <link rel="stylesheet" href="/css/styleDay4.css" />
-    <link rel="stylesheet" href="/css/styleDay5.css" />
-    <title>Expanding Cards</title>
+    <script src="/js/jQuery-3.5.1.js"></script>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/firacode/5.1.0/fira_code.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/github.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <!-- <link rel="stylesheet" href="/css/styleDay1.css" /> -->
     <style type="text/css">
-      div.codeBlock {
+      /* div.codeBlock {
         position: relative;
         font-size: 10px;
         justify-content: space-between;
         display: flex;
-      }
+      } */
 
-      .codeBlock.mainCode .highlight {
+      .codeBlock.mainCode pre {
         overflow: scroll;
-        height: 500px;
+        height: 300px;
       }
 
-      .codeBlock div {
+      .codeBlock.mainCode {
+        font-size: 15px;
+        justify-content: center;
+        display: flex;
+      }
+
+      .codeBlock.mainCode div {
+        max-width: 50%;
+      }
+
+      .codeBlock pre {
         padding: 0 10px;
-        width: 50%;
+        /* width: 40%; */
         font-family: "Fira Code";
+        border-radius: 10px;
       }
 
-      p.title {
-        font-size: 16px;
-        font-weight: bold;
+      .container-frontend {
+        transition: 0.5s ease;
       }
-      
+
+      pre {
+        background-color: gainsboro;
+      }
+
+      .article-entry pre,
+      .article-entry code {
+        font-family: "Fira Code", "Source Code Pro", Consolas, Monaco, Menlo,
+          Consolas, monospace;
+      }
+
+      .article-entry pre code {
+        background: none;
+        text-shadow: none;
+        padding: 0;
+        line-height: 22px;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+      }
+
+      .pagination button {
+        list-style-type: none;
+        margin: 10px;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        font-size: 15px;
+        text-shadow: black;
+        box-shadow: 12px 7px 15px #888888;
+        border: 0px;
+        cursor: pointer;
+        background-color: aliceblue;
+      }
+
+      .pagination button:focus {
+        outline: none;
+      }
+
+      .pagination button:disabled {
+        cursor: not-allowed;
+        background-color: #e0e0e0;
+      }
+
+      .page-item.active {
+        color: #fff;
+        background-color: deeppink;
+        box-shadow: 12px 7px 15px pink;
+      }
     </style>
+    <!-- <% for (let i = 1; i<=1; i++) { %>
+      <style src="/css/styleDay<%= 1 %>.css"></style>
+    <% } %> -->
   </head>
+
   <body>
     <h1>前言</h1>
-    <p>本文章基于GitHub上的repo：<a target="_blank" rel="noopener" href="https://github.com/bradtraversy/50projects50days">50projects50days</a>. 虽然名为每日但实则为不定期。</p>
-    
-    <div class="container day1">
-      <h2>Day 1. 卡片折叠</h2>
-      <h3>效果</h3>
-      <div class="container day1 img">
-        <div class="panel active" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img1.jpg')">
-          <h3>Explore The World</h3>
-        </div>
-        <div class="panel" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img2.jpg')">
-          <h3>Wild Forest</h3>
-        </div>
-        <div class="panel" style="background-image: url('https://gitee.com/kotori-y/image/raw/master/day1Img3.jpg')">
-          <h3>Sunny Beach</h3>
-        </div>
-      </div>
-      <div class="codeBlock mainCode">
-        <div class="codeBlock-js">
-          <h3>JavaScript</h3>
-          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> panels = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;.panel&#x27;</span>)<br><br>panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>    panel.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        removeActiveClasses()<br>        panel.classList.add(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;)<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeActiveClasses</span>(<span class="hljs-params"></span>) </span>&#123;<br>    panels.forEach(<span class="hljs-function"><span class="hljs-params">panel</span> =&gt;</span> &#123;<br>        panel.classList.remove(<span class="hljs-string">&#x27;active&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><br><span class="hljs-comment">// 鼠标移动到元素时，去掉所有active，再往点击对象里添加active</span><br></code></pre></td></tr></table></figure>
-        </div>
-        <div class="codeBlock-css">
-          <h3>CSS (部分)</h3>
-          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.panel</span> &#123;<br>  <span class="hljs-attribute">background-size</span>: cover;<br>  <span class="hljs-attribute">background-position</span>: center;<br>  <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">8vh</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">flex</span>: <span class="hljs-number">0.5</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">transition</span>: flex <span class="hljs-number">0.7s</span> ease-in;<br>&#125;<br><br><span class="hljs-selector-class">.panel</span><span class="hljs-selector-class">.active</span> &#123;<br>  <span class="hljs-attribute">flex</span>: <span class="hljs-number">5</span>;<br>&#125;<br><br><span class="hljs-selector-class">.panel</span><span class="hljs-selector-class">.active</span> <span class="hljs-selector-tag">h3</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">0.3s</span> ease-in <span class="hljs-number">0.4s</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-        </div>
-      </div>
-      <h3>小结</h3>
-      <h4>DOM</h4>
-      <ul>
-        <li>通过<code>querySelectorAll()</code>方法获取全部class为<i>panel</i>的div对象;</li>
-        <li>通过<code>addEventListener()</code>方法添加事件句柄，此处为<i>mouseenter</i>，
-          <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/jsref/dom-obj-event.html">更多事件</a>；<br>
-          <div class="codeBlock">
-            <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">document.add<span class="hljs-constructor">EventListener(<span class="hljs-params">event</span>, <span class="hljs-params">function</span>, <span class="hljs-params">useCapture</span>)</span><br></code></pre></td></tr></table></figure>
-          </div>
-        </li>
-        <li>通过<code>classList.remove()</code>和<code>classList.add()</code>方法去除/添加class中的<i>active.</i></li>
-      </ul>
-      <h4>CSS</h4>
-      <ul>
-        <li>本练习通过css的<i>flex</i>属性来实现折叠效果。</li>
-      </ul>
-    </div>
+    <p>
+      本文章基于GitHub上的repo：<a
+        target="_blank" rel="noopener" href="https://github.com/bradtraversy/50projects50days"
+        >50projects50days</a
+      >. 虽然名为每日但实则为不定期。
+    </p>
 
-    <hr>
+    <!-- <div class="filter">
+      <input
+        type="text"
+        class="search-day4"
+        id="filterPros"
+        placeholder="number to display"
+      />
+      <button id="apply">Apply</button>
+    </div> -->
 
-    <div class="container day2">
-      <h2>Day 2. 步骤进度条</h2>
-      <h3>效果</h3>
-      <div class="show-effect">
-        <div class="container day2 progress">
-          <div class="progress" id="progress"></div>
-          <div class="circle active">1</div>
-          <div class="circle">2</div>
-          <div class="circle">3</div>
-          <div class="circle">4</div>
-          <div class="circle">5</div>
-        </div>
-        <div class="btnDay2">
-          <button id="prev" disabled>Prev</button>
-          <button id="next">Next</button>
-        </div>
-      </div>
+    <div class="container-frontend"></div>
 
-      <div class="codeBlock mainCode">
-
-        <div class="codeBlock-js">
-          <h3>JavaScript</h3>
-          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> progress = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;progress&quot;</span>);<br><span class="hljs-keyword">const</span> circles = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;.circle&quot;</span>);<br><span class="hljs-keyword">const</span> next = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;next&quot;</span>);<br><span class="hljs-keyword">const</span> prev = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;prev&quot;</span>);<br>    <br><span class="hljs-keyword">let</span> currentActive = <span class="hljs-number">0</span>;<br>    <br>next.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  currentActive++;<br>  currentActive =<br>      currentActive &gt;= circles.length - <span class="hljs-number">1</span> ? circles.length - <span class="hljs-number">1</span> : currentActive;<br>  update();<br>&#125;);<br>    <br>prev.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  currentActive--;<br>  currentActive = currentActive &lt;= <span class="hljs-number">0</span> ? <span class="hljs-number">0</span> : currentActive;<br>  update();<br>&#125;);<br>    <br>progress.addEventListener(<span class="hljs-string">&quot;transitionend&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  circles.forEach(<span class="hljs-function">(<span class="hljs-params">circle, idx</span>) =&gt;</span> &#123;<br>    idx &lt;= currentActive<br>      ? circle.classList.add(<span class="hljs-string">&quot;active&quot;</span>)<br>      : circle.classList.remove(<span class="hljs-string">&quot;active&quot;</span>);<br>  &#125;);<br>&#125;);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>&#123;<br>  progress.style.width = <span class="hljs-string">`<span class="hljs-subst">$&#123;(currentActive * <span class="hljs-number">100</span>) / (circles.length - <span class="hljs-number">1</span>)&#125;</span>%`</span>;<br><br>  prev.disabled = currentActive === <span class="hljs-number">0</span>;<br>  next.disabled = currentActive === circles.length - <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-        </div>
-    
-    
-        <div class="codeBlock-css">
-          <h3>CSS</h3>
-          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123;<br>  <span class="hljs-attribute">--line-border-fill</span>: <span class="hljs-number">#3498db</span>;<br>  <span class="hljs-attribute">--line-border-empty</span>: <span class="hljs-number">#e0e0e0</span>;<br>&#125;<br><br><br><span class="hljs-selector-class">.container</span><span class="hljs-selector-class">.day2</span><span class="hljs-selector-class">.progress</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: space-between;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> auto <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">80%</span>;<br>  <span class="hljs-comment">/* width: 700px; */</span><br>&#125;<br>  <br><span class="hljs-selector-class">.container</span><span class="hljs-selector-class">.day2</span><span class="hljs-selector-class">.progress</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--line-border-empty);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-<span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-comment">/* border: 1px solid #555555; */</span><br>&#125;<br><br><span class="hljs-selector-class">.circle</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#999</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid <span class="hljs-built_in">var</span>(--line-border-empty);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">35px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">35px</span>;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;<br>  <span class="hljs-attribute">transition</span>: <span class="hljs-number">0.4s</span> ease;<br>&#125;<br><br><span class="hljs-selector-class">.circle</span><span class="hljs-selector-class">.active</span> &#123;<br>  <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">var</span>(--line-border-fill);<br>&#125;<br><br><span class="hljs-selector-id">#progress</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--line-border-fill);<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-<span class="hljs-number">50%</span>);<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">4px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">0%</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">transition</span>: <span class="hljs-number">0.4s</span> ease;<br>&#125;<br><br><span class="hljs-selector-class">.btnDay2</span> &#123;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-comment">/* justify-content: center; */</span><br>  <span class="hljs-attribute">text-align</span>: center;<br>&#125;<br><br><span class="hljs-selector-class">.btnDay2</span> <span class="hljs-selector-tag">button</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--line-border-fill);<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">8px</span> <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>&#125;<br><br><span class="hljs-selector-class">.btnDay2</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">outline</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btnDay2</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:active</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">0.90</span>);<br>&#125;<br><br><span class="hljs-selector-class">.btnDay2</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:disabled</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--line-border-empty);<br>  <span class="hljs-attribute">cursor</span>: not-allowed;<br>&#125;<br></code></pre></td></tr></table></figure>
-        </div>
-    
-    </div>
-
-    <div class="summray-note">
-      <h3>小结</h3>
-      <h4>CSS</h4>
-      <ul>
-        <li><code>::before</code>可以创建一个伪元素，其将成为匹配选中的元素的第一个子元素。常通过<code>content</code>属性来为一个元素添加修饰性的内容。此元素默认为行内元素。这里通过<code>::before</code>创建一个空内容作为空progress的样式；</li>
-        <li>用<code>top</code>和<code>transform</code>调整垂直位置；</li>
-        <li><code>z-index</code>类似于matplotlib中的<code>zorder</code>
-      </ul>
-    </div>
-      
-    </div>
-
-    <hr>
-
-    <div class="container day3">
-      <h2>Day 3. 旋转页面</h2>
-      <h3>效果</h3>
-      <div class="show-effect">
-        <!-- code here -->
-        <div class="mainPageDay3">
-          <div class="row day3">
-            <div class="circleD3-container">
-              <div class="circleD3">
-                <button id="close">
-                  <i class="fas fa-times"></i>
-                </button>
-                <button id="open">
-                  <i class="fas fa-bars"></i>
-                </button>
-              </div>
-            </div>
-            <div class="articleDay3">
-              <p style="font-weight: bold;">Header</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius vel atque saepe rem excepturi. Quae dolor aliquam voluptate eveniet labore atque ipsa soluta ipsam modi sint repudiandae, error necessitatibus. Rerum?Eum quibusdam odio, consequuntur quidem culpa, quod voluptate suscipit maxime officiis reiciendis nihil atque consectetur aliquam, repellat animi similique mollitia et minus nesciunt saepe accusamus consequatur tempore? Enim, quisquam impedit.
-              </p>
-              <img src="https://gitee.com/kotori-y/image/raw/master/hello.jpg" alt="doggy" />
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    
-      <div class="codeBlock mainCode">
-        <div class="codeBlock-js">
-          <h3>JavaScript</h3>
-          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-keyword">const</span> open = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;open&quot;</span>);<br><span class="hljs-keyword">const</span> close = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;close&quot;</span>);<br><span class="hljs-keyword">const</span> containerD3 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.row.day3&quot;</span>);<br><span class="hljs-keyword">const</span> containerD3Main = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.mainPageDay3&quot;</span>);<br><br>open.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  containerD3.classList.add(<span class="hljs-string">&quot;show-nav&quot;</span>);<br>  <span class="hljs-comment">// containerD3Main.style[&quot;background-image&quot;] =</span><br>  <span class="hljs-comment">//   &quot;url(&#x27;https://gitee.com/kotori-y/image/raw/master/hello.jpg&#x27;)&quot;;</span><br>  containerD3Main.style[<span class="hljs-string">&quot;background-color&quot;</span>] = <span class="hljs-string">&quot;#b883a9&quot;</span>;<br>&#125;);<br><br>close.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  containerD3.classList.remove(<span class="hljs-string">&quot;show-nav&quot;</span>);<br>  containerD3Main.style[<span class="hljs-string">&quot;background-color&quot;</span>] = <span class="hljs-string">&quot; #fafafa&quot;</span>;<br>&#125;);<br><br></code></pre></td></tr></table></figure>
-        </div>
-        <div class="codeBlock-css">
-          <h3>CSS</h3>
-          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.articleDay3</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">30px</span> <span class="hljs-number">80px</span>;<br>  <span class="hljs-comment">/* font-size: 10px; */</span><br>&#125;<br><br><span class="hljs-selector-class">.mainPageDay3</span> &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;<br>  <span class="hljs-comment">/* height: 600px; */</span><br>  <span class="hljs-attribute">overflow</span>: scroll;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fafafa</span>;<br>  <span class="hljs-attribute">-webkit-transition</span>: background-color <span class="hljs-number">1s</span> ease-out;<br>  <span class="hljs-attribute">-moz-transition</span>: background-color <span class="hljs-number">1s</span> ease-out;<br>  <span class="hljs-attribute">-o-transition</span>: background-color <span class="hljs-number">1s</span> ease-out;<br>  <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">1s</span> ease-out;<br>&#125;<br><br><span class="hljs-selector-class">.row</span><span class="hljs-selector-class">.day3</span> &#123;<br>  <span class="hljs-attribute">transform-origin</span>: top left;<br>  <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> linear;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fafafa</span>;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3-container</span> &#123;<br>  <span class="hljs-comment">/* position: fixed; */</span><br>  <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff7979</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> linear;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3</span> <span class="hljs-selector-tag">button</span> &#123;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background</span>: transparent;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">26px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fafafa</span>;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">outline</span>: none;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-id">#open</span> &#123;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">60%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.circleD3</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-id">#close</span> &#123;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">60%</span>;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">90deg</span>);<br>  <span class="hljs-attribute">transform-origin</span>: top left;<br>&#125;<br><br><span class="hljs-selector-class">.row</span><span class="hljs-selector-class">.day3</span><span class="hljs-selector-class">.show-nav</span> <span class="hljs-selector-class">.circleD3</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(-<span class="hljs-number">75deg</span>);<br>&#125;<br><br><span class="hljs-selector-class">.row</span><span class="hljs-selector-class">.day3</span><span class="hljs-selector-class">.show-nav</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(-<span class="hljs-number">20deg</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
-        </div>
-      </div>
-
-      <div class="summray-note">
-        <h3>小结</h3>
-        <h4>CSS</h4>
-        <ul>
-          <li>通过<code>transform</code>属性的<i>rotate</i>控制元素的旋转；</li>
-          <li><code>transform-origin</code>控制旋转的基点；</li>
-          <li>Button对象的<code>outline</code>控制按钮的边框效果。本示例中，通过<i>:focus</i>伪类实现按钮获得焦点时不显示那个丑陋的边框。</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="container day4">
-      <h2> Day 4. 搜索栏隐藏</h2>
-      <h3>效果</h3>
-      <div class="show-effectD4" style="background-color: #555555; height: 100px">
-        <div class="container search day4">
-          <input type="text" class="search-day4" id="inputD4" placeholder="Search...">
-          <button class="btn-day4">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-  
-      <div class="codeBlock mainCode">
-        <div class="codeBlock-js">
-          <h3>JavaScript</h3>
-          <!-- js code here -->
-          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> containerSearchD4 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.container.search.day4&quot;</span>);<br><span class="hljs-keyword">const</span> btnD4 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.container.search.day4 button&quot;</span>);<br><span class="hljs-keyword">const</span> inputD4 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.search-day4&quot;</span>);<br><br>btnD4.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  containerSearchD4.classList.toggle(<span class="hljs-string">&quot;active&quot;</span>);<br>  inputD4.focus();<br>&#125;);<br><br>inputD4.addEventListener(<span class="hljs-string">&quot;keyup&quot;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// Number 13 is the &quot;Enter&quot; key on the keyboard</span><br>  <span class="hljs-keyword">if</span> (event.keyCode === <span class="hljs-number">13</span>) &#123;<br>    inputD4.value = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">var</span> temp = inputD4.value<br>    alert(<span class="hljs-string">`Words you input: <span class="hljs-subst">$&#123;temp&#125;</span>`</span>);<br>  &#125;<br>&#125;);<br><br></code></pre></td></tr></table></figure>
-        </div>
-        <div class="codeBlock-css">
-          <h3>CSS</h3>
-          <!-- css code here -->
-          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.show-effect</span> &#123;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">display</span>: flex;<br>&#125;<br>  <br><br><span class="hljs-selector-class">.container</span><span class="hljs-selector-class">.search</span><span class="hljs-selector-class">.day4</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">45px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.search-day4</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>; <span class="hljs-comment">/* 247px */</span><br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Fira Code&quot;</span>;<br>  <span class="hljs-attribute">transition</span>: width <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-webkit-transition</span>: width <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-moz-transition</span>: width <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-o-transition</span>: width <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btn-day4</span> &#123;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-webkit-transition</span>: transform <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-moz-transition</span>: transform <span class="hljs-number">1.2s</span> ease;<br>  <span class="hljs-attribute">-o-transition</span>: transform <span class="hljs-number">1.2s</span> ease;<br>&#125;<br><br><span class="hljs-selector-class">.btn-day4</span><span class="hljs-selector-pseudo">:focus</span>, <span class="hljs-selector-class">.search-day4</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">outline</span>:none;<br>&#125;<br><br><span class="hljs-selector-class">.container</span><span class="hljs-selector-class">.search</span><span class="hljs-selector-class">.day4</span><span class="hljs-selector-class">.active</span> <span class="hljs-selector-tag">input</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.container</span><span class="hljs-selector-class">.search</span><span class="hljs-selector-class">.day4</span><span class="hljs-selector-class">.active</span> <span class="hljs-selector-tag">button</span> &#123;<br>  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">200px</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
-        </div>
-      </div>
-      <div class="summray-note">
-        <h3>小结</h3>
-        <h4>CSS</h4>
-        <ul>
-          <li></li>
-        </ul>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="container day5">
-      <!-- 哈哈，双更！没想到吧 -->
-      <h2> Day 5. 模糊加载与按钮进度条 </h2>
-      <h3>效果</h3>
-      <div class="show-effectD5">
-        <div class="mainPageDay5" style="position: relative;">
-          <section class="bg-day5"></section>
-          <div class="loading-text">0%</div>
-        </div>
-        <div class="btn-day5">
-          <button>Load</button>
-          <div class="btnD5-progress"></div> 
-        </div>
-      </div>
-  
-      <div class="codeBlock mainCode">
-        <div class="codeBlock-js">
-          <h3>JavaScript</h3>
-          <!-- js code here -->
-          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-keyword">const</span> bgD5 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.bg-day5&quot;</span>);<br><span class="hljs-keyword">const</span> txtD5 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.loading-text&quot;</span>);<br><span class="hljs-keyword">const</span> btnD5 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.btn-day5 button&quot;</span>);<br><span class="hljs-keyword">const</span> progressD5 = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.btnD5-progress&quot;</span>);<br><br><span class="hljs-comment">// https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers</span><br><span class="hljs-keyword">const</span> scale = <span class="hljs-function">(<span class="hljs-params">num, in_min, in_max, out_min, out_max</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;<br>&#125;;<br><br>btnD5.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  btnD5.disabled = <span class="hljs-literal">true</span>;<br>  btnD5.innerHTML = <span class="hljs-string">&quot;Loading&quot;</span>;<br>  progressD5.style.width = <span class="hljs-string">&quot;0%&quot;</span>;<br><br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-built_in">setInterval</span>(loadBackground, <span class="hljs-number">50</span>);<br>  <span class="hljs-keyword">let</span> numD5 = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadBackground</span>(<span class="hljs-params"></span>) </span>&#123;<br>    numD5++;<br><br>    <span class="hljs-keyword">if</span> (numD5 &gt; <span class="hljs-number">99</span>) &#123;<br>      <span class="hljs-built_in">clearInterval</span>(timer);<br>      btnD5.disabled = <span class="hljs-literal">null</span>;<br>      btnD5.innerHTML = <span class="hljs-string">&quot;Reload&quot;</span>;<br>    &#125;<br><br>    bgD5.style.filter = <span class="hljs-string">`blur(<span class="hljs-subst">$&#123;scale(numD5, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>)&#125;</span>px)`</span>;<br>    txtD5.innerHTML = <span class="hljs-string">`<span class="hljs-subst">$&#123;numD5&#125;</span>%`</span>;<br>    txtD5.style.opacity = scale(numD5, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>    progressD5.style.width = <span class="hljs-string">`<span class="hljs-subst">$&#123;numD5&#125;</span>%`</span>;<br>  &#125;<br>&#125;);<br><br></code></pre></td></tr></table></figure>
-        </div>
-        <div class="codeBlock-css">
-          <h3>CSS</h3>
-          <!-- css code here -->
-          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.mainPageDay5</span> &#123;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">text-align</span>: center;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">45vh</span>;<br>&#125;<br><br><span class="hljs-selector-class">.bg-day5</span> &#123;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;https://gitee.com/kotori-y/image/raw/master/bootstrap.png&quot;</span>)<br>    no-repeat center center/cover;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-comment">/* top: -30px; */</span><br>  <span class="hljs-comment">/* left: -30px; */</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">40vw</span> + <span class="hljs-number">60px</span>);<br>  <span class="hljs-comment">/* height: calc(100vh + 60px); */</span><br>  <span class="hljs-attribute">height</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">30vh</span> + <span class="hljs-number">60px</span>); <span class="hljs-comment">/* MUST */</span><br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">blur</span>(<span class="hljs-number">30px</span>);<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>&#125;<br><br><span class="hljs-selector-class">.loading-text</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">29</span>, <span class="hljs-number">65</span>, <span class="hljs-number">34</span>);<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btn-day5</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">text-align</span>: center;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-comment">/* width: 100px; */</span><br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">10%</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> auto <span class="hljs-number">30px</span>;<br>  <span class="hljs-attribute">background-color</span>: darkgray;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.btn-day5</span> <span class="hljs-selector-tag">button</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">cursor</span>: pointer;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">text-align</span>: center;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">background</span>: transparent;<br>  <span class="hljs-comment">/* transition: 0.3s ease; */</span><br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">10</span>;<br>  <span class="hljs-comment">/* display: flex; */</span><br>&#125;<br><br><span class="hljs-selector-class">.btn-day5</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:disabled</span> &#123;<br>  <span class="hljs-comment">/* background-color: grey; */</span><br>  <span class="hljs-attribute">cursor</span>: not-allowed;<br>&#125;<br><br><span class="hljs-selector-class">.btn-day5</span> <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:focus</span> &#123;<br>  <span class="hljs-attribute">outline</span>: none;<br>&#125;<br><br><span class="hljs-selector-class">.btnD5-progress</span> &#123;<br>  <span class="hljs-attribute">text-align</span>: center;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">0%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-comment">/* margin: 5px; */</span><br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">5</span>;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#d32f2f</span>;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-comment">/* transition: 0.3s ease; */</span><br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-        </div>
-      </div>
-      <div class="summray-note">
-        <h3>小结</h3>
-        <h4>CSS</h4>
-        <ul>
-          <li></li>
-        </ul>
-      </div>
-    </div>
-
-    <template id=‘daily’>
+    <template id="dailyFrontend">
       <div class="container dayX">
-        <h2> Day X. YYY </h2>
+        <h2>Day X. YYY</h2>
         <h3>效果</h3>
         <div class="show-effect">
           <!-- code here -->
         </div>
 
         <div class="codeBlock mainCode">
-          <div class="codeBlock-js">
+          <div class="js-code">
             <h3>JavaScript</h3>
-            <!-- js code here -->
-            ``Javascript
-            <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;codeBlock-css&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>CSS<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- css code here --&gt;</span><br>  ```CSS<br></code></pre></td></tr></table></figure>
+            <pre style="background-color: #d6cbcb">
+            <code class="javascript">
+              <!-- JS code-->
+            </code>
+            </pre>
+          </div>
+
+          <div class="css-code">
+            <h3>CSS</h3>
+            <pre style="background-color: rgb(173, 166, 166)">
+            <code class="css">
+              <!-- css code -->
+            </code>
+            </pre>
           </div>
         </div>
+
         <div class="summray-note">
           <h3>小结</h3>
           <h4>CSS</h4>
@@ -451,14 +350,18 @@
       </div>
     </template>
 
+    <div class="pagination">
+      <button class="page-item prev" disabled="true">
+        <i class="fas fa-angle-left"></i>
+      </button>
+      <!-- <button class="page-item num active">1</button>
+      <button class="page-item num">2</button>
+      <button class="page-item num">3</button> -->
+      <button class="page-item next"><i class="fas fa-angle-right"></i></button>
+    </div>
 
-    <script src="/js/scriptDay1.js"></script>
-    <script src="/js/scriptDay2.js"></script>
-    <script src="/js/scriptDay3.js"></script>
-    <script src="/js/scriptDay4.js"></script>
-    <script src="/js/scriptDay5.js"></script>
+    <script src="/js/renderDaily.js"></script>
   </body>
-
 </html>
 
 <div id="gitalk-container"></div>

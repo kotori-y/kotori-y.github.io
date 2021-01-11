@@ -1,0 +1,88 @@
+.mainPageDay5 {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  height: 45vh;
+}
+
+.bg-day5 {
+  background: url("https://gitee.com/kotori-y/image/raw/master/bootstrap.png")
+    no-repeat center center/cover;
+  position: absolute;
+  /* top: -30px; */
+  /* left: -30px; */
+  width: calc(40vw + 60px);
+  /* height: calc(100vh + 60px); */
+  height: calc(20vh + 60px); /* MUST */
+  z-index: 0;
+  filter: blur(30px);
+  height: 240px;
+}
+
+.loading-text {
+  font-size: 30px;
+  color: rgb(29, 65, 34);
+  z-index: 1;
+  opacity: 1;
+}
+
+.btn-day5 {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* width: 100px; */
+  height: 30px;
+  max-width: 10%;
+  margin: 10px auto 30px;
+  background-color: darkgray;
+  border-radius: 10px;
+  transform: translateY(213%);
+}
+
+.btn-day5 button {
+  color: #fff;
+  font-family: "Fira Code";
+  border: 0;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  background: transparent;
+  /* transition: 0.3s ease; */
+  z-index: 10;
+  /* display: flex; */
+}
+
+.btn-day5 button:disabled {
+  /* background-color: grey; */
+  cursor: not-allowed;
+}
+
+.btn-day5 button:focus {
+  outline: none;
+}
+
+.btnD5-progress {
+  text-align: center;
+  width: 0%;
+  height: 100%;
+  /* margin: 5px; */
+  border-radius: 10px;
+  z-index: 5;
+  background: #d32f2f;
+  opacity: 1;
+  /* transition: 0.3s ease; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  border: 0;
+}

@@ -1,95 +1,150 @@
 /* a part of my blog */
 /* for generating contents of daily front-end*/
-/* pagination component*/
+/* pagination component */
 
-const itemNumPerPage = 3;
-// const dayFilter = document.querySelector("#apply");
+let startDay = 1;
+let currentPage = 1;
+const dayRange = 3;
+const dayNum = 5;
 
-// dayFilter.addEventListener("click", function () {
-//   document.querySelector(".container-frontend").innerHTML = null;
-//   endDay = parseInt(document.getElementById("filterPros").value);
-//   render(1, endDay)();
-// });
+function render(day) {
+  async function renderTemplate(jsCode, cssCode, title, height) {
+    var temp = document.createElement("div");
+    temp.classList = `containter day${day}`;
+    temp.style.display = "none"
 
-function render(day, end) {
+    var titleEle = document.createElement("h2");
+    titleEle.innerHTML = `Day ${day}. ${title}`;
 
-  $(".container-frontend .container.dayX").slideUp(500, function() {
-    $(this).remove();})
+    var effectEle = document.createElement("h3");
+    effectEle.innerHTML = "效果";
 
-  function renderTemplate(title, height, jsCode, cssCode) {
-    var aim = document.querySelector(".container-frontend");
-    var temp = document.querySelector("#dailyFrontend");
+    var show = document.createElement("div");
+    show.classList = "show-effect";
+    show.innerHTML = `<iframe align="center" width=100%" height=${height} src="/frontEnd-daily/day${day}/day${day}.html"  frameborder="no" border="0"></iframe>`;
 
-    var effect = temp.content.querySelector(".show-effect");
-    var js = temp.content.querySelector(".javascript");
-    var css = temp.content.querySelector(".css");
+    var codeBlock = document.createElement("div");
+    codeBlock.classList = "codeBlock mainCode";
 
-    temp.content.querySelector(
-      ".container.dayX"
-    ).className = `container dayX day${day}`;
-    temp.content.querySelector("h2").innerText = `Day ${day}. ${title}`;
+    var jsBlock = document.createElement("div");
+    jsBlock.classList = "js-code";
+    var h3Js = document.createElement("h3");
+    h3Js.innerHTML = "JavaScript";
+    var preJs = document.createElement("pre");
+    preJs.style = "background-color: #d6cbcb";
+    var codeJs = document.createElement("code");
+    codeJs.classList = "javascript";
+    codeJs.innerHTML = jsCode;
 
-    effect.innerHTML = `<iframe align="center" width=100%" height=${height} src="/frontEnd-daily/day${day}/day${day}.html"  frameborder="no" border="0"></iframe>`;
-    // console.log(jsCode)
-    js.innerHTML = jsCode;
-    css.innerHTML = cssCode;
+    // jsBlock.appendChild(codeJs)
 
-    clone = document.importNode(temp.content, true);
-    aim.appendChild(clone);
-    day++;
+    var cssBlock = document.createElement("div");
+    cssBlock.classList = "css-code";
+    var h3Css = document.createElement("h3");
+    h3Css.innerHTML = "CSS";
+    var preCss = document.createElement("pre");
+    preCss.style = "background-color: rgb(173, 166, 166)"; //
+    var codeCss = document.createElement("code");
+    codeCss.classList = "css";
+    codeCss.innerHTML = cssCode;
+
+    preJs.appendChild(codeJs);
+    jsBlock.appendChild(h3Js);
+    jsBlock.appendChild(preJs);
+
+    preCss.appendChild(codeCss);
+    cssBlock.appendChild(h3Css);
+    cssBlock.appendChild(preCss);
+
+    codeBlock.appendChild(jsBlock);
+    codeBlock.appendChild(cssBlock);
+
+    var note = document.createElement("div");
+    note.classList = "summary-note";
+    var h3Note = document.createElement("h3");
+    h3Note.innerHTML = "小结";
+    note.appendChild(h3Note);
+
+    temp.appendChild(titleEle);
+    temp.appendChild(effectEle);
+    temp.appendChild(show);
+    temp.appendChild(codeBlock);
+    temp.appendChild(note);
+
+    return temp;
   }
 
-  const renderCode = () => {
-    return new Promise(async (resolve, reject) => {
-      var respJS = await fetch(`/frontEnd-daily/day${day}/scriptDay${day}.js`);
-      var js = await respJS.text();
-      // console.log(js);
+  async function renderCode() {
+    var respJS = await fetch(`/frontEnd-daily/day${day}/scriptDay${day}.js`);
+    var js = await respJS.text();
 
-      var respCSS = await fetch(`/frontEnd-daily/day${day}/styleDay${day}.css`);
-      var css = await respCSS.text();
-      try {
-        resolve([js, css]);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-
-  const generatePage = (data) => {
-    return new Promise((resolve) => {
-      renderCode().then((code) => {
-        var title = data[day]["title"];
-        var height = data[day]["height"];
-        renderTemplate(title, height, code[0], code[1]);
-        if (day <= end) {
-          resolve(generatePage(data));
-        } else {
-          resolve();
-        }
-      });
-    });
-  };
-
-  function render() {
-    $.getJSON("/frontEnd-daily/dayDate.json", function (data) {
-      generatePage(data).then(function () {
-        // console.log(123);
-        document.querySelectorAll("code").forEach((block) => {
-          // then highlight each
-          hljs.highlightBlock(block);
-          // console.log(456);
-        });
-      });
-    });
+    var respCSS = await fetch(`/frontEnd-daily/day${day}/styleDay${day}.css`);
+    var css = await respCSS.text();
+    try {
+      return [js, css];
+    } catch (error) {
+      alert(error);
+    }
   }
-  return render;
+
+  async function renderItem(data) {
+    var title = data[day]["title"];
+    var height = data[day]["height"];
+    var code = await renderCode();
+    var temp = await renderTemplate(code[0], code[1], title, height);
+    // console.log(temp);
+    return temp;
+  }
+  return renderItem;
+}
+
+async function createLoader() {
+  var loaderContainer = document.createElement("div");
+  loaderContainer.classList = "loader-container";
+  loaderContainer.style.height = "200px";
+  loaderContainer.style.position = "relative";
+  var loader = document.createElement("div");
+  loader.classList = "loader";
+
+  loaderContainer.appendChild(loader);
+  return loaderContainer;
+}
+
+async function generatePage(startDay, dayRange) {
+  $(".container-frontend .containter")
+    .children()
+    .slideUp(500, function () {
+      $(this).remove();
+    });
+
+  var aim = document.querySelector(".container-frontend");
+  for (var _ of [...Array(dayRange)]) {
+    var loader = await createLoader();
+    aim.appendChild(loader);
+  }
+
+  data = await $.getJSON("/frontEnd-daily/dayDate.json");
+  var promise = [];
+  for (let day = startDay; day <= startDay + dayRange - 1; day++) {
+    promise.push(render(day)(data));
+  }
+
+  temps = await Promise.all(promise);
+  document.querySelectorAll(".loader-container").forEach(ele=>ele.style.display = "none")
+  temps.forEach((temp) => aim.append(temp));
+  document.querySelectorAll(".container-frontend .containter").forEach((block)=>{
+    block.style.display = "block"
+  })
+  document.querySelectorAll("code").forEach((block) => {
+    hljs.highlightBlock(block);
+  });
 }
 
 // const currentPage = 1
 
-function renderPagniation(itemNum) {
+function renderPagniation() {
   var currentPage = 1;
-  var pageNum = Math.ceil(itemNum / itemNumPerPage);
+  var pageNum = Math.ceil(dayNum / dayRange);
   var prev = document.querySelector(".page-item.prev");
   var next = document.querySelector(".page-item.next");
   var pagination = document.querySelector(".pagination");
@@ -105,13 +160,15 @@ function renderPagniation(itemNum) {
 
   function update() {
     pages.forEach((ele) => ele.classList.remove("active"));
-    pages[currentPage-1].classList.add('active')
-    var left = (currentPage - 1) * 3 + 1;
-    var right = left + 2;
-    right = right <= itemNum ? right : itemNum;
+    pages[currentPage - 1].classList.add("active");
+    var left = (currentPage - 1) * dayRange + 1;
+    var right = left + dayRange - 1;
+    console.log(right);
+    right = right <= dayNum ? dayRange : dayRange - (right - dayNum);
     prev.disabled = currentPage === 1;
     next.disabled = currentPage === pages.length;
-    render(left, right)();
+    console.log([left, right]);
+    generatePage(left, right);
     window.scrollTo(0, 0);
   }
 
@@ -135,12 +192,7 @@ function renderPagniation(itemNum) {
   });
 }
 
-render(1, itemNumPerPage)();
-renderPagniation(5);
-
-
-$('#delete').click();
-
-// $('#add').click(function (e) {
-//   $(".notifications").append("<div class='notification'></div>");
-// });
+(() => {
+  generatePage(1, dayRange);
+  renderPagniation();
+})();

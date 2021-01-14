@@ -163,11 +163,9 @@ function renderPagniation() {
     pages[currentPage - 1].classList.add("active");
     var left = (currentPage - 1) * dayRange + 1;
     var right = left + dayRange - 1;
-    console.log(right);
     right = right <= dayNum ? dayRange : dayRange - (right - dayNum);
     prev.disabled = currentPage === 1;
     next.disabled = currentPage === pages.length;
-    console.log([left, right]);
     generatePage(left, right);
     window.scrollTo(0, 0);
   }

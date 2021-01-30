@@ -3,7 +3,7 @@
  * @Author: Kotori Y
  * @Date: 2021-01-15 21:42:18
  * @LastEditors: Kotori Y
- * @LastEditTime: 2021-01-20 21:14:16
+ * @LastEditTime: 2021-01-30 19:59:12
  * @FilePath: \kotori-snake\js\script.js
  * @AuthorMail: kotori@cbdd.me
  */
@@ -14,6 +14,12 @@ async function interval(callback, delay) {
       callback(resolve, id);
     }, delay);
   });
+}
+
+async function sleeper(delay) {
+  return new Promise((resolve) => {
+    resolve();
+  }, delay);
 }
 
 class Food {
@@ -45,6 +51,7 @@ class Snake extends Food {
   #initX = null;
   #initY = null;
   allowTurn = false;
+  allowGrow = false;
   constructor(foodElem, snakeElem, length, speed) {
     super(foodElem);
     this.snakeElem = snakeElem;
@@ -66,8 +73,10 @@ class Snake extends Food {
 
     this.#createHeader();
     for (let idx = 1; idx <= this.length; idx++) {
-      this.addBody(this.#initX - this.#width * idx, this.#initY);
+      var body = this.#createBody(this.#initX - this.#width * idx, this.#initY);
+      this.snakeElem.appendChild(body)
     }
+
     this.#snake = document.querySelectorAll(".snake-body");
     this.#tail = this.#snake[this.length];
     this.#createFood(20, 20, false);
@@ -96,12 +105,12 @@ class Snake extends Food {
     }
   }
 
-  addBody(xPos, yPos) {
+  #createBody(xPos, yPos) {
     var body = document.createElement("div");
     body.classList = "snake-body";
     body.style.left = `${xPos}px`;
     body.style.top = `${yPos}px`;
-    this.snakeElem.appendChild(body);
+    return body;
   }
 
   #isColliding(div1, div2) {
@@ -109,8 +118,8 @@ class Snake extends Food {
     var d2Offset = { left: div2.offsetLeft, top: div2.offsetTop };
 
     var notColliding =
-      Math.abs(d1Offset.left - d2Offset.left) >= 20 ||
-      Math.abs(d1Offset.top - d2Offset.top) >= 20;
+      Math.abs(d1Offset.left - d2Offset.left) >= div2.clientWidth ||
+      Math.abs(d1Offset.top - d2Offset.top) >= div2.clientHeight;
 
     return !notColliding;
   }
@@ -157,6 +166,15 @@ class Snake extends Food {
     }
   }
 
+  #grow() {
+    var x=this.#tail.offsetLeft
+    var y=this.#tail.offsetTop
+    var body=this.#createBody(x,y)
+    this.snakeElem.insertBefore(body,this.#tail)
+    this.#snake = document.querySelectorAll(".snake-body");
+    this.length++;
+  }
+
   move() {
     interval((resolve, id) => {
       this.#move();
@@ -171,8 +189,10 @@ class Snake extends Food {
 
       var ate = this.#isAte();
       if (ate) {
+        this.#grow()
+
         let [width, height, _score] =
-          Math.random() <= 0.1 ? [30, 30, 2] : [20, 20, 20];
+          Math.random() <= 0.03 ? [30, 30, 2] : [20, 20, 20];
         this.eatNum++;
         this.score += _score;
         this.#createFood(width, height, true);

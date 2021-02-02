@@ -16,9 +16,8 @@ body {
   background-size: 40px 40px;
   position: relative;
   border: 3px solid #ccc;
-  opacity: 0.5;
-  height: 360px;
-  width: 360px;
+  opacity: 0.8;
+  display: inline-block;
 }
 
 .game-area:focus {
@@ -74,4 +73,138 @@ body {
   left: 320px;
   background-image: url(../images/human.png);
   background-size: 35px 35px;
+}
+
+.info-container {
+  left: 40px;
+  position: relative;
+}
+
+.copy-right {
+  font-family: "Fira Code";
+  margin: 100px 0;
+}
+
+.operation,
+.time,
+.move,
+.level {
+  position: absolute;
+  font-family: "Fira Code";
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none;
+}
+
+.time,
+.move,
+.level {
+  display: flex;
+}
+
+.level {
+  /* left: 400px; */
+  top: -35px;
+  width: 153px;
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.move {
+  /* left: 400px; */
+  top: 40px;
+  width: 153px;
+  font-size: 20px;
+}
+
+.time {
+  /* left: 400px; */
+  top: 80px;
+  width: 153px;
+  font-size: 20px;
+}
+
+.operation {
+  display: block;
+  /* left: 400px; */
+  top: 140px;
+  width: 153px;
+}
+
+.operation #operation {
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.operation-move,
+.operation-undoing,
+.operation-redoing {
+  position: relative;
+  display: flex;
+  height: 18px;
+}
+
+.operation-undoing {
+  top: 63px;
+  left: 20px;
+}
+
+.operation-redoing {
+  top: 45px;
+  left: 100px;
+}
+
+.key {
+  position: absolute;
+  font-size: 20px;
+  border: 1px solid;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.arrowUp {
+  top: -13px;
+  left: 70px;
+}
+
+.arrowDown {
+  top: 30px;
+  left: 70px;
+}
+
+.arrowLeft {
+  top: 30px;
+  left: 27px;
+}
+
+.arrowRight {
+  top: 30px;
+  left: 113px;
+}
+
+.undoing {
+  top: 25px;
+  left: 8px;
+}
+
+.redoing {
+  top: 25px;
+  left: 10px;
+}
+
+.game-clear {
+  position: absolute;
+  opacity: 0;
+  height: 360px;
+  width: 400px;
+  display: table;
+  z-index: 2;
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: hidden;
 }

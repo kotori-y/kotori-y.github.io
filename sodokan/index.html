@@ -3,7 +3,7 @@
  * @Author: Kotori Y
  * @Date: 2021-01-31 21:32:17
  * @LastEditors: Kotori Y
- * @LastEditTime: 2021-02-01 22:36:54
+ * @LastEditTime: 2021-02-02 21:31:17
  * @FilePath: \kotori-sokoban\index.html
  * @AuthorMail: kotori@cbdd.me
 -->
@@ -21,6 +21,17 @@
   </head>
   <body>
     <div class="container">
+      <div class="game-clear">
+        <i
+          class="far fa-check-circle fa-5x"
+          style="
+            text-align: center;
+            vertical-align: middle;
+            display: table-cell;
+            line-height: 50px;
+          "
+        ></i>
+      </div>
       <div class="game-area" tabindex="0">
         <div class="border-container">
           <!-- border here -->
@@ -36,8 +47,47 @@
         <div class="human-container">
           <!-- <div class="human"></div> -->
         </div>
+        <div class="info-container">
+          <div class="level">
+            <p>LEVEL&nbsp;</p>
+            <p id="stageNum">1</p>
+          </div>
+          <div class="counter">
+            <div class="time">
+              <p>TIME&nbsp;:&nbsp;</p>
+              <p id="timeCost">00:00</p>
+            </div>
+            <div class="move">
+              <p>MOVES:&nbsp;</p>
+              <p id="moveNum">0</p>
+            </div>
+          </div>
+          <div class="operation">
+            <p id="operation">OPERATION</p>
+            <div class="operation-move">
+              Move
+              <div class="key arrowUp">↑/W</div>
+              <div class="key arrowDown">↓/S</div>
+              <div class="key arrowLeft">←/A</div>
+              <div class="key arrowRight">→/D</div>
+            </div>
+            <div class="operation-undoing">
+              Undoing
+              <div class="key undoing">Q</div>
+            </div>
+            <div class="operation-redoing">
+              Redoing
+              <div class="key redoing">E</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-right">
+        <p>Original puzzle game written by Hiroyuki Imabayashi</p>
+        <p>© 1982 by THINKING RABBIT Inc. JAPAN</p>
+        <p>© 2010-2021 Sokoban - All rights reserved</p>
       </div>
     </div>
-  <script src="source/js/script.js"></script>
+    <script src="source/js/script.js"></script>
   </body>
 </html>

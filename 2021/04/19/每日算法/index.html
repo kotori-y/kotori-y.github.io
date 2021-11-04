@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kotori Y">
+    
+    <title>
+        
+            每日算法 |
+        
+        Build Knowledge Together
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Build Knowledge Together
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/authors"
+                            >
+                                AUTHORS
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/authors">AUTHORS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">每日算法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <a href="/authors/Kotori%20Y">
+                        <img src="/images/avatar.jpeg">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Kotori Y</span>
+                        
+                            <span class="author-label">11 Posts</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-19 20:56:09
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Note/">Note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Python-JavaScript/">Python. JavaScript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>这三年也没正儿八经学过算法，每次都是无脑for循环，实在不够elegant。于是我拿出来积灰已久的LeetCode，每天没事玩玩算法。还没想好怎么分，就先按类型写吧。</p>
+<span id="more"></span>
+<h2 id="TOC"><a href="#TOC" class="headerlink" title="TOC"></a>TOC</h2><p>…</p>
+<h2 id="0-空间复杂度与时间复杂度"><a href="#0-空间复杂度与时间复杂度" class="headerlink" title="0. 空间复杂度与时间复杂度"></a>0. 空间复杂度与时间复杂度</h2><p>…</p>
+<h2 id="1-哈希表-Hash-Table"><a href="#1-哈希表-Hash-Table" class="headerlink" title="1. 哈希表 (Hash Table)"></a>1. 哈希表 (Hash Table)</h2><h3 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum" >两数之和<i class="fas fa-external-link-alt"></i></a></h3><p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出和为目标值的那两个整数，并返回它们的数组下标。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[2,7,11,15]</span>, target = 9<br>输出：<span class="hljs-comment">[0,1]</span><br>解释：因为 nums<span class="hljs-comment">[0]</span> + nums<span class="hljs-comment">[1]</span> == 9 ，返回 <span class="hljs-comment">[0, 1]</span> 。<br></code></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[3,2,4]</span>, target = 6<br>输出：<span class="hljs-comment">[1,2]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[3,3]</span>, target = 6<br>输出：<span class="hljs-comment">[0,1]</span><br></code></pre></td></tr></table></figure>
+<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><h5 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], target: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]:</span><br>        hashTable = &#123;&#125;<br>        <span class="hljs-keyword">for</span> idx, num <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(nums):<br>            <span class="hljs-keyword">if</span> (target - num) <span class="hljs-keyword">in</span> hashed:<br>                <span class="hljs-keyword">return</span> [hashTable[target - num], idx]<br>            hashed[num] = idx<br></code></pre></td></tr></table></figure>
+<h5 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">target</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> twoSum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums, target</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> hashTable = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> idx = <span class="hljs-number">0</span>; idx &lt;= nums.length-<span class="hljs-number">1</span>; idx++) &#123;<br>        <span class="hljs-keyword">const</span> num = nums[idx]<br>        <span class="hljs-keyword">if</span> (hashTable.has(target - num)) &#123;<br>            <span class="hljs-keyword">return</span> [hashTable.get(target - num), idx]<br>        &#125;<br>        hashTable.set(num, idx)<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" >无重复字符的最长子串<i class="fas fa-external-link-alt"></i></a></h3><p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = &quot;abcabcbb&quot;</span><br><span class="hljs-section">输出: 3 </span><br><span class="hljs-section">解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = &quot;bbbbb&quot;</span><br><span class="hljs-section">输出: 1</span><br><span class="hljs-section">解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = &quot;pwwkew&quot;</span><br><span class="hljs-section">输出: 3</span><br><span class="hljs-section">解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。</span><br>     请注意，你的答案必须是 子串 的长度，<span class="hljs-string">&quot;pwke&quot;</span> 是一个子序列，不是子串。<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = &quot;&quot;</span><br><span class="hljs-section">输出: 0</span><br></code></pre></td></tr></table></figure>
+<h4 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lengthOfLongestSubstring</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:</span><br>        hashTable = &#123;&#125;<br>        leftIdx = maxLen = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> rightIdx, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(s):<br>            <span class="hljs-keyword">if</span> c <span class="hljs-keyword">in</span> hashTable:<br>                leftIdx = <span class="hljs-built_in">max</span>(hashTable[c]+<span class="hljs-number">1</span>, leftIdx)<br>            hashTable[c] = rightIdx<br>            maxLen = <span class="hljs-built_in">max</span>(maxLen, rightIdx- leftIdx + <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> maxLen<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> lengthOfLongestSubstring = <span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> hashMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();<br>    <span class="hljs-keyword">let</span> leftIdx = <span class="hljs-number">0</span>, maxLen = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> rightIdx=<span class="hljs-number">0</span>; rightIdx&lt;=s.length-<span class="hljs-number">1</span>; rightIdx++) &#123;<br>        <span class="hljs-keyword">const</span> c = s[rightIdx]<br>        <span class="hljs-keyword">if</span> (hashMap.has(c)) &#123;<br>            leftIdx = <span class="hljs-built_in">Math</span>.max(leftIdx, hashMap.get(c)+<span class="hljs-number">1</span>)<br>        &#125;<br>        hashMap.set(c, rightIdx)<br>        maxLen = <span class="hljs-built_in">Math</span>.max(maxLen, rightIdx - leftIdx + <span class="hljs-number">1</span>)<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxLen<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="2-链表-Linked-List"><a href="#2-链表-Linked-List" class="headerlink" title="2. 链表 (Linked List)"></a>2. 链表 (Linked List)</h2><h3 id="两数相加"><a href="#两数相加" class="headerlink" title="两数相加"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/" >两数相加<i class="fas fa-external-link-alt"></i></a></h3><p>给你两个<strong>非空</strong>的链表，表示两个非负的整数。它们每位数字都是按照<strong>逆序</strong>的方式存储的，并且每个节点只能存储 一位数字。<br>请你将两个数相加，并以相同形式返回一个表示和的链表。<br>你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[2,4,3]</span>, l2 = <span class="hljs-comment">[5,6,4]</span><br>输出：<span class="hljs-comment">[7,0,8]</span><br>解释：342 + 465 = 807.<br></code></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[0]</span>, l2 = <span class="hljs-comment">[0]</span><br>输出：<span class="hljs-comment">[0]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：l1 = [<span class="hljs-number">9,9,9,9</span>,<span class="hljs-number">9</span>,<span class="hljs-number">9</span>,<span class="hljs-number">9</span>], l2 = [<span class="hljs-number">9,9,9,9</span>]<br>输出：[<span class="hljs-number">8,9,9,9</span>,<span class="hljs-number">0,0,0,1</span>]<br></code></pre></td></tr></table></figure>
+<h4 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h4><h5 id="Python-1"><a href="#Python-1" class="headerlink" title="Python"></a>Python</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Definition for singly-linked list.</span><br><span class="hljs-comment"># class ListNode:</span><br><span class="hljs-comment">#     def __init__(self, val=0, next=None):</span><br><span class="hljs-comment">#         self.val = val</span><br><span class="hljs-comment">#         self.next = next</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addTwoNumbers</span>(<span class="hljs-params">self, l1: ListNode, l2: ListNode</span>) -&gt; ListNode:</span><br>        head, tail = [<span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>]<br>        carry = <span class="hljs-number">0</span><br><br>        <span class="hljs-keyword">while</span> (l1 <span class="hljs-keyword">or</span> l2):<br><br>            n1 = l1.val <span class="hljs-keyword">if</span> l1 <span class="hljs-keyword">else</span> <span class="hljs-number">0</span><br>            n2 = l2.val <span class="hljs-keyword">if</span> l2 <span class="hljs-keyword">else</span> <span class="hljs-number">0</span><br><br>            sum_ = n1 + n2 + carry<br>            carry = sum_ // <span class="hljs-number">10</span><br><br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head:<br>                head = tail = ListNode(sum_ % <span class="hljs-number">10</span>)<br>            <span class="hljs-keyword">else</span>:<br>                tail.<span class="hljs-built_in">next</span> = ListNode(sum_ % <span class="hljs-number">10</span>)<br>                tail = tail.<span class="hljs-built_in">next</span><br><br>            <span class="hljs-keyword">if</span> l1:<br>                l1 = l1.<span class="hljs-built_in">next</span><br>            <br>            <span class="hljs-keyword">if</span> l2:<br>                l2 = l2.<span class="hljs-built_in">next</span><br><br>        <span class="hljs-keyword">if</span> (carry &gt; <span class="hljs-number">0</span>): <br>            tail.<span class="hljs-built_in">next</span> = ListNode(carry)<br>        <span class="hljs-keyword">return</span> head<br></code></pre></td></tr></table></figure>
+<h5 id="JavaScript-1"><a href="#JavaScript-1" class="headerlink" title="JavaScript"></a>JavaScript</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * function ListNode(val, next) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.next = (next===undefined ? null : next)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;ListNode&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> addTwoNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">l1, l2</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> head = <span class="hljs-literal">null</span>, tail = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">let</span> carry = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">while</span> (l1 || l2) &#123;<br><br>        <span class="hljs-keyword">const</span> n1 = l1 ? l1.val : <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">const</span> n2 = l2 ? l2.val : <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">const</span> sum = ( n1 + n2 + carry );<br><br>        <span class="hljs-keyword">if</span> (!head) &#123;<br>            head = tail = <span class="hljs-keyword">new</span> ListNode(sum % <span class="hljs-number">10</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            tail.next = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-built_in">Math</span>.floor(sum % <span class="hljs-number">10</span>))<br>            tail = tail.next<br>        &#125;<br><br>        carry = <span class="hljs-built_in">Math</span>.floor(sum / <span class="hljs-number">10</span>)<br><br>        <span class="hljs-keyword">if</span> (l1) &#123;<br>            l1 = l1.next<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (l2) &#123;<br>            l2 = l2.next<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (carry &gt; <span class="hljs-number">0</span>) &#123;<br>        tail.next = <span class="hljs-keyword">new</span> ListNode(carry);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> head<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="3-二分查找-Binary-Search"><a href="#3-二分查找-Binary-Search" class="headerlink" title="3. 二分查找 (Binary Search)"></a>3. 二分查找 (Binary Search)</h2><h3 id="寻找两个正序数组的中位数"><a href="#寻找两个正序数组的中位数" class="headerlink" title="寻找两个正序数组的中位数"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/" >寻找两个正序数组的中位数<i class="fas fa-external-link-alt"></i></a></h3><p>给定两个大小分别为<code>m</code>和<code>n</code>的<strong>正序</strong>（从小到大）数组<code>nums1</code>和<code>nums2</code>。请你找出并返回这两个正序数组的<strong>中位数</strong>。</p>
+<p><strong>要求</strong>：时间复杂度为（或优于）<code><em>O(log(m + n))</em></code></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums1 = <span class="hljs-comment">[1,3]</span>, nums2 = <span class="hljs-comment">[2]</span><br>输出：2.00000<br>解释：合并数组 = <span class="hljs-comment">[1,2,3]</span> ，中位数 2<br></code></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gcode">输入：<span class="hljs-symbol">nums1</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], <span class="hljs-symbol">nums2</span> = [<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br>输出：<span class="hljs-number">2.50000</span><br>解释：合并数组 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>] ，中位数 <span class="hljs-comment">(2 + 3)</span> / <span class="hljs-number">2</span> = <span class="hljs-number">2.5</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gcode">输入：<span class="hljs-symbol">nums1</span> = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>], <span class="hljs-symbol">nums2</span> = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]<br>输出：<span class="hljs-number">0.00000</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gcode">输入：<span class="hljs-symbol">nums1</span> = [], <span class="hljs-symbol">nums2</span> = [<span class="hljs-number">1</span>]<br>输出：<span class="hljs-number">1.00000</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gcode">输入：<span class="hljs-symbol">nums1</span> = [<span class="hljs-number">2</span>], <span class="hljs-symbol">nums2</span> = []<br>输出：<span class="hljs-number">2.00000</span><br></code></pre></td></tr></table></figure>
+<h3 id="解答-3"><a href="#解答-3" class="headerlink" title="解答"></a>解答</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">Description:</span><br><span class="hljs-string">Author: Kotori Y</span><br><span class="hljs-string">Date: 2021-04-21 11:54:00</span><br><span class="hljs-string">LastEditors: Kotori Y</span><br><span class="hljs-string">LastEditTime: 2021-04-21 11:56:24</span><br><span class="hljs-string">FilePath: \LeetCode-Code\codes\BinarySearch\Median-of-Two-Sorted-Arrays\script.py</span><br><span class="hljs-string">AuthorMail: kotori@cbdd.me</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findMedianSortedArrays</span>(<span class="hljs-params">self, nums1: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], nums2: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">float</span>:</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(nums1) &gt; <span class="hljs-built_in">len</span>(nums2):<br>            <span class="hljs-keyword">return</span> self.findMedianSortedArrays(nums2, nums1)<br>        length1, length2 = <span class="hljs-built_in">len</span>(nums1), <span class="hljs-built_in">len</span>(nums2)<br><br>        <span class="hljs-keyword">if</span> nums1:<br>            <span class="hljs-comment"># the number of elements at left part</span><br>            leftLength = (length1 + length2 + <span class="hljs-number">1</span>) // <span class="hljs-number">2</span><br><br>            left = <span class="hljs-number">0</span><br>            right = length1<br><br>            <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>                i = left + (right - left + <span class="hljs-number">1</span>) // <span class="hljs-number">2</span><br>                j = leftLength - i<br><br>                <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">and</span> nums1[i - <span class="hljs-number">1</span>] &gt; nums2[j]:<br>                    right = i - <span class="hljs-number">1</span><br>                <span class="hljs-keyword">elif</span> (i &lt; length1) <span class="hljs-keyword">and</span> (nums2[j - <span class="hljs-number">1</span>] &gt; nums1[i]):<br>                    right = i + <span class="hljs-number">1</span><br>                    left = i<br>                <span class="hljs-keyword">else</span>:<br>                    <span class="hljs-keyword">break</span><br><br>            leftOne = nums1[i-<span class="hljs-number">1</span>] <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-built_in">min</span>(nums2)<br>            leftTwo = nums2[j-<span class="hljs-number">1</span>] <span class="hljs-keyword">if</span> j &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-built_in">min</span>(nums1)<br><br>            <span class="hljs-keyword">if</span> (length1 + length2) % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:<br>                <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>([leftOne, leftTwo])<br><br>            rightOne = nums1[i] <span class="hljs-keyword">if</span> i &lt; length1 <span class="hljs-keyword">else</span> <span class="hljs-built_in">max</span>(nums2)<br>            rightTwo = nums2[j] <span class="hljs-keyword">if</span> j &lt; length2 <span class="hljs-keyword">else</span> <span class="hljs-built_in">max</span>(nums1)<br><br>            n1 = <span class="hljs-built_in">max</span>([leftOne, leftTwo])<br>            n2 = <span class="hljs-built_in">min</span>([rightOne, rightTwo])<br>            <span class="hljs-keyword">return</span> (n1 + n2) / <span class="hljs-number">2</span><br><br>        <span class="hljs-keyword">if</span> length2 % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">return</span> nums2[(length2 - <span class="hljs-number">1</span>)//<span class="hljs-number">2</span>]<br><br>        <span class="hljs-keyword">return</span> (nums2[(length2-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>] + nums2[length2//<span class="hljs-number">2</span>]) / <span class="hljs-number">2</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @Description:</span><br><span class="hljs-comment"> * @Author: Kotori Y</span><br><span class="hljs-comment"> * @Date: 2021-04-21 11:59:15</span><br><span class="hljs-comment"> * @LastEditors: Kotori Y</span><br><span class="hljs-comment"> * @LastEditTime: 2021-04-21 15:20:28</span><br><span class="hljs-comment"> * @FilePath: \LeetCode-Code\codes\BinarySearch\Median-of-Two-Sorted-Arrays\script.js</span><br><span class="hljs-comment"> * @AuthorMail: kotori@cbdd.me</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> findMedianSortedArrays = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums1, nums2</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (nums1.length &gt; nums2.length) &#123;<br>    <span class="hljs-keyword">return</span> findMedianSortedArrays(nums2, nums1);<br>  &#125;<br><br>  <span class="hljs-keyword">if</span> (nums1.length) &#123;<br>    <span class="hljs-keyword">let</span> right = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> left = nums1.length;<br>    <span class="hljs-keyword">const</span> leftLength = <span class="hljs-built_in">Math</span>.floor((nums1.length + nums2.length + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>);<br><br>    <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">var</span> i, j;<br><br>    <span class="hljs-keyword">while</span> (flag) &#123;<br>      i = left + <span class="hljs-built_in">Math</span>.floor((right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>);<br>      j = leftLength - i;<br>      <span class="hljs-keyword">switch</span> (<span class="hljs-literal">true</span>) &#123;<br>        <span class="hljs-keyword">case</span> i &gt; <span class="hljs-number">0</span> &amp;&amp; nums1[i - <span class="hljs-number">1</span>] &gt; nums2[j]:<br>          left = i - <span class="hljs-number">1</span>;<br>          <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> i &lt; nums1.length &amp;&amp; nums2[j - <span class="hljs-number">1</span>] &gt; nums1[i]:<br>          right = i + <span class="hljs-number">1</span>;<br>          left = i;<br>          <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">default</span>:<br>          flag = <span class="hljs-literal">false</span>;<br>          <span class="hljs-keyword">break</span>;<br>      &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">const</span> leftOne = i &gt; <span class="hljs-number">0</span> ? nums1[i - <span class="hljs-number">1</span>] : <span class="hljs-built_in">Math</span>.min(...nums2);<br>    <span class="hljs-keyword">const</span> leftTwo = j &gt; <span class="hljs-number">0</span> ? nums2[j - <span class="hljs-number">1</span>] : <span class="hljs-built_in">Math</span>.min(...nums1);<br>    <span class="hljs-keyword">const</span> rightOne = i &lt; nums1.length ? nums1[i] : <span class="hljs-built_in">Math</span>.max(...nums2);<br>    <span class="hljs-keyword">const</span> rightTwo = j &lt; nums2.length ? nums2[j] : <span class="hljs-built_in">Math</span>.max(...nums1);<br><br>    <span class="hljs-keyword">if</span> ((nums1.length + nums2.length) % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(leftOne, leftTwo);<br>    &#125;<br><br>    <span class="hljs-keyword">const</span> n1 = <span class="hljs-built_in">Math</span>.max(leftOne, leftTwo);<br>    <span class="hljs-keyword">const</span> n2 = <span class="hljs-built_in">Math</span>.min(rightOne, rightTwo);<br>    <span class="hljs-keyword">return</span> (n1 + n2) / <span class="hljs-number">2</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">if</span> (nums2.length % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> nums2[<span class="hljs-built_in">Math</span>.floor((nums2.length - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>)];<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    (nums2[<span class="hljs-built_in">Math</span>.floor((nums2.length - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>)] + nums2[nums2.length / <span class="hljs-number">2</span>]) / <span class="hljs-number">2</span><br>  );<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：每日算法</li>
+        <li>Post author：Kotori Y</li>
+        <li>Create time：2021-04-19 20:56:09</li>
+        <li>
+            Post link：https://blog.iamkotori.com/2021/04/19/每日算法/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/05/06/%E4%B8%8D%E7%9F%A5%E9%81%93%E5%8A%A8%E6%80%81%E4%BD%93%E7%8E%B0%E5%9C%A8%E5%93%AA%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E7%AC%94%E8%AE%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">不知道“动态”体现在哪的动态规划</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/01/21/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">算法笔记之回溯算法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'asikxqyjUx1MjuHKtYaxrqFV-gzGzoHsz',
+                    appKey: 'p8nlF7XIyFQ6yD08yKaEhBFH',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'niconiconi',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Kotori Y';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TOC"><span class="nav-text">TOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text">0. 空间复杂度与时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%93%88%E5%B8%8C%E8%A1%A8-Hash-Table"><span class="nav-text">1. 哈希表 (Hash Table)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94"><span class="nav-text">解答</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript"><span class="nav-text">JavaScript</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="nav-text">无重复字符的最长子串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94-1"><span class="nav-text">解答</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%93%BE%E8%A1%A8-Linked-List"><span class="nav-text">2. 链表 (Linked List)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0"><span class="nav-text">两数相加</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94-2"><span class="nav-text">解答</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Python-1"><span class="nav-text">Python</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-1"><span class="nav-text">JavaScript</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-Binary-Search"><span class="nav-text">3. 二分查找 (Binary Search)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-text">寻找两个正序数组的中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94-3"><span class="nav-text">解答</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

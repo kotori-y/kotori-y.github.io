@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kotori Y">
+    
+    <title>
+        
+            使用自纠正Transformer神经网络预测逆合成反应 |
+        
+        Build Knowledge Together
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Build Knowledge Together
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/authors"
+                            >
+                                AUTHORS
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/authors">AUTHORS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">使用自纠正Transformer神经网络预测逆合成反应</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <a href="/authors/Kotori%20Y">
+                        <img src="/images/avatar.jpeg">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Kotori Y</span>
+                        
+                            <span class="author-label">11 Posts</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-09-14 09:11:44
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reading-Note/">Reading Note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/transformer/">transformer</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/retrosynthesis/">retrosynthesis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>本研究训练了一个纠正无效SMILES字符串的Transformer网络，有效地解决了合成预测任务中，产物高比率的无效SMILES的问题。</p>
+<span id="more"></span>
+<p><a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1021/acs.jcim.9b00949">来源<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="重要性-意义"><a href="#重要性-意义" class="headerlink" title="重要性/意义"></a>重要性/意义</h3><p>有机合成是当代有机化学的重要地基，它将一系列的反应物变为可用的材料或者药物。而逆合成是用过不断地迭代，将一个复杂的化合物推导为若干简单的反应物。他的提出者Corey因此获得了1990年的诺贝尔化学奖。</p>
+<p>由于一个化合物往往有许多的合成路线，这就需要化学家需要精确地预测出每一步的反应路线，无疑，这是非常困难的。</p>
+<h3 id="研究进展"><a href="#研究进展" class="headerlink" title="研究进展"></a>研究进展</h3><p>和许多其他问题一样，诞生了许多计算机的预测方法，其中许多都是基于手写反应模板（hand-coded reaction templates）。Chematica是最著名的计算机辅助预测反应的软件，它包含了70,000个手动提取的反应规则，改工作消耗了Grzybowski Scientiﬁc Invention团队15多年的时间。基于这些模板，合成路线可以通过通用模板来规划。当数据库中拥有适合的模板时，该类方法能提供一个合理的预测路线。然而，手动编码全部的通过实验新增的反应是不现实的。此外，仅依靠一个简单的合成模板来预测反应路线是不能充分地让人信服的，因为它仅关注中心及其相邻的原子，而没有考虑全局的分子环境。</p>
+<p>近期，一种被称为聚焦基于模板的方法被提出，用于从反应数据库中自动提取反应模板。这类方法的关键是为目标分子选出相关的模板。Segler和Waller通过使用神经网络，提出了一种模板相关性的评估方法。之后，他们指出结合蒙特卡洛数树与深度神经网络结能有效地选择出最有希望的逆合成方法。Albeit认为，这些方法高度依赖一个预定义的原子字典来映射反应物与产物，这仍是一个急需解决的问题。更进一步，常用的一些预测软件以来专家知识与反应模板，这似乎陷入了一个无限循环。无论怎样，基于模板的方法有一个限制，那就是他<strong>无法跳出模板所覆盖的化学空间</strong>，因此当该类方法用于预测新目标的时候，该类方法的效果将会很差。</p>
+<p>为了解决问题，一种免模板的方法被提出，该方法的主要想法是基于SMILES，因此，逆合成预测的问题被转换成语言翻译问题，即从产物的SMILES到产物的SMILES。Nam和Kim首次提出将Seq2Seq模型用于预测正反应。在那之后，Liu等人报导了一个类Seq2Seq模型，并显示出与基于规则的方法不相上下的性能。该Seq2Seq模型可以使用端到端的数据进行充分的训练，而不需要原子映射。不幸的是，该方法没有提供一个显著的精确度的优势，反而提供了一些<strong>无效的SMILES字符串</strong>。</p>
+<p>最近，Ttransfomer架构在机器翻译领域表现出了显著的优势。它将传统的翻译模型中的递归神经网络移除，并基于自注意力机制，允许同时提取输入与输出中所包含的信息。Schwaller等人使用架构进行反应物的预测，并达到了SOTA，这给予我们（作者）使用该架构进行逆合成预测。</p>
+<h3 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h3><p>在本研究中，一种去模板的<strong>自纠正逆合成预测器(</strong>self-corrected retrosynthesis predictor, SCROP)被提出。该方法在<strong>USPTO-50K</strong>数据库上的表现，top1的ACC超过了SOTA，达到了59.0%，并且在jin的一个数据库上进行单产物预测，ACC为41.5%。同时，通过SCROP的较正，不合理的前体化合物的比例由<strong>12.1%降低到了0.7%</strong>。把与训练集相似的化合物从测试集移除后，该方法的ACC达到了47.6%，这是其他SOTA模型的1.7倍。更重要的是，该模型无需任何手写模板并且能预测出化学键断裂的微妙信息。</p>
+<h2 id="材料与方法"><a href="#材料与方法" class="headerlink" title="材料与方法"></a>材料与方法</h2><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>本研究中的所有数据均来自Lows等人之前的研究(<em>Lowe, D. M. Extraction of Chemical Structures and Reactions from the Literature; University of Cambridge, 2012</em>)。为了对比，将第一个数据集，<strong>USPTO-50</strong>，用作基准数据集，它包含了<strong>50,000</strong>个化学反应，并被Schneider分为<strong>10类反应</strong>。图1显示了该数据集中每类反应的分布情况。本研究将该数据集按40K、5K与5K的比例划分成训练集、验证集与测试集。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-1.png" alt="图.1 USPTO-50K数据库中各种反应类型的分布情况">
+  <figcaption>图.1 USPTO-50K数据库中各种反应类型的分布情况</figcaption>
+</figure>
+
+<p>为了避免随机化分将相似的反应物聚集在训练集或测试集而带来的的过评估(overestimate), 本研究使用了聚类-划分策略。该策略主要基于Murcko股价进行实施。</p>
+<p>为了进一步评估模型，本研究又使用了一个更大的数据集，它包含了480K个原子映射的化学反应并不包含预先定义好的化学反应类型。根据Schwaller等人之前的研究，将试剂(reagents)从反应物(reactants)中移除，并将分子标准化。最后将该数据集按照400K、40K与40K的比例分为训练、验证与测试集。</p>
+<h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>对于给定的目标产物与反应类型，本研究的目标是预测出能按照反应类型反应而得到目标产物的反应物。和其他研究一样，本研究使用长度不定的SMILES字符串来表征反应物与产物，将任务转化成文本翻译任务。</p>
+<p>这些序列首先将被编码成one-hot的形式，总唯维度为字典的长度(本研究中为50) 。通过该编码方法，每个序列会被转换成一组向量，为使训练过程更加稳定和高效，本研究按照之前的工作，<strong>输入的 one-hot 矩阵被压缩为信息丰富的词嵌入向量</strong>。作为结果，每个输入的序列都被表征成分子嵌入向量(molcular embeedding)。</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex" xmlns="http://www.w3.org/2000/svg" width="18.384ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 8125.6 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1155.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(2211.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(2600.6,0)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mn" transform="translate(394,-150) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><g data-mml-node="mo" transform="translate(3398.1,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(3842.8,0)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mn" transform="translate(394,-150) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(4640.3,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(5085,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(6423.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(6868.3,0)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(394,-150) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(7736.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></p>
+<p>其中<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex" xmlns="http://www.w3.org/2000/svg" width="1.556ex" height="1.773ex" role="img" focusable="false" viewBox="0 -626 688 783.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(394,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container>是一个<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.023ex" xmlns="http://www.w3.org/2000/svg" width="1.176ex" height="1.593ex" role="img" focusable="false" viewBox="0 -694 520 704"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g></g></g></svg></mjx-container>维的词嵌入向量，用来表征词库中的第<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container>个词语。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>本研究的模型通过两步来预测目标分子的合成路线：(1) 应用经过充分训练的<strong>逆合成反应预测器</strong>来推断一组原始候选反应物 (2) 使用<strong>分子句法校正器</strong>修复候选化合物中语法错误。</p>
+<h4 id="逆合成反应预测器"><a href="#逆合成反应预测器" class="headerlink" title="逆合成反应预测器"></a>逆合成反应预测器</h4><p>在第一步，首先使用transformer网络将目标产物的序列映射到产物的序列上，与其他研究不同的是，本研究还将反应类型也作为输入序列的一个Token(图2).</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-2.png" alt="图.2 基于transfomer的逆合成反应预测器的架构和训练过程概述。“RX_5”token表示目标应通过保护反应分解。">
+  <figcaption>图.2 基于transfomer的逆合成反应预测器的架构和训练过程概述。“RX_5”token表示目标应通过保护反应分解。</figcaption>
+</figure>
+
+<h4 id="分子句法纠正器"><a href="#分子句法纠正器" class="headerlink" title="分子句法纠正器"></a>分子句法纠正器</h4><p>和其他基于SMILES的模型一样，无效的SMILES是这一类模型比较大的一个问题，例如”c1ccoc”。之前的解决方法是使用Beam Search方法搜索若干结果。而在本研究中使用了一个Transformer的句法(syntax)纠正器来将无效的SMILES纠正成为可以被识别的合法的SMILES字符串。该想法的灵感来自于自然语言处理任务中的语法纠正模型。图3展示了该纠正器的工作原理。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-3.png" alt="图.3 针对基于Transfomer的逆合成预测器生成的两个无效预测的示例 SMILES 语法校正器。">
+  <figcaption>图.3 针对基于Transfomer的逆合成预测器生成的两个无效预测的示例 SMILES 语法校正器。</figcaption>
+</figure>
+
+<p>该纠正器将<strong>正确且合理的反应物序列</strong>作为模型输出，将逆合成反应预测器中对应的句法无效的序列作为输入。具体步骤为：首先使用预测器预测训练集中的一组化合物，使用Beam Search方法预测出排名前10的反应物的序列；接着，移除上述结果中的正确的反应物序列；最后将句法的序列作为输入，其对应正确的序列作为输出，训练Transformer。将训练好的纠正器拼接到预测器之后，就得到了整个预测模型，值得注意的是，句法纠正器没有使用Beam Search，仅将概率最大的序列作为输出。并在训练前对分子进行标准化。</p>
+<h2 id="结果与讨论"><a href="#结果与讨论" class="headerlink" title="结果与讨论"></a>结果与讨论</h2><p><img lazyload="" src="/images/loading.svg" data-src="./table1-1.png" alt=""></p>
+<p>从表1中可以看出在推断特定反应类别中的反应时，SCROP方法在Top-1评估方法中优于的所有基线，达到了59.0% 的ACC，其top3、top-5 和 top-10的ACC分别为 74.8、78.1 和 81.1%。 这些结果远高于之前 seq2seq 模型中报告的结果(top1: 37.4%，top10: 61.7%)。</p>
+<p>Coley 等人的基于模板(相似性)的模型，预测100 个候选化合物，并选出了前 10 名作为结果。 由于 SCROP 没有对候选化合物进行排名，而是经过训练以准确预测前 1 名的结果，并且只预测得出10个候选组合，因此基于相似性的方法具有更高的top-5和top-10准确率。 即便如此，SCROP 还是将基于相似性的方法在 top-1 准确度上提高了 6.1%。</p>
+<p>与原始逆合成预测器 (SCROP-noSC) 的结果进行比较表明，语法校正器使得top-1 到 top-10 的准确率得到了一定程度的提高，范围从 0.2% 到 1.0%。 top-1 和 top-3 准确率的增长并不明显，因为在这两个水平只产生了一小部分无效的预测。</p>
+<p>在没有反应类的先验知识（在训练过程中删除反应类型标记）的情况下，SCROP 仍然比基于相似性的方法在 top-1 和 top-3 的准确度上提高了 6.4% 和 5.7%，并在top-5和top-10的水平上也与相似性的方法不相上下。</p>
+<h3 id="泛化评估"><a href="#泛化评估" class="headerlink" title="泛化评估"></a>泛化评估</h3><p><img lazyload="" src="/images/loading.svg" data-src="./table1-2.png" alt=""></p>
+<p>为了比较这些方法的泛化能力，本研究进一步评估了在USPTO-50K数据集上的模型表现。我们使用与原始论文中相同的参数设置在 USPTO-50K上使用聚类划分数据集重新训练了 seq2seq 和基于相似性的方法，除了在基于相似性的方法中生成的候选化合物设置为 10 而不是 100 以进行公平比较。如表 2 所示，从top-1到top-10的水平进行预测，SCROP 在有或没有反应类的情况下实现了数量级的改进。此外，还发现本模型与基于模板的方法相比表现更稳定。在不了解反应类别的情况下为聚类数据集规划逆合成时，我们模型的 top-1 准确度仅降低了 7.5%，而相似度方法的准确度为 16.6%。 这一结果表明，当训练数据集没有与目标化合物相似的化合物时，我们的无模板方法比基于模板的方法具有更好的泛化能力。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="./table1-3.png" alt=""></p>
+<p>本研究还计算了在 USPTO-50K数据集上每个反应类别的top-10的预测结果。如表3所示，SCPOR 在所有 10 个反应类别中始终优于 seq2seq 模型，并在 6 个反应类别中优于相似性模型。例如，第 4 类反应（杂环形成）通常包括环状结构的形成，导致反应物 SMILES 字符串和目标产物 SMILES 字符串之间存在显着差异。 SCPOR 的最佳性能表明它能够诱导更好的句法关系并从反应数据中捕获全局化学信息。 SCPOR 在第一类（杂原子烷基化和芳基化）中也大大优于 seq2seq 和相似性模型。该反应类别的关键特征是反应可能与目标分子内的许多不同官能团发生。当目标分子的结构与知识库中的结构不相似时，很难确定准确的反应位点。因此，SCPOR 在该反应类型中表现出更好的泛化能力并正确推断反应物。</p>
+<p>表 4 显示了与 Liu 等人的 seq2seq 模型在 Jin 的 USPTO 数据集上的比较。 分别达到了 41.5% 和 59.2% 的top-1和top-10准确率，SCROP 在更大的化学空间中优于最先进的无模板模型，证明了其可扩展性。 </p>
+<p><img lazyload="" src="/images/loading.svg" data-src="./table1-4.png" alt=""></p>
+<h3 id="句法纠正器的评估"><a href="#句法纠正器的评估" class="headerlink" title="句法纠正器的评估"></a>句法纠正器的评估</h3><p>在Liu的工作中，不正确的预测被概括为三种类型：句法无效的输出、句法有效但化学上不合理、化学上合理但与真实情况不匹配。 在这项研究中，只使用纠正器来修复句法上无效的输出，因为识别其他两种类型的错误需要了解真实反应物。 如图 4 所示，对于 SCROP方法，只有 0.7% 的top-1和 2.3% 的top-10的无效率，这明显优于逆合成预测器（SCROP-noSC）和 seq2seq 模型。 例如，图 5 显示了苯诺沙洛芬（一种抗炎药）与句法校正剂耦合的预测合成路线。 该模型通过纠正原始的无效分子串，成功地提出了合理的预测路线。 此外，语法校正器使排名第 3 的预测更合理，尽管它不是正确答案。 这些结果表明语法校正器可用于优化无效预测。 当预测的反应被证明是错误的时，它提供了一种优化合成路线的新策略。 </p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-4.png" alt=" 图.4 seq2seq、逆合成预测器 (SCROP-noSC) 和自校正逆合成预测器 (SCROP) 之间针对不同Beam Search大小的无效率的比较。">
+  <figcaption> 图.4 seq2seq、逆合成预测器 (SCROP-noSC) 和自校正逆合成预测器 (SCROP) 之间针对不同Beam Search大小的无效率的比较。</figcaption>
+</figure>
+
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-5.png" alt="图.5 与语法校正器耦合的逆合成预测示例。">
+  <figcaption>图.5 与语法校正器耦合的逆合成预测示例。</figcaption>
+</figure>
+
+<h3 id="注意力分析"><a href="#注意力分析" class="headerlink" title="注意力分析"></a>注意力分析</h3><p>为了研究模型学到了什么，本研究进一步分析了模型中的注意力权重。注意权重提供输入字符串中标记的线索，当生成输出字符串中的特定符号时，这些标记被认为更重要。例如，图 6 显示了从 SCROP（准确预测）和 seq2seq（错误预测）模型中提取的酰化反应的top-1的注意力图。我们观察到 SCROP 的注意力图中的强权重呈对角线趋势，它不断与输入和输出之间共享的 SMILES 子串对齐。此外，在推断看不见的反应位点“OH”和“.”时，模型可以同时考虑几个不连续的标记。这表明 SCROP 试图提取源序列的局部和全局信息。相比之下，seq2seq 模型的注意力图无法对齐输入-输出对的子串并导致错误的预测。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig1-6.png" alt="图.6 从SCROP和seq2seq模型中提取的酰化反应的 Top-1注意力图。">
+  <figcaption>图.6 从SCROP和seq2seq模型中提取的酰化反应的 Top-1注意力图。</figcaption>
+</figure>
+
+<h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><p>本研究一个明显的缺点是该模型仅通过预测字符串的整体概率来对候选进行评分。实际上，在合成路线设计中还有许多额外的考虑因素，例如<strong>工艺复杂性、费用、生产率、安全性等</strong>。 这是因为除了反应字符串本身之外，公共数据集不包含其他技术信息。 我们将通过结合其他考虑因素（如相似性、反应复杂性、成本和反应产率）来探索评分系统，以优化当前的评估指标。</p>
+<p>该模型的另一个限制是多步反应，一个可能的选择是使用Transformer递归地分解目标化合物，直到获得商业可用的构建模块，其中可以使用蒙特卡罗树搜索可对每个反应步骤中的输出进行评分。</p>
+<p>最后就是硬件的限制。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这项工作提出了一种用于化学逆合成预测的新型去模板深度学习方法。没有通过反应模板生成候选前体，而是使用Transformer神经网络通过学习反应物-产物对的顺序表征来生成潜在的候选者。 该方法通过在 Liu 的 USPTO-50K 数据集和 Jin 的数据集上达到 59.0% 的top-1水平准确率。同时，通过与基于神经网络的新型句法检查器相结合，无效候选前体的比率从 12.1% 降低到 0.7%。 </p>
+<h2 id="个人启发"><a href="#个人启发" class="headerlink" title="个人启发"></a>个人启发</h2><ul>
+<li>我们可以将产物/反应物的类型(醇、羧酸、醛)，或许能在一定程度上提升模型性能</li>
+<li>可以训练一个用SMILES预测其靶点氨基酸序列的模型，不过有几个待解决的问题: (1) 氨基酸序列很长，需要用到一定的分词或者压缩的方法; (2) 蛋白可能有多条氨基酸链，得加入sep断句，这么看的话可能Bert预训练模型更加适合。后者可以用英文预料预训练一个分词模型，将该分词模型迁移至氨基酸序列上。</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：使用自纠正Transformer神经网络预测逆合成反应</li>
+        <li>Post author：Kotori Y</li>
+        <li>Create time：2021-09-14 09:11:44</li>
+        <li>
+            Post link：https://blog.iamkotori.com/2021/09/14/Predicting Retrosynthetic Reactions Using Self-Corrected Transformer Neural Networks/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/10/27/Predicting%20retrosynthetic%20pathways%20using%20transformer-based%20models%20and%20a%20hyper-graph%20exploration%20strategy/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用Transformer与超图搜索策略预测逆合成路线</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/07/21/AIDD-A-and-T/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Review: Artificial Intelligence in Drug Discovery: Applications and Techniques</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'asikxqyjUx1MjuHKtYaxrqFV-gzGzoHsz',
+                    appKey: 'p8nlF7XIyFQ6yD08yKaEhBFH',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'niconiconi',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Kotori Y';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%80%A7-%E6%84%8F%E4%B9%89"><span class="nav-text">重要性&#x2F;意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95"><span class="nav-text">研究进展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="nav-text">创新点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%90%E6%96%99%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="nav-text">材料与方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%90%88%E6%88%90%E5%8F%8D%E5%BA%94%E9%A2%84%E6%B5%8B%E5%99%A8"><span class="nav-text">逆合成反应预测器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%AD%90%E5%8F%A5%E6%B3%95%E7%BA%A0%E6%AD%A3%E5%99%A8"><span class="nav-text">分子句法纠正器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span class="nav-text">结果与讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%E8%AF%84%E4%BC%B0"><span class="nav-text">泛化评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A5%E6%B3%95%E7%BA%A0%E6%AD%A3%E5%99%A8%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="nav-text">句法纠正器的评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%88%86%E6%9E%90"><span class="nav-text">注意力分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90"><span class="nav-text">局限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E5%90%AF%E5%8F%91"><span class="nav-text">个人启发</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

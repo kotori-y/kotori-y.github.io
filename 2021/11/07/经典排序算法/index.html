@@ -11,7 +11,7 @@
     
     <title>
         
-            Vue的生命周期 |
+            经典排序算法 |
         
         Build Knowledge Together
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Vue的生命周期</span>
+            <span class="title-hover-animation">经典排序算法</span>
         </div>
 
         
@@ -185,7 +185,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-04 13:21:22
+        <i class="fas fa-edit"></i>&nbsp;2021-11-07 23:49:20
     </span>
     
         <span class="article-categories article-meta-item">
@@ -193,7 +193,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Note/">Note</a>&nbsp;
+                        <a href="/categories/Tech/">Tech</a>&nbsp;
                     </li>
                 
             </ul>
@@ -205,15 +205,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/vue/">vue</a>&nbsp;
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/javascript/">javascript</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/lifecycle/">lifecycle</a>&nbsp;
+                        | <a href="/tags/Sorting-algorithm/">Sorting algorithm</a>&nbsp;
                     </li>
                 
             </ul>
@@ -237,59 +233,48 @@
 
         <div class="article-content markdown-body">
             <blockquote>
-<p>每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做<strong>生命周期钩子</strong>的函数，这给了用户在不同阶段添加自己的代码的机会</p>
+<p><strong>排序算法</strong>（Sorting algorithm）是一种能将一串元素依照特定排序方式进行排列的一种算法</p>
 </blockquote>
+<span id="more"></span>
+<h2 id="0-分类"><a href="#0-分类" class="headerlink" title="0. 分类"></a>0. 分类</h2><p>本文章将算法按照稳定性进行分类。其中，<strong>稳定排序算法</strong>会让原本有相等键值的纪录维持相对次序。也就是如果一个排序算法是<strong>稳定</strong>的，当有两个相等键值的元素$R$和$S$，如果$R$在$S$之前，那么排序之后$R$依然是在$S$的前面。</p>
+<h2 id="1-稳定的排序"><a href="#1-稳定的排序" class="headerlink" title="1. 稳定的排序"></a>1. 稳定的排序</h2><h3 id="冒泡排序-O-n-2"><a href="#冒泡排序-O-n-2" class="headerlink" title="冒泡排序-$O(n^2)$"></a><a class="link"   target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F" >冒泡排序<i class="fas fa-external-link-alt"></i></a>-$O(n^2)$</h3><blockquote>
+<p><strong>冒泡排序</strong>（英语：<strong>Bubble Sort</strong>）又称为<strong>泡式排序</strong>，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。</p>
+</blockquote>
+<p>冒泡排序算法的运作如下：</p>
+<ol>
+<li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol>
+<p>图解：<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bubble_sort" >来源<i class="fas fa-external-link-alt"></i></a></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cn.vuejs.org/images/lifecycle.png"
-                      style="zoom:33%;" 
+                     data-src="https://gitee.com/kotori-y/image/raw/master/sort_alg/Bubble-sort.gif"
+                      alt=""
                 ></p>
-<p>上图为Vue 2的生命周期流程，下面简单概述一下</p>
-<h2 id="1-初始化阶段"><a href="#1-初始化阶段" class="headerlink" title="1. 初始化阶段"></a>1. 初始化阶段</h2><h3 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h3><p>当实例化一个vm对象后，首先会初始化<em>事件</em>与<em>生命周期</em>，<strong>数据代理还未开始</strong>。此刻有一个钩子：<code>beforeCreate()</code>. 此时无法通过vm访问到<code>data</code>里的数据，也无法获取<code>methods</code>等。</p>
-<h3 id="created"><a href="#created" class="headerlink" title="created"></a>created</h3><p>接着，<em>数据代理</em>和<em>数据监测</em>进行初始化。之后有一个钩子：<code>created()</code>. 此时可以通过vm访问到<code>data</code>里的数据和<code>methods</code>等。</p>
-<h2 id="2-挂载阶段"><a href="#2-挂载阶段" class="headerlink" title="2. 挂载阶段"></a>2. 挂载阶段</h2><h3 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h3><p>经过初始化之后，vm进入挂载阶段。首先Vue会检查是否填写了<code>el</code>选项，若没有则等待vm调用<code>$mounted(el)</code>指定元素进行挂载。接着Vue检查是否填写了<code>template</code>选项，若有则用给定的模板进行渲染，没有则用<code>el</code>指定元素的outerHTML(<strong>Vue 3 中为innerHTML</strong>). 运行到这个阶段时，Vue已经解析好模板，并生成了虚拟DOM存在内存中。</p>
-<p>实例被挂载前调用的钩子为<code>beforeMount()</code>, 此时页面显示的是未经渲染的DOM, 对目标元素的所有操作最终都会无效。<strong>该钩子在服务器端渲染期间不被调用</strong></p>
-<h3 id="Mounted"><a href="#Mounted" class="headerlink" title="Mounted"></a>Mounted</h3><p>紧接着，实例被挂载后调用，这时 <code>el</code> 被新创建的 <code>vm.$el</code> 替换了。虚拟DOM替换真实DOM，被调用的钩子为<code>Mounted()</code></p>
-<p>注意 <code>mounted</code> <strong>不会</strong>保证所有的子组件也都被挂载完成。如果你希望等到整个视图都渲染完毕再执行某些操作，可以在 <code>mounted</code> 内部使用 <a class="link"   target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#vm-nextTick" >vm.$nextTick<i class="fas fa-external-link-alt"></i></a>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 仅在整个视图都被渲染之后才会运行的代码</span><br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>该钩子在服务器端渲染期间不被调用</strong></p>
-<h2 id="3-更新阶段"><a href="#3-更新阶段" class="headerlink" title="3. 更新阶段"></a>3. 更新阶段</h2><h3 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h3><p>当虚拟DOM挂载完毕后，若vm里的数据发生改变，会调用<code>beforeUpdate</code>, <strong>此时数据是新的，但页面还是旧的</strong>。</p>
-<p><strong>该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务器端进行。</strong></p>
-<h3 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h3><p>之后根据新数据生成新的虚拟DOM, 随后与旧的虚拟DOM进行比较，最终完成数据的更新。调用<code>updated</code>, 完成了从Model到View的更新。</p>
-<p>注意，<code>updated</code> <strong>不会</strong>保证所有的子组件也都被重新渲染完毕。如果你希望等到整个视图都渲染完毕，可以在 <code>updated</code> 里使用 <a class="link"   target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#vm-nextTick" >vm.$nextTick<i class="fas fa-external-link-alt"></i></a>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">updated: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">//  仅在整个视图都被重新渲染之后才会运行的代码     </span><br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>该钩子在服务器端渲染期间不被调用。</strong></p>
-<h2 id="4-销毁阶段"><a href="#4-销毁阶段" class="headerlink" title="4. 销毁阶段"></a>4. 销毁阶段</h2><h3 id="beforeDestory"><a href="#beforeDestory" class="headerlink" title="beforeDestory"></a>beforeDestory</h3><p>当vm调用<code>$destory()</code>时，实例即刻进入销毁阶段，触发<code>beforeDestory()</code>钩子，此时实例完全处于可用的状态，<strong>但已经无法对数据进行修改</strong>。</p>
-<p><strong>该钩子在服务器端渲染期间不被调用。</strong></p>
-<h3 id="destoryed"><a href="#destoryed" class="headerlink" title="destoryed"></a>destoryed</h3><p>紧接着，移除实例上的所有wathers、子组建以及事件监听器，调用<code>destoryed()</code>。</p>
-<p><strong>该钩子在服务器端渲染期间不被调用。</strong></p>
-<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><h3 id="activated-amp-deactivated"><a href="#activated-amp-deactivated" class="headerlink" title="activated &amp; deactivated"></a>activated &amp; deactivated</h3><p>此外，还有两个钩子: <code>activated</code>()和<code>deactivated()</code>, 分别于被 keep-alive 缓存的组件激活与失活时调用。</p>
-<p><strong>这两个钩子在服务器端渲染期间不被调用。</strong></p>
-<h3 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured"></a>errorCaptured</h3><blockquote>
-<p>2.5.0+ 新增</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author </span>kotori y</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-built_in">Array</span>.prototype.bubbleSort = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> end = <span class="hljs-built_in">this</span>.length - <span class="hljs-number">2</span>; end &gt;= <span class="hljs-number">1</span>; end--) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>; start &lt;= end; start++) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[start] &gt; <span class="hljs-built_in">this</span>[start + <span class="hljs-number">1</span>]) &#123;<br>        [<span class="hljs-built_in">this</span>[start], <span class="hljs-built_in">this</span>[start + <span class="hljs-number">1</span>]] = [<span class="hljs-built_in">this</span>[start + <span class="hljs-number">1</span>], <span class="hljs-built_in">this</span>[start]];<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span><br>&#125;<br><br><br><span class="hljs-keyword">let</span> num = [<span class="hljs-number">22</span>, <span class="hljs-number">34</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">82</span>, <span class="hljs-number">55</span>, <span class="hljs-number">89</span>, <span class="hljs-number">50</span>, <span class="hljs-number">37</span>, <span class="hljs-number">5</span>, <span class="hljs-number">64</span>, <span class="hljs-number">35</span>, <span class="hljs-number">9</span>, <span class="hljs-number">70</span>];<br>num.bubbleSort()<br><br><span class="hljs-built_in">console</span>.log(num)<br></code></pre></td></tr></table></figure>
+<h3 id="插入排序-O-n-2"><a href="#插入排序-O-n-2" class="headerlink" title="插入排序-$O(n^2)$"></a><a class="link"   target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" >插入排序<i class="fas fa-external-link-alt"></i></a>-$O(n^2)$</h3><blockquote>
+<p><strong>插入排序</strong>（Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
 </blockquote>
-<ul>
-<li><p><strong>类型</strong>：<code>(err: Error, vm: Component, info: string) =&gt; ?boolean</code></p>
-</li>
-<li><p><strong>详细</strong>：</p>
-<p>在捕获一个来自后代组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 <code>false</code> 以阻止该错误继续向上传播。</p>
-<p>你可以在此钩子中修改组件的状态。因此在捕获错误时，在模板或渲染函数中有一个条件判断来绕过其它内容就很重要；不然该组件可能会进入一个无限的渲染循环。</p>
-<p><strong>错误传播规则</strong></p>
-<ul>
-<li>默认情况下，如果全局的 <code>config.errorHandler</code> 被定义，所有的错误仍会发送它，因此这些错误仍然会向单一的分析服务的地方进行汇报。</li>
-<li>如果一个组件的 inheritance chain (继承链)或 parent chain (父链)中存在多个 <code>errorCaptured</code> 钩子，则它们将会被相同的错误逐个唤起。</li>
-<li>如果此 <code>errorCaptured</code> 钩子自身抛出了一个错误，则这个新错误和原本被捕获的错误都会发送给全局的 <code>config.errorHandler</code>。</li>
-<li>一个 <code>errorCaptured</code> 钩子能够返回 <code>false</code> 以阻止错误继续向上传播。本质上是说“这个错误已经被搞定了且应该被忽略”。它会阻止其它任何会被这个错误唤起的 <code>errorCaptured</code> 钩子和全局的 <code>config.errorHandler</code>。</li>
-</ul>
-</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><p><a class="link"   target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90" >Vue 2官方文档<i class="fas fa-external-link-alt"></i></a></p>
-</li>
-<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zy4y1K7SH?" >尚硅谷视频教程<i class="fas fa-external-link-alt"></i></a></p>
-</li>
+<p>一般来说，<strong>插入排序</strong>都采用in-place在数组上实现。具体算法描述如下：</p>
+<ol>
+<li>从第一个元素开始，该元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5</li>
 </ol>
+<p>图解：<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Insertion_sort" >来源<i class="fas fa-external-link-alt"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/kotori-y/image/raw/master/sort_alg/Insertion-sort.gif"
+                      alt=""
+                ></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author </span>kotori y</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-built_in">Array</span>.prototype.insertionSort = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;<br><br>    <span class="hljs-keyword">let</span> currNum = <span class="hljs-built_in">this</span>[i]<br>    <span class="hljs-keyword">let</span> j = i - <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">while</span> (currNum &lt; <span class="hljs-built_in">this</span>[j] &amp;&amp; j &gt;= <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-built_in">this</span>[j + <span class="hljs-number">1</span>] = <span class="hljs-built_in">this</span>[j]<br>      <span class="hljs-built_in">console</span>.log(j)<br>      j--<br>    &#125;<br>    <span class="hljs-built_in">this</span>[j + <span class="hljs-number">1</span>] = currNum<br><br>  &#125;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span><br>&#125;<br><br><span class="hljs-keyword">let</span> num = [<span class="hljs-number">22</span>, <span class="hljs-number">34</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">82</span>, <span class="hljs-number">55</span>, <span class="hljs-number">89</span>, <span class="hljs-number">50</span>, <span class="hljs-number">37</span>, <span class="hljs-number">5</span>, <span class="hljs-number">64</span>, <span class="hljs-number">35</span>, <span class="hljs-number">9</span>, <span class="hljs-number">70</span>];<br>num.insertionSort()<br><br><span class="hljs-built_in">console</span>.log(num)<br></code></pre></td></tr></table></figure>
 
         </div>
 
@@ -297,11 +282,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Vue的生命周期</li>
+        <li>Post title：经典排序算法</li>
         <li>Post author：Kotori Y</li>
-        <li>Create time：2021-11-04 13:21:22</li>
+        <li>Create time：2021-11-07 23:49:20</li>
         <li>
-            Post link：https://blog.iamkotori.com/2021/11/04/Vue的生命周期/
+            Post link：https://blog.iamkotori.com/2021/11/07/经典排序算法/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -315,29 +300,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/05/%E6%B5%85%E6%9E%90Vuex%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">浅析Vuex工作原理</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/02/%E6%B5%85%E5%B0%9DTransformer/"
+                           href="/2021/11/07/%E4%BD%BF%E7%94%A8%E9%AA%A8%E6%9E%B6%E8%B7%83%E8%BF%81%E5%92%8C%E7%BB%93%E6%9E%84%E8%8D%AF%E7%89%A9%E8%AE%BE%E8%AE%A1%E5%8F%91%E7%8E%B0%E5%8F%A3%E6%9C%8DBET%E6%8A%91%E5%88%B6%E5%89%82%E5%8F%8A%E5%85%B6%E4%B8%B4%E5%BA%8A%E5%89%8D%E8%8D%AF%E7%90%86%E5%AD%A6/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">浅尝Transformer</span>
+                                <span class="post-nav-title-item">使用骨架跃迁和结构药物设计发现口服BET抑制剂及其临床前药理学</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -545,7 +515,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="nav-text">1. 初始化阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeCreate"><span class="nav-text">beforeCreate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#created"><span class="nav-text">created</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8C%82%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="nav-text">2. 挂载阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeMount"><span class="nav-text">beforeMount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mounted"><span class="nav-text">Mounted</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0%E9%98%B6%E6%AE%B5"><span class="nav-text">3. 更新阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeUpdate"><span class="nav-text">beforeUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#updated"><span class="nav-text">updated</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%94%80%E6%AF%81%E9%98%B6%E6%AE%B5"><span class="nav-text">4. 销毁阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeDestory"><span class="nav-text">beforeDestory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#destoryed"><span class="nav-text">destoryed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96"><span class="nav-text">5. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#activated-amp-deactivated"><span class="nav-text">activated &amp; deactivated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#errorCaptured"><span class="nav-text">errorCaptured</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%88%86%E7%B1%BB"><span class="nav-text">0. 分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A8%B3%E5%AE%9A%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-text">1. 稳定的排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">冒泡排序-$O(n^2)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">插入排序-$O(n^2)$</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

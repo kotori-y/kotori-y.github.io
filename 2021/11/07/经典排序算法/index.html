@@ -275,6 +275,24 @@
                       alt=""
                 ></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author </span>kotori y</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-built_in">Array</span>.prototype.insertionSort = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;<br><br>    <span class="hljs-keyword">let</span> currNum = <span class="hljs-built_in">this</span>[i]<br>    <span class="hljs-keyword">let</span> j = i - <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">while</span> (currNum &lt; <span class="hljs-built_in">this</span>[j] &amp;&amp; j &gt;= <span class="hljs-number">0</span>) &#123;<br>      <span class="hljs-built_in">this</span>[j + <span class="hljs-number">1</span>] = <span class="hljs-built_in">this</span>[j]<br>      <span class="hljs-built_in">console</span>.log(j)<br>      j--<br>    &#125;<br>    <span class="hljs-built_in">this</span>[j + <span class="hljs-number">1</span>] = currNum<br><br>  &#125;<br>  <br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span><br>&#125;<br><br><span class="hljs-keyword">let</span> num = [<span class="hljs-number">22</span>, <span class="hljs-number">34</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">82</span>, <span class="hljs-number">55</span>, <span class="hljs-number">89</span>, <span class="hljs-number">50</span>, <span class="hljs-number">37</span>, <span class="hljs-number">5</span>, <span class="hljs-number">64</span>, <span class="hljs-number">35</span>, <span class="hljs-number">9</span>, <span class="hljs-number">70</span>];<br>num.insertionSort()<br><br><span class="hljs-built_in">console</span>.log(num)<br></code></pre></td></tr></table></figure>
+<h3 id="计数排序-O-n-k"><a href="#计数排序-O-n-k" class="headerlink" title="计数排序-$O(n+k)$"></a><a class="link"   target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F" >计数排序<i class="fas fa-external-link-alt"></i></a>-$O(n+k)$</h3><blockquote>
+<p><strong>计数排序（Counting sort）</strong>是一种稳定的线性时间排序算法。该算法于1954年由 Harold H. Seward 提出。计数排序使用一个额外的数组$C$，其中第$i$个元素是待排序数组$A$中值等于$i$的元素的个数。然后根据数组$C$来将$A$中的元素排到正确的位置。</p>
+</blockquote>
+<p>算法的步骤如下：</p>
+<ol>
+<li>找出待排序的数组中最大和最小的元素</li>
+<li>统计数组中每个值为$i$的元素出现的次数，存入数组$C$的第$i$项</li>
+<li>对所有的计数累加（从$C$第一个元素开始，每一项和前一项相加）</li>
+<li>反向填充目标数组：将每个元素$i$放在新数组的第$C[i]$项，每放一个元素就将$C[i]$减去1</li>
+</ol>
+<p>图解：<a class="link"   target="_blank" rel="noopener" href="https://tenor.com/view/counting-sort-gif-20608183" >来源<i class="fas fa-external-link-alt"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/kotori-y/image/raw/master/sort_alg/Counting-sort.gif"
+                      alt=""
+                ></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author </span>Kotori Y</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-built_in">Array</span>.prototype.countingSort = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br><br>  <span class="hljs-keyword">let</span> C = []<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;<br>    C[<span class="hljs-built_in">this</span>[i]] = (C[<span class="hljs-built_in">this</span>[i]] || <span class="hljs-number">0</span>) + <span class="hljs-number">1</span><br>  &#125;<br><br>  <span class="hljs-keyword">let</span> D = []<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; C.length; j++) &#123;<br>    <span class="hljs-keyword">if</span> (C[j]) &#123;<br>      <span class="hljs-keyword">const</span> tmp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(C[j]).fill(j)<br>      D.push(...tmp)<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> D<br>&#125;<br><br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">11</span>, <span class="hljs-number">9</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>]<br>newArr = arr.countingSort()<br><br><span class="hljs-built_in">console</span>.log(newArr)<br></code></pre></td></tr></table></figure>
 
         </div>
 
@@ -530,7 +548,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%88%86%E7%B1%BB"><span class="nav-text">0. 分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A8%B3%E5%AE%9A%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-text">1. 稳定的排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">冒泡排序-$O(n^2)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">插入排序-$O(n^2)$</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%88%86%E7%B1%BB"><span class="nav-text">0. 分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A8%B3%E5%AE%9A%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-text">1. 稳定的排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">冒泡排序-$O(n^2)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-O-n-2"><span class="nav-text">插入排序-$O(n^2)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-O-n-k"><span class="nav-text">计数排序-$O(n+k)$</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -620,20 +638,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kotori Y">
+    
+    <title>
+        
+            用于直接和单步逆合成的SOTA增强 NLP Transformer模型 |
+        
+        Build Knowledge Together
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Build Knowledge Together
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/authors"
+                            >
+                                AUTHORS
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/authors">AUTHORS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">用于直接和单步逆合成的SOTA增强 NLP Transformer模型</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <a href="/authors/Kotori%20Y">
+                        <img src="/images/avatar.jpeg">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Kotori Y</span>
+                        
+                            <span class="author-label">17 Posts</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-09 17:20:13
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reading-Note/">Reading Note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/transformer/">transformer</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/retrosynthesis/">retrosynthesis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>该研究提出了多种数据增强策略用于逆合成的预测，并提出一个新的评估指标: MaxFrag.</p>
+<span id="more"></span>
+<p><a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1038/s41467-020-19266-y">来源<i class="fas fa-external-link-alt"></i></a>-<strong><em>Nature communications</em></strong> 2020 <em>Tetko et al.</em></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>合成一种有机化合物就是解决一个有很多碎片的拼图谜题，并且这个拼图有几块缺失的碎片。把每个碎片看成一个单步的反应，找到它们的组合顺序，最终得到一个完整的拼图就是逆合成中需要解决的任务。 Corey等人开发的有机合成逻辑的引发了辅助合成分子的计算机程序的开发。第一个逆合成程序<strong>LHASA</strong>使用是基于模板的方法。将已知反应的数据库中的每个模板依次应用于目标分子，然后根据特定策略选择试剂组。相反，试剂会经历相同的分解，直到找到一组商业上可用的化合物。逆合成总是有多种路线，即为一个逆合成树，这颗树使的叶子结点为不同起始材料。因此，一个实用的逆合成算法不仅要解决规则获取和选择问题，还要有能力有效地导航这棵树，同时考虑到不同的策略。这些任务与人工智能策略直接相关。</p>
+<p>由于维护一个模板数据库十分困难，因此大多数包括LHASA在内的基于模板的项目都没有得到广泛的使用。唯一的例外可能就是<strong>Synthia<sup>TM</sup></strong>(前身为<strong>CHEMATICA</strong>). 在Syhthia中，规则通过原子映射反应来自动获取。然而，在映射定义的过程中存在歧义，更重要的是，自动规则没有考虑分子中其他未定义的可能反应中心。应用此类转换可能会导致分子无法按预期反应。作为替代，有一种基于数据驱动的深度学习的自动提取规则的方法。该方法训练结束后，神经网络通过其参数包含相应输入的所有隐式编码特征（规则）。 关于反应预测结果和逆合成的工作表明了符号表征方法的可行性，其中反应被写成 SMILES 字符串，将问题转换成机器翻译问题。产物被看成是“起始语言”(source language, src)，参与逆合成的试剂被称为“目标语言”(target language, trg).</p>
+<p>然而分子的 SMILES 表征是模糊(即不具有唯一性)的。尽管存在标准的化程序，但已经研究表明<strong>模型在训练过程使用一批随机 SMILES（增强）是有益的</strong>。 最近，这种增强也被应用于反应预测的模型上。 增强（随机）的SMILES，除了起始原子和图枚举的方向是随机选择的，即都是有效的。</p>
+<p>在该研究中，作者仔细研究了各种增强机制，<strong>并表明与标准Beam Search或不同温度下的模型评估相比，增强数据模型拥有更好的性能</strong>。此外，作者也明确说明本研究这是单步反应的预测。本研究表明，通过使用更复杂的数据增强策略，可以减少神经网络的过拟合程度并提高准确性，以达到正向和逆向合成的最佳性能。该研究还注意到，<strong>训练模型的数据越难，预测新化合物的效果就越好</strong>。 此外，该研究引入了一个新的度量 <strong>MaxFrag 准确度</strong>来<strong>预测最大片段</strong>（从而确定经典逆合成的主要转化）。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>基准数据集中，产物和反应物用的都是标准化的SMILES，本研究中采用了4种数据增强的策略，分别为: xN, xNF, xNS和xNM。具体见表S.1</p>
+<p>表. S1不同的数据增强策略，其中加粗的为原始数据，即标准的SMILES</p>
+<table><thead><tr><td>Dataset</td><td>input (product) &gt;&gt; output (reactants)</td><td>Examples</td><td>Note.</td></tr></thead><tbody><tr><td>x0</td><td>canonical &gt;&gt; canonical</td><td>**CC(c1ccc(Br)nc1)N(C)C &gt;&gt; CC(=O)c1ccc(Br)nc1.CNC** <br>**O=Cc1cncc(Br)c1 &gt;&gt; O=C(O)c1cncc(Br)c1**</td><td>原始数据，无加强。</td></tr><tr><td>X2</td><td>canonical &gt;&gt; canonical <br>random &gt;&gt; canonical</td><td>**CC(c1ccc(Br)nc1)N(C)C &gt;&gt; CC(=O)c1ccc(Br)nc1.CNC**<br>n1c(Br)ccc(c1)C(N(C)C)C &gt;&gt; CC(=O)c1ccc(Br)nc1.CNC<br><br>**O=Cc1cncc(Br)c1 &gt;&gt; O=C(O)c1cncc(Br)c1**<br>c1(cncc(Br)c1)C=O &gt;&gt; O=C(O)c1cncc(Br)c1</td><td>xN增强策略，除了原始的数据之外，还**额外生成一条产物随机化的数据**。</td></tr><tr><td>x2R</td><td>canonical &gt;&gt; fixed random<br>random &gt;&gt; fixed random</td><td>**CC(c1ccc(Br)nc1)N(C)C** &gt;&gt; c1cc(Br)ncc1C(=O)C.CNC<br>n1c(Br)ccc(c1)C(N(C)C)C &gt;&gt; c1cc(Br)ncc1C(=O)C.CNC<br><br>**O=Cc1cncc(Br)c1** &gt;&gt; c1c(cncc1C(=O)O)Br<br>c1(cncc(Br)c1)C=O &gt;&gt; c1c(cncc1C(=O)O)Br</td><td>xNR加强策略，首先随机化反应物，接着使用原始的和N条随机化的产物，分别与该反应物组成一条数据</td></tr><tr><td>x2F</td><td>canonical &gt;&gt; canonical<br>random &gt;&gt; random</td><td>**CC(c1ccc(Br)nc1)N(C)C** &gt;&gt; **CC(=O)c1ccc(Br)nc1.CNC**<br>n1c(Br)ccc(c1)C(N(C)C)C &gt;&gt; CC(=O)c1ccc(nc1)Br.CNC<br><br>**O=Cc1cncc(Br)c1** &gt;&gt; **O=C(O)c1cncc(Br)c1**<br> c1(cncc(Br)c1)C=O &gt;&gt; c1c(cncc1C(=O)O)Br</td><td>xF增强策略，除了原始的数据之外，还**额外生成N条产物随机化和反应物随机化的数据**。</td></tr><tr><td>x3S</td><td>canonical &gt;&gt; canonical<br>random &gt;&gt; random+shuffled<br> random &gt;&gt; random+shuffled</td><td>**CC(c1ccc(Br)nc1)N(C)C** &gt;&gt; **CC(=O)c1ccc(Br)nc1.CNC**<br>n1c(Br)ccc(c1)C(N(C)C)C &gt;&gt; CNC.CC(=O)c1ccc(nc1)Br<br>CN(C(c1ccc(Br)nc1)C)C &gt;&gt; c1cc(Br)ncc1C(O)C.CNC<br><br>**O=Cc1cncc(Br)c1** &gt;&gt; **O=C(O)c1cncc(Br)c1**<br>c1(cncc(Br)c1)C=O &gt;&gt; c1c(cncc1C(=O)O)Br<br>n1cc(cc(c1)C=O)Br &gt;&gt; OC(=O)c1cncc(c1)Br</td><td>xS增强策略，除了原始的数据之外，还**额外生成N条产物随机化和反应物随机化的数据，并将随机化后的反应物随机打乱顺序**。</td></tr><tr><td>x2M</td><td>canonical &gt;&gt; canonical<br>.canonical &gt;&gt; canonical<br>random &gt;&gt; random+shuffled<br>.random+shuffled &gt;&gt; random</td><td>**CC(c1ccc(Br)nc1)N(C)C** &gt;&gt; **CC(=O)c1ccc(Br)nc1.CNC**<br> **.CC(=O)c1ccc(Br)nc1.CNC** &gt;&gt; **CC(c1ccc(Br)nc1)N(C)C**<br>n1c(Br)ccc(c1)C(N(C)C)C &gt;&gt; CNC.CC(=O)c1ccc(nc1)Br<br>.CNC.CC(=O)c1ccc(nc1)Br &gt;&gt; n1c(Br)ccc(c1)C(N(C)C)C<br><br>**O=Cc1cncc(Br)c1** &gt;&gt; **O=C(O)c1cncc(Br)c1**<br>**.O=C(O)c1cncc(Br)c1** &gt;&gt; **O=Cc1cncc(Br)c1**<br><br>c1(cncc(Br)c1)C=O &gt;&gt; c1c(cncc1C(=O)O)Br<br>.c1c(cncc1C(=O)O)Br &gt;&gt; c1(cncc(Br)c1)C=O</td><td>xNM增强策略，在xNS基础上，将产物和反应物的顺序调换，调换后的反应物在SMILES前面加一个字符"."</td></tr></tbody></table>
+
+
+
+<h3 id="合成反应数据"><a href="#合成反应数据" class="headerlink" title="合成反应数据"></a>合成反应数据</h3><p>该研究使用从 USPTO数据库过滤得到的训练集，其中包含 50,000条反应，划分为10 种反应类型。使用了 Liu 等人提出的划分方案，将其分为 40、5 和 5k ，分别用于训练、验证和测试集。与之前的研究一样，在观察到使用验证集的提前停止并没有提高模型测试的准确性后(即熟练之后)，合并训练集和验证集，得到最后的用于训练的数据。仅在模型训练完成后才预测 5k 测试反应，并且不会在模型开发的任何阶段使用。以类似的方式，加入了 <strong>USPTO-MIT</strong> 数据集的训练和验证集以进行直接反应预测。为了与之前的研究结果进行更直接的比较，该研究还报告了仅使用相应训练集开发模型时的性能。此外，<strong>还开发了具有最大已发布 USPTO 全套模型的模型</strong>。</p>
+<h3 id="原始数据集-canonical-datasets-的分析"><a href="#原始数据集-canonical-datasets-的分析" class="headerlink" title="原始数据集(canonical datasets)的分析"></a>原始数据集(canonical datasets)的分析</h3><p>以标准SMILES作为训练集的模型，在标准测试集的准确率达到了40.9%。尝试使用此模型来预测增强测试集 (x5, x10)，Top-1 ACC结果分别为 23.3% 和 18.4%，比标准测试集相比低了很多。这个结果在意料之中，<strong>因为仅使用标准SMILES序列训练的模型无法概括和预测使用不同分子表示风格的增强型SMILES序列</strong>。</p>
+<h3 id="仅增强产物-xN"><a href="#仅增强产物-xN" class="headerlink" title="仅增强产物(xN)"></a>仅增强产物(xN)</h3><p>对于产物的增强，只需一个额外的增强(x2)，即可以将由标准SMILES序列组成的测试集的Top-1 ACC提高到 43.7%。此外，<strong>增加训练集中的增强数量(提高N)并没有提高 Top-1 的预测精度</strong>。 因此，<strong>仅用一个随机 SMILES 增加训练集即可达到最佳性能</strong>。 </p>
+<h3 id="基于字符和精确序列的预测精度分析"><a href="#基于字符和精确序列的预测精度分析" class="headerlink" title="基于字符和精确序列的预测精度分析"></a>基于字符和精确序列的预测精度分析</h3><p>为了更好地理解模型的训练过程，该研究还开发了几个模型，其中大约 10%的数据集没有参与训练，被用于监控其预测性能(称之为监控数据集)。与测试集在预测新反应时测试模型的性能不同，监控数据集用于<strong>测试Transformer预测同一反应生成的不同 SMILES的能力</strong>。Transformer能够识别相同反应的不同表示。例如，在训练集不扩增时，预测监控数据集的基于字符和基于精确序列的准确率分别为 96.5% 和 34.5%。然而，最终的测试集表现为40.9%，要高于监控数据集。因为有时模型预测给出的序列不是标准的，而将其转换成标准SMILES之后就和标准一致了(<strong>也就是监控数据集评估的是模型直接给出的预测结果</strong>). 当对训练集进行增强时(x10)，基于字符和基于序列的准确率分别达到了99.97%与98.9%（图1）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="fig1.png">
+  <figcaption>图 1. 监控数据集的字符和精确序列准确率。如果反应物的序列多都为标准SMILES，transformer将能够记住目标序列(红色圆点). 同样还合理地预测出了随机化的SMILES序列(天蓝色矩形), 但它的序列精度下降了。</figcaption>
+</figure>
+
+<p>可见，<strong>Transformer学习到了来自同一反应的反应物与试剂的不同SMILES的表征</strong>，并且能够能够准确还原的目标产物。显然，它也<strong>能够记住任何随机序列</strong>。为了证明这一点，该研究使用随机 SMILES 序列而不是标准化的SMILES序列作为预测目标。虽然这项任务更加困难并且需要更多的训练周期，但 Transformer 能够完美地记住随机序列（图S1）。 由于 SMILES 预测目标是随机的，Transformer 无法学习关于如何编写目标的标准化规则。 尽管如此，它仍然为测试集计算出 26.8% 的 top-1准确率，然而，与使用以标准序列为目标的 x10 数据集实现的 42.2% 相比，这一预测准确率明显较低。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./figs1.png">
+  <figcaption>图 S1. 两种增强策略下的字符准确率的学习曲线</figcaption>
+</figure>
+
+<blockquote>
+<p>作者在该部分通过不同的数据增强策略研究了一下Transformer的研究方式。首先，在只随机化输入序列，也就是目标分子的SMILES时，监控数据集(源自训练集，但不参与训练)的字符与序列准确率均得到了很大的提升，者表示Transformer识别出了相同训练集中的反应的反应物和试剂的 SMILES 的不同表示。接着，作者将反应物的序列也随机化，Transformer同样也能记住随机后的序列，但这里，作者耍了一个小聪明，他只提及了字符的准确率，序列的准确率大幅下降了。</p>
+</blockquote>
+<h3 id="反应物及试剂的增强"><a href="#反应物及试剂的增强" class="headerlink" title="反应物及试剂的增强"></a>反应物及试剂的增强</h3><p>接着作者将目标序列即反应物与试剂也进行增强处理。该任务相较于只增强输入序列要难上许多——在训练过程中基于字符与序列的准确率均有所下降。例如增强2倍时x2F为91.3%的字符准确率，而x2策略则有98.6%（图1）。在x20F策略的字符准确率为89.67%，<strong>这表明Transformer 面对随机 SMILES 的预测，它仍然能够对其字符构成提供合理的预测</strong>。</p>
+<h3 id="Top-1-表现分析"><a href="#Top-1-表现分析" class="headerlink" title="Top-1 表现分析"></a>Top-1 表现分析</h3><p>在扩增2倍时，只增强目标产物的xN和反应物、产物全都增强的xNF的策略在Top-1 ACC上的表现是相似的。然而，当加大的加倍倍数时，xNF拥有更好的Top-1 ACC的表现（图2）。当将此模型应用于使用x20增强策略生成的测试集，<strong>使用x80F扩增的训练集时，Top-1 ACC达到了最高的52.3%</strong>。 虽然进一步增加增强仍然可能提高 top-1 的性能，但由于可用计算资源的限制，作者没有执行此类计算(哈哈)。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig2.png">
+  <figcaption>图 2. 不同增强策略下的Top-1表现。
+  </figcaption>
+</figure>
+
+<h3 id="随机打乱反应物的顺序"><a href="#随机打乱反应物的顺序" class="headerlink" title="随机打乱反应物的顺序"></a>随机打乱反应物的顺序</h3><p>出了增强全部的反应，作者还打乱了反应物的顺序(xNS策略，见表 S1)。<strong>对于应用于具有相同增强数量的测试集的 x20S增强的训练数据集，这种额外操作的效果将Top-1 ACC提高到 53.1%</strong>（图 S2）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./figs2.png">
+  <figcaption>图 S2. 不同增强策略的模型在x20增强的测试集的Top-1 ACC。
+  </figcaption>
+</figure>
+
+<h3 id="随机打乱与混合正、逆反应"><a href="#随机打乱与混合正、逆反应" class="headerlink" title="随机打乱与混合正、逆反应"></a>随机打乱与混合正、逆反应</h3><p><strong>同时进行逆合成和正向合成的训练可以创建潜在空间的混合表征</strong>，并<strong>进一步提高Transformer泛化的能力</strong>。作者通过颠倒产物/反应物 + 试剂的顺序并添加一个”.”字符来与正反应区别开来（xNM策略, 表 S1）。与上述的分析中的需要经过20倍增强的训练集才能实现最高性能不同，<strong>混合数据集仅通过10倍增强就实现了最优的性能</strong>（图 S2）。由于混合数据集还包括直接反应。<strong>较少数量的增强不允许它充分探索数据多样性，而较大数量会产生过多的噪音并且难以学习由单个规范序列注入的规范化规则</strong>。对于 x10M训练集，Transformer计算达到了52.8%，与使用 x20S训练数据集计算出的 53.1% 相似。</p>
+<blockquote>
+<p>感觉这个trick很有意思</p>
+</blockquote>
+<h3 id="Top-5-表现分析"><a href="#Top-5-表现分析" class="headerlink" title="Top-5 表现分析"></a>Top-5 表现分析</h3><p>该评估指标通过测量是否在前5个预测反应物中包括了正确的反应物。实际上，对于具有最高 top-1 精度的逆合成模型是否可取是值得怀疑的。<strong>逆合成模型的目标是获得几个反应前体的建议</strong>，而不仅仅是文献中陈述的建议。 此外，同一个目标化合物可能存在多个反应。具有较高Top-N分数的模型确实能揭示其他可能的反应。 因此，具有较高 top-N 分数但具有相似 top-1 分数的模型对于化学家来说可能更有意义，因为它们确实提出了正确的预测以及相似质量的 top-1 反应。</p>
+<p>对于每个增强的数量，Top-5的性能通常随着增强的数量的增加而增加。 对于仅具有 4-5 个增强的训练集，在不同场景中始终计算出最高的前 5 个值(图 3)，使用 x5M 增强的训练集的最高准确率达到了78.9%，比使用 x5S增强的训练集的准确度高约 1%（图 3）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig3.png">
+  <figcaption>图 3. 不同增强策略下的Transformer模型在x20测试集上的Top-5表现。
+  </figcaption>
+</figure>
+
+<h3 id="基准-USPTO-50k-模型"><a href="#基准-USPTO-50k-模型" class="headerlink" title="基准 USPTO-50k 模型"></a>基准 USPTO-50k 模型</h3><p>作者选择使用x5M策略训练出来的模型，该模型拥有最高的Top-5 精度，并对其进行了额外 400 次迭代（总共 500 次）的训练，通过额外的训练将 top-1 的准确率提高到 53.3%，而在使用beam search (beam_width=5) 时，top-5 的性能提高到 79.4%（表 1）。</p>
+<p>通过使用大量的增强和x100 作为测试集来进一步的改进模型表现。在此条件下，模型对top-1 和 top-5 预测的准确率分别为 53.6% 和 80.8%。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="./table1.png" alt=""></p>
+<h3 id="温度的影响"><a href="#温度的影响" class="headerlink" title="温度的影响"></a>温度的影响</h3><p>在作者之前的研究中，在beam search过程中<strong>使用更高的温度会提高模型的top-的准确性</strong>。在该研究中没有使用增强，在这种情况下，模型的 top-1 准确率在使用温度 1.3 或 1.5 时分别从 48.3% 提高到 49.1% 和 49.2%。 然而，增强数据 (x20) 的 top-1 和 top-5 性能分别从 53.3% 下降到 52.7% 和 52.4%。 对于相同的测试集，两种温度下的前 5 名准确率也分别从 79.4% 下降到 77.7% 和 77.4%。 因此，虽然较高的温度增加了预测的可变性，从而增加了预测标准序列的性能，但它对增强数据的影响是负面的，尤其是它导致较低的Top5性能。</p>
+<blockquote>
+<p><strong>这部分实验似乎有点问题，temperature的取值范围应该是[0, 1)。后期需要研究一下原文献</strong></p>
+</blockquote>
+<h3 id="Beam-Search的影响"><a href="#Beam-Search的影响" class="headerlink" title="Beam Search的影响"></a>Beam Search的影响</h3><p>Bean Search的目标是产生多个预测结果，因此可以更好地探索预测中的多变性。将Beam Width提高到10并使用x20的测试集，Top-1的准确率在53.3% (beam width=5) 的基础上提高了0.2%，top5从80%提高到80.6%。不使用beam search时top-1 精度为 53.3%，top-5 精度降低为75.3%（表 1）。</p>
+<p>Beam Search和数据增强都增加了预测出的SMILES的个数，从而导致了更好的准确率的表现。因此，这两种方法都有助于生成多个预测，用于识别排名靠前的序列。其中，最大beam width受训练模型的字典大小的限制(即SMILES中可能出现的字符的个数，该研究中为44). 有趣的是，<strong>使用标准的SMILES作为输入数据可以得到最多数量的独特SMILES</strong>，对于大小为 5、10 和 44 的beam search, 占比分别为 86%、82% 和 78%。而当使用随机化的SMILES作为输入时，占比分别降低为42%、28%与13%. 然而，使<strong>用标准化的SMILES训练的模型，在beam search拥有更高的无效SMILES的比率</strong>（图 S3）。此外，作者还观察到，两种输入方法训练的模型在不同beam position上的正确率也有很大的差异，一般来说错误的SMILS的比率会很低（图 S3）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./figs3.png">
+  <figcaption>图 S3. 使用beam width=44在搜索的SMILES的各个位置生成的准确率与错误率。
+  </figcaption>
+</figure>
+
+<p>使用标准SMILES时，第一个位置提供了更高的精度（图 S3），但其他位置的精度要低很多。 这是因为 Transformer为标准输入序列生成了标准的SMILES，并且由于只能产生一个有效的规范 SMILES，它未能生成新的正确 SMILES。 事实上，在训练阶段，transformer总是有一对标准的 SMILES 作为输入和目标序列。 与此相反，使用增强的 SMILES拥有更高的自由度，并允许它贡献有效但不一定规范的 SMILES。</p>
+<h3 id="预测的准确率"><a href="#预测的准确率" class="headerlink" title="预测的准确率"></a>预测的准确率</h3><p>对于一些使不使用增强序列或beam searc的逆反应预测，大多数预测序列是相同的，而对于其他反应，Transformer产生尽可能多的不同反应物。虽然beam生成过程会保证每个预测都具有完全相同的字符序列，但在许多情况下，<strong>Transformer会生成相同 SMILES的多个非标准的实例</strong>。因此，最频繁（转换为标准的表征后）的SMILES 出现的频率可以表明Transformer在预测中的置信度。图 4 表明这种频率与预测的准确性有很好的相关性，可以用作化学家的置信度评估方法。事实上，在所有对 Top-1 的预测中，<strong>最常见的 SMILES 占主导地位的反应很可能被正确预测</strong>。如果最频繁的 SMILES 有一个较低频率，则此类预测很可能是不正确的。对于大约 20% 的最频繁的预测，逆合成预测的准确率在 80% 以上，其中，4% 的准确率超过 90%。 应该提到的是，对于严重依赖于速度的实际实现，例如多步合成，没有理由总是运行所有 100 个预测来获得置信度估计。 人们总是可以基于较少的预测来估计最频繁出现的 SMILES 的概率及其置信区间，从而减少计算次数。</p>
+<blockquote>
+<p>也就是说，反应中的SMILES越频繁，该反应就越有可能预测对，可以基于这个关系给出置信度。</p>
+<figure>
+<img lazyload="" src="/images/loading.svg" data-src="./fig4.png">
+<figcaption>图 4. 
+</figcaption>
+</figure>
+
+</blockquote>
+<h3 id="不同场景的预测精度的分析"><a href="#不同场景的预测精度的分析" class="headerlink" title="不同场景的预测精度的分析"></a>不同场景的预测精度的分析</h3><p>对于没有立体化学的反应，<strong>参考模型的准确度比有立体化学的反应高约 5% 到 7%</strong> (Top-1) 和 10% (Top-5)（表 2）。 测试集中 20% 的反应包含具有立体化学的分子。 测试集增强数量的增加提高了立体和非立体化学反应的准确性。数据集中的立体化学反应也可能遭受大量注释错误或/和可能具有较低的预测分数，因为此类数据在训练集中的代表性不足。 </p>
+<h3 id="经典逆合成精度：最大片段的识别精度"><a href="#经典逆合成精度：最大片段的识别精度" class="headerlink" title="经典逆合成精度：最大片段的识别精度"></a>经典逆合成精度：最大片段的识别精度</h3><p>逆向合成 SMILES 的预测包括反应物的准确预测。然而，使用不同反应物进行的相同反应可产生相似的产率。通常，数据库不包含合成目标产物的所有可能的反应条件。因此，可以认为仅对<strong>主要（最大）反应物的预测与逆合成预测更相关</strong>，因为我们需要首先确定反应类型。 事实上，化学家通常通过<strong>将目标分子分解成碎片来编写逆合成。</strong>这种仅关注主要化合物转化的经典程序是获得有效逆合成路线所需的最小信息，同时也是所有反应所需要的（见图 5）。 反应的反应条件的选择可以被认为是后续任务。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig5.png">
+  <figcaption>图 5. 西咪替丁逆合成的经典方法。
+  </figcaption>
+</figure>
+
+<p>这就是为什么作者决定将最大反应物的识别视为模型性能的新度量：经典逆合成精度，即“最大片段”（<strong>MaxFrag</strong>）的预测准确率。前 5 名反应预测的 MaxFrag 为 85.4%（表 2）。 MaxFrag 对于估计系统自动推断正确反应类别的能力很重要。该策略与显式提供反应类别信息作为模型输入是正交的。<strong>添加反应类作为先验信息等同于在考试中获得提示</strong>：而这是不切实际的，也会减少提出其他替代可行反应的机会。使用 MaxFrag 比提供反应类作为先验信息更准确和合乎逻辑。除了 MaxFrag 和 Top-n 之外，还有一些其他分数来评估逆合成建议，例如Satoh 和 Funatsu 的匹配分数，Segler 等人的“in-scope”过滤器，以及由Schwaller 等人提出的正向transformer分数。然而，MaxFrag 是最简单且可解释的。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./table2.png">
+</figure>
+
+<h3 id="逆合成数据质量和-MaxFrag-准确率"><a href="#逆合成数据质量和-MaxFrag-准确率" class="headerlink" title="逆合成数据质量和 MaxFrag 准确率"></a>逆合成数据质量和 MaxFrag 准确率</h3><p>相较于传统的Top-N，MaxFrag Top-N拥有一个更高的准确率。为了解释这一事实，作者分析了他们的数据集，发现了四种类型的反应：<strong>非试剂反应、单试剂反应、多试剂反应和不清楚的试剂反应</strong>。其中非试剂反应是不起作用的反应 (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex" xmlns="http://www.w3.org/2000/svg" width="11.396ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 5037 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(972.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(1972.4,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(3009.2,0)"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(4287,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container>). 单试剂反应只有一种原料为产物 (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex" xmlns="http://www.w3.org/2000/svg" width="6.915ex" height="1.645ex" role="img" focusable="false" viewBox="0 -716 3056.6 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(1027.8,0)"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(2305.6,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g></g></svg></mjx-container>), 而多试剂反应有多个反应物 (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex" xmlns="http://www.w3.org/2000/svg" width="11.398ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 5038 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(972.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(1972.4,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(3009.2,0)"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(4287,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g></g></svg></mjx-container>). 最后是不明确的试剂的反应，其中反应条件、溶剂、盐等都作为试剂包括在内 (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex" xmlns="http://www.w3.org/2000/svg" width="16.173ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 7148.4 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(972.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(1972.4,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(2953.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(3953.9,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mo" transform="translate(5119.7,0)"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(6397.4,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g></g></g></svg></mjx-container>, 其中 N 是不实际参与形成产物的化学物质). 根据数据集，这些反应类别的比例略有不同。在 MIT 数据集中，大约 0.5% 的反应是非试剂反应，大约 10% 的反应是不明确的试剂反应，而在 USPTO-50k 数据集中只有不到 1% 的此类反应。 因此，对于 MIT 集合，不可能完全预测大约 10% 的逆合成反应，因为它们包含没有形成反应的化学物质“N”，而只有条件、溶剂等。对于正向合成，这不是一个困难的问题，因为Transformer可以正确识别和选择相互作用的组件（“A”和“B”）并预测产物。 然而，由于上述问题，使用 Top-n 进行逆合成是有问题的。 <strong>MaxFrag 准确度的专注于主要试剂来降低这些影响</strong>。 </p>
+<h3 id="不同类别下的预测分析"><a href="#不同类别下的预测分析" class="headerlink" title="不同类别下的预测分析"></a>不同类别下的预测分析</h3><p>原始的USPTO-50K数据为每一个反应都提供了一个反应类型的注释，共计10种类型。不同类型之间的准确率的结果见图 6。官能团相互转换和加成以及碳-碳键的形成这两种类型对模型来说是最难预测的。 可能是因为与更直接的氧化或保护反应相比，这两种反应中可选的基团和反应物的集合相较于碳-碳键的形成要窄得多。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="fig6.png">
+  <figcaption>图 6. 不同反应类型的Top-10 准确率</figcaption>
+</figure>
+
+<h3 id="正向反应的预测"><a href="#正向反应的预测" class="headerlink" title="正向反应的预测"></a>正向反应的预测</h3><p>接着，作者将上述的策略应用于USPTO-MIT数据集上进行正向反应的预测。使用一个439K大小的样本进行训练，测试集大小为40K。其中测试集分为分离(separated)与混合(mixed)数据集。“分离”数据集中的不同反应试剂用”&gt;”分割，而“混合”数据集中使用”.”替换所有的”&gt;”。虽然mixed会要更难以拟合，但更符合实际情况，因为有时候不知道是哪先试剂实际参与了反应。训练时，使用写x5N增强数据对separated进行学习，对mixed使用x5S和x5M。预测结果见表3.</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="./table3.png" alt=""></p>
+<p>x100的测试集虽然相较于x20有更好的表现，但提升十分微小，并且还伴随着过评估的风险。</p>
+<h3 id="与已发表的使用USPTO-MIT的正向合成的模型的比较"><a href="#与已发表的使用USPTO-MIT的正向合成的模型的比较" class="headerlink" title="与已发表的使用USPTO-MIT的正向合成的模型的比较"></a>与已发表的使用USPTO-MIT的正向合成的模型的比较</h3><p>在诸多基于USPTO-MIT训练的正向预测模型中，该研究的模型在mixed数据上拥有最好的表现(表4)，因为模型就是在随机化的增强数据上进行训练的。作者使用上述方法并使用与其他方法相同数据集重新训练了一个模型。在mixed上相较于简单的Transformer模型提升还是很明显的。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="table4.png" alt=""></p>
+<h3 id="与已发表的逆合成模型相比"><a href="#与已发表的逆合成模型相比" class="headerlink" title="与已发表的逆合成模型相比"></a>与已发表的逆合成模型相比</h3><h4 id="USPTO-50k"><a href="#USPTO-50k" class="headerlink" title="USPTO-50k"></a><em>USPTO-50k</em></h4><p>与其他基于USPTO-50K训练的模型见表5. 分别提供了使用验证集(45K)和不使用验证集(40K)训练的结果。</p>
+<blockquote>
+<p>作者在原文中说使用45K是Fair comparison. 我个人感觉很扯，明明使用40K就比其他人要好了，不知道为什么还要留一个把柄出来。为了证明模型还可以更好？</p>
+</blockquote>
+<p><img lazyload="" src="/images/loading.svg" data-src="table5.png" alt=""></p>
+<h4 id="USPTO-MIT"><a href="#USPTO-MIT" class="headerlink" title="USPTO-MIT"></a><em>USPTO-MIT</em></h4><p>相较于USPTO-50K, -MIT含有反应物与试剂(例如粗化剂). 参照上述的研究(表 3), 使用x5M策略来进行数据增强。接着，为了更加与-50K数据集的可比性，作者使用x5S并选择1~2个最大碎片作为反应的产物。测试集大小为40k，并使用x100的增强策略。最后x5S在MaxFrag的Top-1, -5,- 10表现为61.9%, 84.4%与86.9% (-50k为58.5, 85.4, 90%). x5M为61.1, 84.4, 88.2%. 表现与-50K相近，证明该方法的可拓展性。</p>
+<h4 id="USPTO-full"><a href="#USPTO-full" class="headerlink" title="USPTO-full"></a><em>USPTO-full</em></h4><p>在该数据集中，对于具有多种产物的反应，将它们复制成多个反应，每个反应一个产物。在移除错误的反应之后，得到一个训练、验证和测试分别为800、100和100k的数据。就这，作者移除了总原子数少于5个的反应，最后数据分别为769、96和96k。使用x5M策略进行训练，与其他模型的比较见表6。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="table6.png" alt=""></p>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><p>本研究主要做了以下的工作：</p>
+<ul>
+<li>通过大量的实验证明了对训练集使用适当的增强策略可以大幅提升合成模型的性能</li>
+<li>首次提出了预测得到的SMILES序列在原数据集中的频率可以作为评估合成模型预测结果的置信度的评估指标</li>
+<li>提出了一个新的评估指标: MaxFrag, 用作经典逆合成准确率(classical retro-synthesis accurac)的评估</li>
+</ul>
+<h2 id="一点感想"><a href="#一点感想" class="headerlink" title="一点感想"></a>一点感想</h2><p>这篇文章在数据增强上进行了一个非常详细的研究，提出了多种增强方法，在我之前的认知里只有对SMILES无脑堆倍数这一种方法。并且，该文章对结果的分析也非常详尽，值得我好好好学习。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：用于直接和单步逆合成的SOTA增强 NLP Transformer模型</li>
+        <li>Post author：Kotori Y</li>
+        <li>Create time：2021-11-09 17:20:13</li>
+        <li>
+            Post link：https://blog.iamkotori.com/2021/11/09/State_of_the_art augmented NLP transformer models for direct and single-step retrosynthesis/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/09/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">🚧 从零开始的高等数学（二）：导数与微分</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'asikxqyjUx1MjuHKtYaxrqFV-gzGzoHsz',
+                    appKey: 'p8nlF7XIyFQ6yD08yKaEhBFH',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: 'niconiconi',
+                    lang: 'en'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Kotori Y';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-text">结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%8F%8D%E5%BA%94%E6%95%B0%E6%8D%AE"><span class="nav-text">合成反应数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E9%9B%86-canonical-datasets-%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-text">原始数据集(canonical datasets)的分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%85%E5%A2%9E%E5%BC%BA%E4%BA%A7%E7%89%A9-xN"><span class="nav-text">仅增强产物(xN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%97%E7%AC%A6%E5%92%8C%E7%B2%BE%E7%A1%AE%E5%BA%8F%E5%88%97%E7%9A%84%E9%A2%84%E6%B5%8B%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-text">基于字符和精确序列的预测精度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%BA%94%E7%89%A9%E5%8F%8A%E8%AF%95%E5%89%82%E7%9A%84%E5%A2%9E%E5%BC%BA"><span class="nav-text">反应物及试剂的增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-1-%E8%A1%A8%E7%8E%B0%E5%88%86%E6%9E%90"><span class="nav-text">Top-1 表现分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%89%93%E4%B9%B1%E5%8F%8D%E5%BA%94%E7%89%A9%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="nav-text">随机打乱反应物的顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%89%93%E4%B9%B1%E4%B8%8E%E6%B7%B7%E5%90%88%E6%AD%A3%E3%80%81%E9%80%86%E5%8F%8D%E5%BA%94"><span class="nav-text">随机打乱与混合正、逆反应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-5-%E8%A1%A8%E7%8E%B0%E5%88%86%E6%9E%90"><span class="nav-text">Top-5 表现分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%87%86-USPTO-50k-%E6%A8%A1%E5%9E%8B"><span class="nav-text">基准 USPTO-50k 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-text">温度的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beam-Search%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-text">Beam Search的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%9A%84%E5%87%86%E7%A1%AE%E7%8E%87"><span class="nav-text">预测的准确率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E5%9C%BA%E6%99%AF%E7%9A%84%E9%A2%84%E6%B5%8B%E7%B2%BE%E5%BA%A6%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-text">不同场景的预测精度的分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E9%80%86%E5%90%88%E6%88%90%E7%B2%BE%E5%BA%A6%EF%BC%9A%E6%9C%80%E5%A4%A7%E7%89%87%E6%AE%B5%E7%9A%84%E8%AF%86%E5%88%AB%E7%B2%BE%E5%BA%A6"><span class="nav-text">经典逆合成精度：最大片段的识别精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%90%88%E6%88%90%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E5%92%8C-MaxFrag-%E5%87%86%E7%A1%AE%E7%8E%87"><span class="nav-text">逆合成数据质量和 MaxFrag 准确率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%88%AB%E4%B8%8B%E7%9A%84%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90"><span class="nav-text">不同类别下的预测分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%90%91%E5%8F%8D%E5%BA%94%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="nav-text">正向反应的预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E5%B7%B2%E5%8F%91%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8USPTO-MIT%E7%9A%84%E6%AD%A3%E5%90%91%E5%90%88%E6%88%90%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">与已发表的使用USPTO-MIT的正向合成的模型的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E5%B7%B2%E5%8F%91%E8%A1%A8%E7%9A%84%E9%80%86%E5%90%88%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9B%B8%E6%AF%94"><span class="nav-text">与已发表的逆合成模型相比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USPTO-50k"><span class="nav-text">USPTO-50k</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USPTO-MIT"><span class="nav-text">USPTO-MIT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USPTO-full"><span class="nav-text">USPTO-full</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA"><span class="nav-text">讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3"><span class="nav-text">一点感想</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

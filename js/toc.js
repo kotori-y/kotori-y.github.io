@@ -31,12 +31,12 @@ function initTOC() {
               targets: document.scrollingElement,
               duration: 500,
               easing: 'linear',
-              scrollTop: offset - 10,
-              complete: function () {
-                setTimeout(() => {
-                  KEEP.utils.pageTop_dom.classList.add('hide');
-                }, 100)
-              }
+              scrollTop: offset - 60,
+              // complete: function () {
+              //   setTimeout(() => {
+              //     KEEP.utils.pageTop_dom.classList.add('hide');
+              //   }, 100)
+              // }
             });
           });
           return target;

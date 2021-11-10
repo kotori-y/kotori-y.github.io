@@ -5,6 +5,22 @@
 keep-tablet()
 keep-mobile()
 }
+.article-content-container hr {
+  border: none;
+  height: 1px;
+  background-image: linear-gradient(to right, #f0f0f0, #8f8f8f, #f0f0f0);
+  margin-bottom: 20px;
+}
+.article-content-container hr::after {
+  content: '§';
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(60deg);
+  transform-origin: 50% 50%;
+  padding: 1rem;
+  background-color: #fff;
+}
 .article-content-container .article-header {
   position: relative;
   padding-left: 46px;

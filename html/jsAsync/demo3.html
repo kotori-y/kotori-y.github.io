@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo 3</title>
+  <style>
+    .my-block-3 {
+      width: 100px;
+      height: 100px;
+      background: #1b85f1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+<div class="my-block-3"></div>
+<script>
+  let elem2 = document.querySelector(".my-block-3")
+
+  function start() {
+    document.querySelector(".btn3").disabled = true
+
+    const interval = (delay, callback) => {
+      return new Promise(resolve => {
+        let task1 = setInterval(() => {
+          callback(task1, resolve)
+        }, delay)
+      })
+    }
+
+    const sleep = (delay) => new Promise(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, delay)
+    })
+
+    interval(100, (task, resolve) => {
+      if (elem2.offsetLeft >= 100) {
+        clearInterval(task)
+        resolve()
+      }
+      elem2.style.left = `${elem2.offsetLeft + 10}px`
+    }).then(() => {
+      sleep(1000).then(() => elem2.style.left = 0)
+        .then(() => document.querySelector(".btn3").disabled = false)
+    })
+
+  }
+</script>
+
+<button onclick="start()" class="btn3">test</button>
+</body>
+</html>

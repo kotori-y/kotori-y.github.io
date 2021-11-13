@@ -11,7 +11,7 @@
     
     <title>
         
-            蒙特卡洛树搜索简介及应用 |
+            蒙特卡洛树搜索简介 |
         
         Build Knowledge Together
     </title>
@@ -279,7 +279,7 @@ mjx-container[display="true"] + br {
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">蒙特卡洛树搜索简介及应用</span>
+            <span class="title-hover-animation">蒙特卡洛树搜索简介</span>
         </div>
 
         
@@ -348,7 +348,7 @@ mjx-container[display="true"] + br {
 
         <div class="article-content markdown-body">
             <blockquote>
-<p><strong>蒙特卡洛树搜索</strong>（英语：Monte Carlo tree search；简称：<strong>MCTS</strong>）是一种用于某些决策过程的启发式搜索算法，尤其是在棋类对决游戏中得到广泛的应用</p>
+<p><strong>蒙特卡洛树搜索</strong>（Monte Carlo tree search, <strong>MCTS</strong>）是一种用于某些决策过程的启发式搜索算法，尤其是在棋类对决游戏中得到广泛的应用</p>
 </blockquote>
 <span id="more"></span>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>早在1997年IBM的深蓝(Deep Blue)凭借暴力枚举战胜当时的国际象棋世界冠军卡斯巴罗夫，尽显暴力美学。之后，计算机在各种棋类运动中横扫人类冠军，除了围棋。因为围棋的搜索空间实在是太大了，大约为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex" xmlns="http://www.w3.org/2000/svg" width="4.023ex" height="1.67ex" role="img" focusable="false" viewBox="0 -716 1778 738"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"></path></g><g data-mml-node="mo" transform="translate(1500,0)"><path data-c="21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path></g></g></g></svg></mjx-container>（19X19的棋盘，忽略吃子），就算是现在最强的超级计算机也无法穷举出全部的空间，因此需要一个优化的搜索算法来解决这个问题。终于，在2016年3 月，由Deepmind研发的 ALphaGo 4-1 击败了李世乭，并且在一年后 AlphaGo Zero又以100-0 击败了它的前辈。其中使用的搜索算法就是蒙特卡洛树搜索。本文章将以井字棋为例讲解MCTS。</p>
@@ -425,7 +425,7 @@ mjx-container[display="true"] + br {
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：蒙特卡洛树搜索简介及应用</li>
+        <li>Post title：蒙特卡洛树搜索简介</li>
         <li>Post author：Kotori Y</li>
         <li>Create time：2021-11-14 02:31</li>
 

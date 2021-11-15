@@ -2886,6 +2886,10 @@ pre .javascript .function {
     border-radius: 3px;
   }
 }
+.author-container .right {
+  float: right;
+  font-size: 1rem;
+}
 .author-container .author-name {
   color: var(--second-text-color);
   font-size: 1.6rem;

@@ -3,6 +3,16 @@
 }
 .home-content-container .home-article-list .home-article-item {
   position: relative;
+/* 防止选中时暴露文字 */
+}
+.home-content-container .home-article-list .home-article-item .mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.home-content-container .home-article-list .home-article-item .mask::selection {
+  background: transparent;
 }
 .home-content-container .home-article-list .home-article-item .top-icon {
   position: absolute;

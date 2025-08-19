@@ -739,7 +739,7 @@ pre,
 }
 pre,
 code {
-  font-family: "Source Code Pro", consolas, Menlo;
+  font-family: "Fira Code", "Source Code Pro", consolas, Menlo;
 }
 code {
   padding: 5px;
@@ -751,6 +751,7 @@ code {
 }
 pre {
   padding: 10px;
+  background-color: #282a36 !important;
 }
 pre code {
   padding: 0;
@@ -760,6 +761,7 @@ pre code {
 }
 .highlight {
   border-radius: 1px;
+  background: #282a36 !important;
 }
 .highlight pre {
   border: none;
@@ -817,6 +819,7 @@ pre code {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: #282a36 !important;
 }
 .gist table {
   width: auto;
@@ -2434,6 +2437,7 @@ pre .javascript .function {
   transition-delay: 0s, 0s, 0s, 0s, 0s;
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease, ease, ease, ease, linear;
+/* 防止选中时暴露文字 */
 }
 @media (max-width: 780px) {
   .home-content-container .home-article-list .home-article-item {
@@ -2456,6 +2460,15 @@ pre .javascript .function {
     padding: 16.8px;
     border-radius: 3px;
   }
+}
+.home-content-container .home-article-list .home-article-item .mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.home-content-container .home-article-list .home-article-item .mask::selection {
+  background: transparent;
 }
 .home-content-container .home-article-list .home-article-item .top-icon {
   position: absolute;
@@ -2567,6 +2580,15 @@ pre .javascript .function {
     border-radius: 3px;
   }
 }
+.mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.mask::selection {
+  background: transparent;
+}
 .article-content-container {
   padding: 30px;
   border-radius: 5px;
@@ -2574,6 +2596,7 @@ pre .javascript .function {
   background: var(--background-color);
   margin-bottom: 30px;
   box-shadow: 2px 2px 5px var(--shadow-color);
+/* 防止选中时暴露文字 */
 }
 @media (max-width: 780px) {
   .article-content-container {
@@ -2597,6 +2620,15 @@ pre .javascript .function {
     border-radius: 3px;
   }
 }
+.article-content-container .mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.article-content-container .mask::selection {
+  background: transparent;
+}
 .article-content-container .article-title {
   color: var(--second-text-color);
   font-weight: 600;
@@ -2611,6 +2643,29 @@ pre .javascript .function {
   .article-content-container .article-title {
     font-size: 1.28rem;
   }
+}
+.article-content-container hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin: 2.5em 0;
+  position: relative;
+}
+.article-content-container hr:before,
+.article-content-container hr:after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  height: 5em;
+  width: 100%;
+  background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%);
+  z-index: 0;
+}
+.article-content-container hr:after {
+  top: 0px;
+  bottom: auto;
+  height: 1.5em;
+  background: radial-gradient(ellipse at top, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 70%);
 }
 .article-content-container .article-header {
   position: relative;
@@ -2859,6 +2914,10 @@ pre .javascript .function {
     padding: 18px;
     border-radius: 3px;
   }
+}
+.author-container .right {
+  float: right;
+  font-size: 1rem;
 }
 .author-container .author-name {
   color: var(--second-text-color);

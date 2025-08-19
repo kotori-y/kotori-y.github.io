@@ -1,9 +1,41 @@
+.article-content-container .mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.article-content-container .mask::selection {
+  background: transparent;
+}
 .article-content-container .article-title {
   color: var(--second-text-color);
   font-weight: 600;
   font-size: 1.6rem;
 keep-tablet()
 keep-mobile()
+}
+.article-content-container hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin: 2.5em 0;
+  position: relative;
+}
+.article-content-container hr:before,
+.article-content-container hr:after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  height: 5em;
+  width: 100%;
+  background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%);
+  z-index: 0;
+}
+.article-content-container hr:after {
+  top: 0px;
+  bottom: auto;
+  height: 1.5em;
+  background: radial-gradient(ellipse at top, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 70%);
 }
 .article-content-container .article-header {
   position: relative;

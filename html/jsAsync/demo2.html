@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo2</title>
+  <style>
+    .my-block {
+      width: 100px;
+      height: 100px;
+      background: #1b85f1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+<div class="my-block"></div>
+<script>
+  let elem2 = document.querySelector(".my-block")
+
+  function start() {
+    document.querySelector(".btn2").disabled = true
+
+    let task1 = setInterval(() => {
+      elem2.style.left = `${elem2.offsetLeft + 10}px`
+      if (elem2.offsetLeft >= 100) {
+        clearInterval(task1)
+
+        setTimeout(() => {
+          elem2.style.left = 0
+          document.querySelector(".btn2").disabled = false
+        }, 1000)
+      }
+    }, 100)
+  }
+
+  console.log("Demo 2 Start!")
+</script>
+
+<button onclick="start()" class="btn2">test</button>
+</body>
+</html>

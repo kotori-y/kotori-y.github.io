@@ -1,0 +1,10 @@
+.mask {
+  background-color: #000;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.mask::selection {
+  background: transparent;
+}
+/* 防止选中时暴露文字 */

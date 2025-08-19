@@ -13,19 +13,19 @@
         
             Tanimoto系数计算方法优化的思路 |
         
-        Build Knowledge Together
+        ことりの秘密の場所
     </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    <link rel="shortcut icon" href="/images/favicon.ico">
     
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/favicon.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -40,7 +40,10 @@
 
 
 <main class="page-container">
-
+    <link rel="stylesheet" href="/css/dracula.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <meta name="description" content="iamkotori">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/5.2.0/fira_code.min.css" integrity="sha512-MbysAYimH1hH2xYzkkMHB6MqxBqfP0megxsCLknbYqHVwXTCg9IqHbk+ZP/vnhO8UEW6PaXAkKe2vQ+SWACxxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 
     <div class="page-main-content">
@@ -52,7 +55,7 @@
         <div class="left">
             
             <a class="logo-title" href="/">
-                Build Knowledge Together
+                ことりの秘密の場所
             </a>
         </div>
 
@@ -72,7 +75,7 @@
                             <a class=""
                                href="/archives"
                             >
-                                ARCHIVES
+                                TIMELINE
                             </a>
                         </li>
                     
@@ -128,7 +131,7 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">ARCHIVES</a>
+                       href="/archives">TIMELINE</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -177,15 +180,20 @@
                 </div>
                 <div class="info">
                     <div class="author">
-                        <span class="name">Kotori Y</span>
+                        <a href="/authors/Kotori%20Y">
+                            <span class="name">Kotori Y</span>
+                        </a>
                         
-                            <span class="author-label">17 Posts</span>
+                            <span class="author-label">29 Posts</span>
                         
                     </div>
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2019-01-08 11:21:44
+        <i class="fas fa-edit"></i>&nbsp;2019-01-08 11:21
+        
+            <i class="fas fa-wrench"></i> 2022-08-20 23:16
+        
     </span>
     
         <span class="article-categories article-meta-item">
@@ -289,6 +297,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">CalTanimoto</span>(<span class="hljs-params">data</span>):</span><br>    arr = np.array(data) <span class="hljs-comment">#data为1660个分子的CATS描述符，dataframe型</span><br>    <br>    start = time.clock()<br>    <br>    values = [] <span class="hljs-comment">#用于存放每个得到的Tanimoto相似度</span><br>    <span class="hljs-keyword">for</span> pair <span class="hljs-keyword">in</span> product(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1660</span>)), repeat=<span class="hljs-number">2</span>): <span class="hljs-comment">#进行排列组合运</span><br>            up = arr[pair[<span class="hljs-number">0</span>]]*arr[pair[-<span class="hljs-number">1</span>]] <span class="hljs-comment">#获取两个特征向量的数组，进行相关运算，下同</span><br>            down = arr[pair[<span class="hljs-number">0</span>]]**<span class="hljs-number">2</span> + arr[pair[-<span class="hljs-number">1</span>]]**<span class="hljs-number">2</span><br>            value = up.<span class="hljs-built_in">sum</span>()/(down.<span class="hljs-built_in">sum</span>()-up.<span class="hljs-built_in">sum</span>())<span class="hljs-comment">#计算	</span><br>            values.append(value)<br>            <br>    Tani = np.array(values).reshape((<span class="hljs-number">1660</span>,<span class="hljs-number">1660</span>))<br>    <br>    end = time.clock()<br>    <span class="hljs-built_in">print</span>(start-end)<br>	<br>    <span class="hljs-keyword">return</span> Tani<br></code></pre></td></tr></table></figure>
 <p>总计用时：约240s</p>
 <h3 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> warnings<br>warnings.filterwarnings(<span class="hljs-string">&#x27;ignore&#x27;</span>)<br><br><span class="hljs-comment"># 更新时间：11/09/20</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getSimilarity</span>(<span class="hljs-params">data, binary=<span class="hljs-literal">True</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    Parameters</span><br><span class="hljs-string">    ----------</span><br><span class="hljs-string">    data : numpy.ndarray</span><br><span class="hljs-string">        fingrtprint or descriptor in 2d-arrry.</span><br><span class="hljs-string">    Yields</span><br><span class="hljs-string">    ------</span><br><span class="hljs-string">    value : numpy.ndarray</span><br><span class="hljs-string">        the similarity between a molecule and the lib.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> arr <span class="hljs-keyword">in</span> data:<br>        up = arr*data <span class="hljs-comment">#获取两个特征向量的数组，进行相关运算，下同</span><br>        <br>        <span class="hljs-keyword">if</span> binary:<br>            down = arr + data<br>        <span class="hljs-keyword">else</span>:<br>            down = arr**<span class="hljs-number">2</span> + data**<span class="hljs-number">2</span><br>            <br>        value = up.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>)/(down.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>)-up.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>))<span class="hljs-comment">#计算公式</span><br>        <span class="hljs-keyword">yield</span> value<br>   <br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(<span class="hljs-params">data, binary=<span class="hljs-literal">True</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Parameters</span><br><span class="hljs-string">    ----------</span><br><span class="hljs-string">    data : numpy.ndarray</span><br><span class="hljs-string">        DESCRIPTION.</span><br><span class="hljs-string">    Returns</span><br><span class="hljs-string">    -------</span><br><span class="hljs-string">    Similarity matrix.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    simi = getSimilarity(data, binary)<br>    <span class="hljs-keyword">try</span>:<br>        simi = np.vstack(simi)<br>    <span class="hljs-keyword">except</span>:<br>        simi = np.array(<span class="hljs-built_in">list</span>(simi))<br>    <br>    <span class="hljs-keyword">return</span> simi<br>        <br>        <br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;__main__&quot;</span> == __name__:<br>    <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>    data = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(<span class="hljs-number">1660</span>,<span class="hljs-number">1660</span>)) <span class="hljs-comment">#fake data</span><br>    simi = main(data)<br></code></pre></td></tr></table></figure>
+<h3 id="解决方法3"><a href="#解决方法3" class="headerlink" title="解决方法3"></a>解决方法3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> numpy.typing <span class="hljs-keyword">import</span> ArrayLike<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tanimoto_3</span>(<span class="hljs-params">array: ArrayLike</span>) -&gt; <span class="hljs-built_in">float</span>:</span><br>    m = array.shape[<span class="hljs-number">0</span>]<br><br>    mat = np.mat(array)<br>    mat2 = np.mat(array**<span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>).repeat(m).reshape(m, -<span class="hljs-number">1</span>)<br><br>    up = mat * mat.T<br>    down = mat2 + mat2.T<br><br>    <span class="hljs-keyword">return</span> up.__array__() / (down - up).__array__()  <span class="hljs-comment"># 原则上矩阵无法做分母，但numpy可以这么做</span><br></code></pre></td></tr></table></figure>
+<p>测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test0</span>():</span>  <span class="hljs-comment"># 测试方法1</span><br>    np.random.seed(<span class="hljs-number">777</span>)<br>    array = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">1000</span>, <span class="hljs-number">1660</span>))<br>    CalTanimoto(array)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test1</span>():</span>  <span class="hljs-comment"># 测试方法2</span><br>    np.random.seed(<span class="hljs-number">777</span>)<br>    array = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">1000</span>, <span class="hljs-number">1660</span>))<br>    main(array)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test2</span>():</span>  <span class="hljs-comment"># 测试方法3</span><br>    np.random.seed(<span class="hljs-number">777</span>)<br>    array = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">1000</span>, <span class="hljs-number">1660</span>))<br>    tanimoto_3(array)<br><br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&quot;__main__&quot;</span> == __name__:<br>    <span class="hljs-keyword">from</span> timeit <span class="hljs-keyword">import</span> timeit<br><br>    t0 = timeit(<span class="hljs-string">&quot;test0()&quot;</span>, <span class="hljs-string">&quot;from __main__ import test0&quot;</span>, number=<span class="hljs-number">10</span>)  <span class="hljs-comment"># 82.92235608300001</span><br>    t1 = timeit(<span class="hljs-string">&quot;test1()&quot;</span>, <span class="hljs-string">&quot;from __main__ import test1&quot;</span>, number=<span class="hljs-number">10</span>)  <span class="hljs-comment"># 38.50827858299999</span><br>    t2 = timeit(<span class="hljs-string">&quot;test2()&quot;</span>, <span class="hljs-string">&quot;from __main__ import test2&quot;</span>, number=<span class="hljs-number">10</span>)  <span class="hljs-comment"># 6.618927875000011</span><br>  <br></code></pre></td></tr></table></figure>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><strong>1.<a class="link"   target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9B%85%E5%8D%A1%E5%B0%94%E6%8C%87%E6%95%B0" >雅卡尔指数wiki<i class="fas fa-external-link-alt"></i></a></strong></p>
 <p><strong>2.<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Jaccard_index" >Jaccard index wiki<i class="fas fa-external-link-alt"></i></a></strong></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
@@ -297,6 +308,7 @@
 </ol>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这篇文章到就差不多了，作为第一篇文章，写了好几天（才不是因为我懒呢……)。为了写这篇文章，也看了不少东西：MathJax语法，HTML，还有两篇文献。还参照了<a class="link"   target="_blank" rel="noopener" href="https://blog.catkin.moe/" >dalao<i class="fas fa-external-link-alt"></i></a>的写作格式。另外，感觉能有<strong>更好的方法</strong>来替代排列组合运算，进一步提高效率。但是，等我想出改进方法，恐怕我都算完20+个矩阵了。最后，我想说：“挖坑一时爽，一直挖坑一直爽”。</p>
 <h2 id="后记2"><a href="#后记2" class="headerlink" title="后记2"></a>后记2</h2><p>将近两年后再看这篇博客，真是感慨万千，当初在老哥的带领下我励志要做技术博客，没有想到却用来记录琐碎无聊的日常，而带我走进前端开发的老哥已不在CBDD。不过话说回来，那时的我也算初露锋芒，写出了性能还凑合的解决方案，而那个“更好的方法”也在一年半后实现了，也算有始有终吧。</p>
+<h2 id="后记3"><a href="#后记3" class="headerlink" title="后记3"></a>后记3</h2><p>在原文章的发布后的44个月，我终于去掉了函数中不优雅的<code>for</code>，从最开始的枚举到现在小o所说的“矩阵的思维”。希望Tanimoto这个函数的性能还能进一步的提升。</p>
 
         </div>
 
@@ -306,7 +318,12 @@
     <ul>
         <li>Post title：Tanimoto系数计算方法优化的思路</li>
         <li>Post author：Kotori Y</li>
-        <li>Create time：2019-01-08 11:21:44</li>
+        <li>Create time：2019-01-08 11:21</li>
+
+        
+            <li>Update time：2022-08-20 23:16</li>
+        
+
         <li>
             Post link：https://blog.iamkotori.com/2019/01/08/Tanimoto系数计算方法优化/
         </li>
@@ -358,81 +375,45 @@
 
         
             <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;Comments</i>
-    </div>
-    
+                if (hexo-config('comment.enable') == true && hexo-config('comment.use') != "") {
+  if (hexo-config('comment.use') == "valine") {
+    @require "./valine.styl";
 
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'asikxqyjUx1MjuHKtYaxrqFV-gzGzoHsz',
-                    appKey: 'p8nlF7XIyFQ6yD08yKaEhBFH',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: 'niconiconi',
-                    lang: 'en'.toLowerCase()
-                });
+  } else if (hexo-config('comment.use') == "gitalk") {
+    @require "./gitalk.styl";
 
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
+  } else if (hexo-config('comment.use') == "twikoo") {
+    @require "./twikoo.styl";
+  }
+}
 
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = 'Kotori Y';
+.comments-container {
+  display: inline-block;
+  margin-top: $component-spacing-value;
+  width: 100%;
 
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
+  #comment-anchor {
+    width: 100%;
+    height: 10px;
+  }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+  .comment-area-title {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1.38rem;
+    color: var(--default-text-color);
 
+    i {
+      color: var(--default-text-color);
+    }
 
+    +keep-tablet() {
+      margin: 5px 0;
+      font-size: 1.2rem;
+    }
+  }
 
-        
-    
-</div>
+}
 
             </div>
         
@@ -454,7 +435,7 @@
               <span>2019</span>
               -
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
         </div>
         
             <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -552,7 +533,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%83%8C%E6%99%AF"><span class="nav-text">相关背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%85%E5%8D%A1%E5%B0%94%E6%8C%87%E6%95%B0"><span class="nav-text">雅卡尔指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tanimoto-%E7%B3%BB%E6%95%B0"><span class="nav-text">Tanimoto 系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CATS-%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">CATS 描述符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-text">实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E5%8C%BA"><span class="nav-text">误区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952"><span class="nav-text">解决方法2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">相关链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B02"><span class="nav-text">后记2</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%83%8C%E6%99%AF"><span class="nav-text">相关背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%85%E5%8D%A1%E5%B0%94%E6%8C%87%E6%95%B0"><span class="nav-text">雅卡尔指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tanimoto-%E7%B3%BB%E6%95%B0"><span class="nav-text">Tanimoto 系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CATS-%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">CATS 描述符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-text">实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E5%8C%BA"><span class="nav-text">误区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952"><span class="nav-text">解决方法2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%953"><span class="nav-text">解决方法3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">相关链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B02"><span class="nav-text">后记2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B03"><span class="nav-text">后记3</span></a></li></ol>
     </div>
 </div>
         </aside>
@@ -593,6 +574,13 @@
 </div>
 
     
+
+<!--    <script>-->
+<!--      ((window.gitter = {}).chat = {}).options = {-->
+<!--        room: 'CBDD-Chatting/community'-->
+<!--      };-->
+<!--    </script>-->
+<!--    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>-->
 
 </main>
 
@@ -642,5 +630,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

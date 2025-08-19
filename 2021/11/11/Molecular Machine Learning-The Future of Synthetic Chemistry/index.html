@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kotori Y">
+    
+    <title>
+        
+            分子机器学习：合成化学的未来？ |
+        
+        ことりの秘密の場所
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/favicon.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"穿梭时间的画面的钟 从反方向 开始移动"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+    <link rel="stylesheet" href="/css/dracula.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <meta name="description" content="iamkotori">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/5.2.0/fira_code.min.css" integrity="sha512-MbysAYimH1hH2xYzkkMHB6MqxBqfP0megxsCLknbYqHVwXTCg9IqHbk+ZP/vnhO8UEW6PaXAkKe2vQ+SWACxxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ことりの秘密の場所
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                TIMELINE
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/authors"
+                            >
+                                AUTHORS
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">TIMELINE</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/authors">AUTHORS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">分子机器学习：合成化学的未来？</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <a href="/authors/Kotori%20Y">
+                        <img src="/images/avatar.jpeg">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <a href="/authors/Kotori%20Y">
+                            <span class="name">Kotori Y</span>
+                        </a>
+                        
+                            <span class="author-label">29 Posts</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-11 00:44
+        
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reading-Note/">Reading Note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/viewpoint/">viewpoint</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/MML/">MML</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/retrosynthesis/">retrosynthesis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>分子机器学习是一个具有巨大潜力的研究课题，可以从根本上改变合成化学家的运作方式。 该Viewpoint概述了整个化学领域的可能的机遇，突出了挑战和相关的不期望的趋势，提出了可持续发的展和机遇。</p>
+<span id="more"></span>
+<p><strong><em>Viewpoint</em></strong></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://doi.org/10.1002/anie.202008366">来源<i class="fas fa-external-link-alt"></i></a>-<strong><em>Angewandte Chemie International Edition</em></strong> 2020 <em>Pflüger et al.</em></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>机器学习(Mechine learning, ML)是一种自动构建统计模型的方法，该模型能够识别出基础数据中的模式并将其应用于看不见的输入之中。起初听起来很简单，但在过去十年中，越来越复杂的模型正在争夺更高的预测能力。这些发展使深度学习能够进入日常生活的几乎所有领域，并导致社会发生重大变化，例如，ML在医疗保健、犯罪预防和交通产生等领域了巨大影响。</p>
+<p>然而，正由于其高度复杂性，现代ML模型中暗藏着特定的风险和陷阱。首先，<strong>算法和数据都可能受到人为影响</strong>，从而导致对模型错误的解释（<strong>算法偏差</strong>），并且模型可以将噪声作为相关数据而无法概括潜在问题，从而导致性能不佳（<strong>过拟合</strong>）。此外，多数模型无法生成从输入到输出的路径，因此无法解释ML所给出的结果（<strong>黑箱</strong>）。</p>
+<p>由于合成化学领域的问题通常是复杂的模式识别任务，ML在该领域受到越来越多的关注。然而，与预期的在化学合成领域发生根本性变相反，目前的方法往往有限或有很大的改进潜力。造成这种情况的原因是多方面的。首先，由于计算机无法直接识别分子结构，因此需要一种计算机可以阅读的分子表征。此外，现代神经网络 (Neural, networks, NN) 的重要架构的理解<strong>需要化学和计算机科学方面均具有高水平知识</strong>，这往往在一个研究小组中很少出现。 所有这些都为新方法和未来发展留下了巨大的潜力。</p>
+<h2 id="合成化学的机遇"><a href="#合成化学的机遇" class="headerlink" title="合成化学的机遇"></a>合成化学的机遇</h2><p>机器学习在化学领域早已不是新事物了，很早之前就有用简答的算法来处理QSAR问题（图 1a）。正是因为有这些前人的研究，分子机器学习 (Molecular mechine learning, MML) 才不需要重新去探索与定义。如今，有许多说明ML在化学领域上的影响，其中就包括反应条件的优化与计算机辅助合成规划 (Computer-aided synthesis planning, CASP) （图 1b）。甚至在Corey提出“逆向合成”一词并为其制定规则之前，就已有CASP方面的研究。在21世纪初，主流的预测方法还是基于人工编码的规则，而在过去的十年中，ML已成为与之竞争的对手。这引发了一种趋势，新的逆合成工具使用越来越复杂的算法，例如结合蒙特卡洛搜索与强化学习(<a class="link" target="_blank" rel="noopener" href="https://www.nature.com/articles/nature25978">Nature 2018<i class="fas fa-external-link-alt"></i></a>)，与来自自然语言处理领域中的先进Transformer架构。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="fig1.png">
+  <figcaption>图 1. 分子机器学习和常见应用所需的子主题的一般层次结构。</figcaption>
+</figure>
+
+<p>在医药领域，ML拥有一段悠久的历史，被用于确定潜在的候选药物，例如优化HTS的过程或者建立QSAR模型。尽管有这样的背景，<strong>高度复杂的机器学习模型是否能够取代简单的、因此快速且易于使用的机器学习算法</strong>（例如随机森林、支持向量机）并提供<strong>全新的解决方案</strong>仍然值得怀疑。这是因为这一领域的问题主要是<strong>单分子</strong>的，即输入中只需要考虑一个分子，输出中最多会生成一个分子。而合成化学领域的情况有所不同，通常必须考虑或生成多个分子来模拟化学反应。这种更高级别的复杂性，从逻辑上说需要更复杂和更具有适应性的模型和表征。</p>
+<p>这些多分子问题，例如基于计算机的反应条件的优化以及对反应结果的预测（图 1c）、选择性和化学反应的产率是普遍感兴趣的话题，尽管第一批开创性工作已经证明了ML应用的潜力 ，<strong>已开发出的工具还不足以满足日常实验室使用</strong>。这是由于应用程序通常缺乏以下三个要点的问题：</p>
+<ul>
+<li>准确率，因为只有在简单的任务才能获得优秀的性能；</li>
+<li>一般性，因为只能预测某些特定反应；</li>
+<li>实用性，因为需要大量的其他领域的知识（例如面向对象的编程）或设备。</li>
+</ul>
+<p>所有这些都使得在日常问题的应用具有挑战性，并且为这些问题开发新模型以及解决进一步的问题留下了巨大的潜力。其中一个具有巨大潜力的领域是分析化学，由于合成化学家每天都在使用分析方法，因此潜在用户群非常庞大。 此外，大多数相关挑战都非常适合现代 ML 算法，因为分析数据的预测和评估是基于模式识别的。同样，先前的方法表明，对 NMR、MS、和激发光谱的预测是可能的，<strong>但是这些光谱的自动评估和解释（例如用于物质识别）非常不发达</strong>，因此限制了反应探索的可能性。 </p>
+<p>即使机器学习可以在分析、性质预测、反应规划或反应开发方面做出有意义的预测，但这并不意味着它可以融入合成化学家的日常工作中。这将需要进一步的步骤：易于使用的软件和工具包。尽管大多数发表的文章都包含源代码，但构建的软件很少具有适应性，并且很少会被没有详细技术知识（例如面向对象编程）的化学家使用。 为了到达合成实验室，<strong>必须将训练有素的模型打包到用户友好的软件套件中，该套件具有图形用户界面，可供新手用户访问</strong>（图 1）。 这不仅会加速反应发展过程，还会提高对 MML 的认识。</p>
+<blockquote>
+<p>好家伙，这不就是我最拿手的吗？</p>
+</blockquote>
+<p>更进一步，ML 可以协助反应开发的整个过程，从反应设计到发现，再到机理阐明以及合成过程（图 2）。对于药物发现，现有方法可用于预测新反应，然后测试其新颖性、可行性和可用性，并通过强化或主动学习加以改进。虽然最初的实验已经证明了简化方法的普遍可行性，但这些都是相当有针对性的筛选，远非所谓的人工创造力。ML 的使用可以发现新的催化剂，并在活性或对映选择性方面进行改进。总的来说，MML 提供的机遇是巨大的，即使某些挑战可能无法解决，其他挑战可能会在现代AI技术的帮助下得到改变并简化合成化学家的日常工作。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="fig2.png">
+  <figcaption>图 2. MML 对加速化学工作流程的可能贡献。</figcaption>
+</figure>
+
+<p>然而，要实现这一目标，需要进一步改进、全新的概念，最重要的是需要知道其工作中所存在的挑战的的化学家与开发概念的计算机科学家之间的良好合作（图 3）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="fig3.png">
+  <figcaption>图 3. MML 在合成化学中的机遇、方向和问题。</figcaption>
+</figure>
+
+<h2 id="一般挑战"><a href="#一般挑战" class="headerlink" title="一般挑战"></a>一般挑战</h2><p>如前所述，机器学习技术并非没有风险或挑战，<strong>需要特定的操作和专业知识</strong>来确保得到有效的掌控和故障的排除。出于这个原因，学科领域发展不理想的主要风险是缺乏解释性。因为MML是一个重度较差的学科，无论是化学还是计算机科学的基础都需要得到充分的理解。例如将自然语言处理中的翻译模型直接用于化学问题，虽然由于架构的复杂性和庞大的参数，模型可以得到一个很好的结果，但盲目的使用会带来负面的影响，而需要后期去纠正。</p>
+<blockquote>
+<p>作者在这里引用的文献是之前我所记录过的“超图”的那篇文章。在那篇文章中，研究者犀利地批判了现有模型不顾实际情况，满目使用Top-N准确率来评估模型。并且没任何一个模型能够去预测试剂（催化剂、溶剂等），也没有给出一个完整的预测方案，专注于单步反应的预测。</p>
+</blockquote>
+<p>这很有挑战性；由于确切的方法以及程序本身往往描述得不够充分，并且由于对不熟悉的程序代码的回顾性理解需要高水平的专业知识，因此其他小组的后续修正和改进几乎是不可能的。</p>
+<blockquote>
+<p>确实啊，层层封装，使用我没见过的框架，理解他们的代码是在是非常困难。</p>
+</blockquote>
+<p>有两个例子来说明缺失适应性的模型：分子结构的表征和测量正确解与预测解之间距离的方法（回馈函数, <em>其实就是loss</em>）。正如新的表征方法（例如 Mol2Vec、多分子指纹、图方法）的发展中所反复表明的，前者对于成功的 ML 至关重要，并且可能是模型失败、成功或误解的原因，而后者强烈地影响模型的最终性能和学习速度。尽管它需要来自许多领域的足够知识，但社区需要开始（自我）批判性地讨论选择的方法和缺失的适应，并应公开指出缺陷以避免错误或不良模型的扩散。 此外，为了协助这一过程，需要应用和提高已发布计算机代码的可读性和结构标准。</p>
+<p>另一点是，从输入到输出的路径对于大多数模型来说是不可理解的，所以无法直接追踪。 因此，一般来说，对这些模型进行微调是不可能的，输出中的错误很少能被理解，并且<strong>通过机器学习算法获得化学知识几乎是不可能的</strong>。</p>
+<p>对于 MML 的成功开发，了解<strong>基本算法和模型以及数据质量、处理和处理</strong>是很重要的。尤其是在合成化学领域，与其他学科（例如文本识别、药物化学）相比，高质量的数据十分稀缺。<strong>数据集往往受制于强烈的人为偏见，或者根本无法获得</strong>。 因此，<strong>新模型会在相同的基准上反复测试</strong>，例如，用于 QSPR 的 QM9 数据集或用于反应预测的 USPTO 数据集，而不管进一步改进的潜力是否有限。这里的挑战是在于现有的数据集（例如化学反应）不足以应对当前的挑战。</p>
+<blockquote>
+<p>可这又有什么办法呢，只能寄希望于大型制药公司可以公开自己的数据库，但这显然是不现实的。</p>
+</blockquote>
+<p>所有这些点都可能阻止或减缓未来 MML 领域的根本性突破，甚至鼓励回归原始，但与所有挑战一样，它们为来自化学领域和计算机科学领域的新人提供了很好的机会，让他们在这个领域并为这个关键主题提供新的方向。</p>
+<blockquote>
+<p>🎵全都是泡沫</p>
+</blockquote>
+<h2 id="未来的发展"><a href="#未来的发展" class="headerlink" title="未来的发展"></a>未来的发展</h2><p>MML 领域正在朝着更精确的SOTA模型、越来越复杂的架构和更重要的挑战发展。 然而，必须问的问题是，为了更可持续的发展，<strong>是否应该首先解决根本问题，以及目前的方法是否会很快达到极限</strong>。 为了长期进步和解决重大挑战，例如从<em>头反应设计</em>或<em>计算机辅助反应</em>开发，应<strong>测试现有数据集和新建数据集</strong>。 所有这些都为建立新的数据生成和高通量实验 (high-throughput experimentation, HTE) 专家系统提供了很多可能性。 此外，计算机方法对于合成和理论化学家来说可能是一个有趣的切入点，而<strong>迁移学习的应用可以绕过现有的数据短缺的问题</strong>。</p>
+<blockquote>
+<p>比如先用BERT训练模型识别SMILES，再保留encoder去解决下游任务。</p>
+</blockquote>
+<p>进一步的可持续发展的方法是将是<strong>可解释人工智能</strong> (explainable AI，exAI) 的应用。为了提高对 MML 的理解并回答“机器学到了什么？”这个问题，exAI 必须找到进入化学的方法。使用 exAI 的选择以及由此产生的机会是多种多样的。如果可以回答哪些因素对 ML 模型很重要的问题，那么这些方面可用于进一步分析和调整模型。此外，这将允许得出关于化学背景和化学关系的结论。然后，这些知识可用于进一步优化计算机内部或外部的目标分子、催化剂系统或反应条件。</p>
+<blockquote>
+<p>SHAP?</p>
+</blockquote>
+<p>同样，必须具备应用算法和基础化学的知识，才能做出有意义的解释。尽管 exAI 有这些巨大的可能性，但应该说，与可解释的模型相比，<strong>无法解释的模型不一定是不利的</strong>，例如，如果可以实现更高的预测能力。因此，在每种情况下，都必须<strong>在洞察力和最佳模型性能之间取得平衡</strong>，以便选择合适的模型。然而，exAI 的可持续探索只能通过跨学科合作和对化学项目中年轻学生的充分培训来实现，这意味着必须在课程中实施化学信息学和机器学习：只有合成化学家才能理解化学信息的处理在复杂的模型中，可以得出关于弱点的结论，甚至可以确定潜在的化学关系。这应该通过教育年轻的研究人员成为数据科学家来加强他们为当前的研究课题做好准备。</p>
+<blockquote>
+<p>基础教育非常重要。</p>
+</blockquote>
+<p>不应忘记，<strong>目前对分子性质和化学反应的理解主要是通过昂贵的湿实验或使用复杂的算法方法（例如分子动力学、量子化学）获得的</strong>。 因此，支持和简化这些工作流程的趋势将继续存在。 有必要<strong>开发全新的 ML 模型、神经网络架构和算法</strong>，尤其是针对多分子应用。 最后，应该有可能推进已知的挑战，例如定性和定量反应预测、反应条件的预测以及分析数据的自动评估，以实现对工作流程的有意义的支持（图 4）。</p>
+<figure>
+  <img lazyload="" src="/images/loading.svg" data-src="./fig4.png">
+  <figcaption>图 4. MML 的不同子主题，按工作流程的各个部分分组，并根据已发表作品的数量和当前最先进水平进行评分。红色：高度未开发； 黄色：展示了一些尝试；绿色：重点关注的领域。</figcaption>
+</figure>
+
+<blockquote>
+<p>软件！我看到了新大陆！</p>
+</blockquote>
+<p>为了从开发的方法中获得普遍的好处，有必要<strong>将它们打包成对化学家可用和有用的软件</strong>，而无需深入了解基础方法。 由于此类应用的巨大市场潜力，即使学术研究人员不选择开发此类工具，也会开发此类工具，但为确保评估的可能性和广泛的可用性，科学家应利用这个机会使他们的工作可用 ，可见，其他所有化学家都可以评估。</p>
+<p>总而言之，MML提供了多种可能性，即使当前的趋势仍然相对有限，新群体进入该领域将有助于开发更好的模型。此外，<strong>新创建、收集或改进的关于特性和反应的数据集有助于超越所有以前的模型</strong>并解决新的更大的问题。 有了这个，从头反应和分子设计的初步工作可以带来真正的人工创造力，而主动学习策略可以优化现代筛选和 HTE 方法。</p>
+<p>总的来说，未来的一些发展确实是可以预见的。 这些发展在很大程度上取决于出现在 MML 舞台上的新玩家，<strong>提出新问题并提供更好的解决方案</strong>。 </p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><ul>
+<li>逆合成预测软件/平台势在必行</li>
+<li>用迁移学习解决数据短缺问题。虽然之前我也考虑过，但现在应该仔细想想实行方案了</li>
+<li>作者多次强调同时拥有化学和计算机基础在MML领域中的重要性，我也得同时加强这两方面才行。正如原文最后一句所说的：“<em>Any chemist who knows the challenges of his field and is able to operate a computer, is a potential game changer.</em>”。</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：分子机器学习：合成化学的未来？</li>
+        <li>Post author：Kotori Y</li>
+        <li>Create time：2021-11-11 00:44</li>
+
+        
+
+        <li>
+            Post link：https://blog.iamkotori.com/2021/11/11/Molecular Machine Learning-The Future of Synthetic Chemistry/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/12/JavaScript%E7%9A%84%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JavaScript的异步编程</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/09/State_of_the_art%20augmented%20NLP%20transformer%20models%20for%20direct%20and%20single-step%20retrosynthesis/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">用于直接和单步逆合成的SOTA增强 NLP Transformer模型</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                if (hexo-config('comment.enable') == true && hexo-config('comment.use') != "") {
+  if (hexo-config('comment.use') == "valine") {
+    @require "./valine.styl";
+
+  } else if (hexo-config('comment.use') == "gitalk") {
+    @require "./gitalk.styl";
+
+  } else if (hexo-config('comment.use') == "twikoo") {
+    @require "./twikoo.styl";
+  }
+}
+
+.comments-container {
+  display: inline-block;
+  margin-top: $component-spacing-value;
+  width: 100%;
+
+  #comment-anchor {
+    width: 100%;
+    height: 10px;
+  }
+
+  .comment-area-title {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1.38rem;
+    color: var(--default-text-color);
+
+    i {
+      color: var(--default-text-color);
+    }
+
+    +keep-tablet() {
+      margin: 5px 0;
+      font-size: 1.2rem;
+    }
+  }
+
+}
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kotori Y</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%8C%96%E5%AD%A6%E7%9A%84%E6%9C%BA%E9%81%87"><span class="nav-text">合成化学的机遇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%8C%91%E6%88%98"><span class="nav-text">一般挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-text">未来的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E6%83%B3"><span class="nav-text">感想</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<!--    <script>-->
+<!--      ((window.gitter = {}).chat = {}).options = {-->
+<!--        room: 'CBDD-Chatting/community'-->
+<!--      };-->
+<!--    </script>-->
+<!--    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>-->
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

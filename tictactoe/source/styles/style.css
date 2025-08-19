@@ -1,0 +1,58 @@
+.container {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: auto;
+  display: block;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  /*justify-content: center;*/
+  position: absolute;
+  /*top: 25vh;*/
+}
+
+.grid:nth-child(-n+6) {
+  border-bottom: #b0b0b0 2px solid;
+}
+
+.grid:nth-child(3n+1) {
+  border-right: #b0b0b0 2px solid;
+}
+
+.grid:nth-child(3n+2) {
+  border-right: #b0b0b0 2px solid;
+}
+
+.grid.circle {
+  background-image: url("../images/circle-regular.svg");
+  background-size: 70px;
+}
+
+.grid.cross {
+  background-image: url("../images/times-solid.svg");
+}
+
+.grid {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cover {
+  width: 300px;
+  height: 300px;
+  /*display: inline-block;*/
+  z-index: 999;
+  position: absolute;
+  background-color: rgba(170, 162, 162, 0.11);
+  display: none;
+  /*font-size: 190px;*/
+  line-height: 300px;
+  text-align: center;
+  font-weight: bolder;
+  user-select: none;
+}

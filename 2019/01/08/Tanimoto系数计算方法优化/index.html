@@ -383,68 +383,143 @@
     
 
         
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'EfwT9sSvLENp7bjtdplQPhcu-MdYXbMMI',
-                    appKey: 'gM299RIpQTpgtLyaod3kzFII',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: 'niconiconi',
-                    lang: 'en'.toLowerCase()
-                });
+            .valine-container {
 
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
+  #vcomments {
 
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = 'Kotori Y';
+    .vwrap {
 
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+      border: 1px solid var(--third-text-color);
+
+      .vheader {
+
+        .vinput {
+
+          color: var(--default-text-color);
+          border-color: var(--third-text-color);
+
+          &:focus {
+            border-bottom: 1px dashed var(--primary-color) !important;
+          }
+        }
+      }
+
+
+      .vedit {
+
+        .veditor {
+          color: var(--default-text-color);
+        }
+
+        .vctrl {
+
+          .vicon {
+
+            fill: var(--default-text-color);
+
+            &.actived {
+              fill: var(--primary-color);
             }
+          }
+        }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+      }
 
+
+      button.vsubmit {
+
+        background: transparent !important;
+        color: var(--default-text-color) !important;
+        border: 1px solid var(--default-text-color) !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+          border: 1px solid var(--primary-color) !important;
+        }
+      }
+
+
+    }
+
+
+    .vcount {
+      color: var(--default-text-color);
+
+      .vnum {
+        color: var(--second-text-color);
+      }
+    }
+
+
+    .vcard {
+
+      .vnick {
+        .author {
+          font-weight: 450;
+          font-size: 12px;
+          padding: 2px;
+          background: -webkit-linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          background: linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          color: #fff;
+          margin-left: 2px;
+          border-radius: 2px;
+        }
+      }
+
+
+      .vhead {
+
+        .vnick {
+          color: var(--primary-color);
+        }
+
+        .vsys {
+          color: var(--default-text-color);
+          background: var(--fourth-text-color) !important;
+        }
+      }
+
+
+      .vcontent {
+        P {
+          color: var(--default-text-color);
+
+          code {
+            color: var(--code-foreground);
+            background: var(--code-background);
+          }
+        }
+      }
+
+
+      .vh {
+        border-bottom-color: var(--border-color);
+      }
+
+      .vquote {
+        border-left-color: var(--border-color);
+      }
+    }
+
+
+    .vcopy {
+      color: var(--third-text-color);
+    }
+
+
+    .vpage {
+
+      .vmore {
+        border: 1px solid var(--border-color);
+        color: var(--second-text-color);
+      }
+    }
+
+
+  }
+
+
+}
 
 
         
@@ -666,20 +741,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

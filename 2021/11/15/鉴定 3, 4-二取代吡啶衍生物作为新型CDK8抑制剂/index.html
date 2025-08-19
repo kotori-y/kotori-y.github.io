@@ -568,80 +568,11 @@
 
     
         <aside class="page-aside">
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-
-      .nav-number, .nav-text {
-        color: var(--default-text-color);
-      }
-
-      .active > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-
-      .active-current > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-INTRODUCTION"><span class="nav-text">1. INTRODUCTION</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-RESULTS-AND-DISCUSSION"><span class="nav-text">2. RESULTS AND DISCUSSION</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%88%86%E5%AD%90%E8%AE%BE%E8%AE%A1"><span class="nav-text">2.1 分子设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BD%93%E5%A4%96%E8%AF%84%E4%BB%B7%E4%B8%8E%E6%9E%84%E6%95%88%E5%85%B3%E7%B3%BB"><span class="nav-text">2.2 体外评价与构效关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BD%93%E5%A4%96%E6%8A%97%E5%A2%9E%E6%AE%96%E6%B4%BB%E6%80%A7"><span class="nav-text">2.3 体外抗增殖活性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%88%9D%E6%AD%A5%E6%BF%80%E9%85%B6%E5%88%86%E6%9E%90"><span class="nav-text">2.4 初步激酶分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%8C%96%E5%90%88%E7%89%A96%E2%80%99k%E7%9A%84%E5%88%9D%E6%AD%A5%E8%8D%AF%E4%BB%A3%E5%8A%A8%E5%8A%9B%E5%AD%A6%E8%AF%84%E4%BB%B7%EF%BC%88%E7%95%A5%EF%BC%89"><span class="nav-text">2.7 化合物6’k的初步药代动力学评价（略）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-CONCLUSIONS"><span class="nav-text">3. CONCLUSIONS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REFERENCE"><span class="nav-text">REFERENCE:</span></a></li></ol></li></ol>
+    </div>
+</div>
         </aside>
     
 

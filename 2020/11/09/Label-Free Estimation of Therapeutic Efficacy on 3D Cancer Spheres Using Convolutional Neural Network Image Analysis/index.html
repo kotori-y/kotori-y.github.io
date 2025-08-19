@@ -578,80 +578,11 @@
 
     
         <aside class="page-aside">
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-
-      .nav-number, .nav-text {
-        color: var(--default-text-color);
-      }
-
-      .active > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-
-      .active-current > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-1-Tumor-sphere-chip-and-culture-chamber"><span class="nav-text">Figure 1. Tumor sphere chip and culture chamber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-2-Cell-loading-in-a-sphere-chamber-and-sphere-aggregation"><span class="nav-text">Figure 2. Cell loading in a sphere chamber and sphere aggregation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-3-Cancer-spheres-treated-by-doxorubicin"><span class="nav-text">Figure 3. Cancer spheres treated by doxorubicin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-4-Cancer-sphere-classification-and-drug-inhibition-score-regression-using-the-bright-field-image-and-CNN-model"><span class="nav-text">Figure 4. Cancer sphere classification and drug inhibition score regression using the bright-field image and CNN model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-5-Interdrug-model-validation-and-prediction-model-combining-different-drugs"><span class="nav-text">Figure 5. Interdrug model validation and prediction model combining different drugs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
         </aside>
     
 

@@ -727,80 +727,11 @@ mjx-container[display="true"] + br {
 
     
         <aside class="page-aside">
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-
-      .nav-number, .nav-text {
-        color: var(--default-text-color);
-      }
-
-      .active > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-
-      .active-current > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86"><span class="nav-text">导数与微分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">导数的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="nav-text">导数的几何意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%AF%E5%AF%BC%E6%80%A7%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%80%A7%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">函数可导性与连续性的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C%E3%80%81%E5%B7%AE%E3%80%81%E7%A7%AF%E3%80%81%E5%95%86"><span class="nav-text">和、差、积、商</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC"><span class="nav-text">反函数求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99"><span class="nav-text">复合函数求导法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E5%85%AC%E5%BC%8F%E8%A1%A8"><span class="nav-text">导数公式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%98%B6%E5%AF%BC%E6%95%B0"><span class="nav-text">高阶导数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC"><span class="nav-text">隐函数求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86"><span class="nav-text">函数的微分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">微分的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E5%85%AC%E5%BC%8F%E4%B8%8E%E6%B3%95%E5%88%99"><span class="nav-text">微分公式与法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E5%9C%A8%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">微分在计算中的作用</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
         </aside>
     
 

@@ -2010,80 +2010,11 @@
 
     
         <aside class="page-aside">
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-
-      .nav-number, .nav-text {
-        color: var(--default-text-color);
-      }
-
-      .active > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-
-      .active-current > a {
-        .nav-number, .nav-text {
-          color: var(--primary-color);
-        }
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%91%98%E8%A6%81"><span class="nav-text">1. 摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E5%AE%9A%E4%B9%89"><span class="nav-text">2. 关键概念定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE-%E8%A1%A8%E5%BE%81-%E5%9F%BA%E5%87%86"><span class="nav-text">3. 数据, 表征, 基准</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%AC%E5%BC%80%E6%95%B0%E6%8D%AE%E8%B5%84%E6%BA%90"><span class="nav-text">1. 公开数据资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B0%8F%E5%88%86%E5%AD%90%E8%A1%A8%E5%BE%81"><span class="nav-text">2. 小分子表征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9F%BA%E5%87%86%E5%B9%B3%E5%8F%B0"><span class="nav-text">3. 基准平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-text">*. 评价指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="nav-text">4. 模型架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN"><span class="nav-text">1. 卷积神经网络 (CNN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-GNN"><span class="nav-text">3. 图神经网络 (GNN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%8F%98%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8-VAE"><span class="nav-text">4. 变分编码器 (VAE)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AF%B9%E6%8A%97%E7%94%9F%E6%88%90%E7%BD%91%E7%BB%9C-GAN"><span class="nav-text">5. 对抗生成网络 (GAN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Normalizing-Flow-Models"><span class="nav-text">6. Normalizing Flow Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Transformers"><span class="nav-text">7. Transformers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AD%A6%E4%B9%A0%E8%8C%83%E5%BC%8F"><span class="nav-text">5. 学习范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%86%E5%AD%90%E6%80%A7%E8%B4%A8%E9%A2%84%E6%B5%8B%E4%B8%AD%E7%9A%84%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-text">1. 分子性质预测中的自监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%86%E5%AD%90%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-text">2. 分子生成中的强化学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Other"><span class="nav-text">3. Other</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%A7%A3%E5%86%B3%E7%8E%B0%E6%9C%89%E6%8C%91%E6%88%98"><span class="nav-text">6. 解决现有挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Model-Interpretation"><span class="nav-text">1. Model Interpretation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Dataset-Concerns"><span class="nav-text">2. Dataset Concerns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Uncertainty-Estimation"><span class="nav-text">3. Uncertainty Estimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Representation-Capacity"><span class="nav-text">4. Representation Capacity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Out-of-Distribution-Generalization"><span class="nav-text">5. Out-of-Distribution Generalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">7. 参考文献</span></a></li></ol>
+    </div>
+</div>
         </aside>
     
 

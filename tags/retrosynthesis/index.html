@@ -169,48 +169,90 @@
         <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;retrosynthesis
         </div>
         <div class="tag-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[4]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/11/Molecular%20Machine%20Learning-The%20Future%20of%20Synthetic%20Chemistry/"
-                        >分子机器学习：合成化学的未来？</a>
-                        <span class="article-date">11-11</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/09/State_of_the_art%20augmented%20NLP%20transformer%20models%20for%20direct%20and%20single-step%20retrosynthesis/"
-                        >用于直接和单步逆合成的SOTA增强 NLP Transformer模型</a>
-                        <span class="article-date">11-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/10/27/Predicting%20retrosynthetic%20pathways%20using%20transformer-based%20models%20and%20a%20hyper-graph%20exploration%20strategy/"
-                        >使用Transformer与超图搜索策略预测逆合成路线</a>
-                        <span class="article-date">10-27</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/09/14/Predicting%20Retrosynthetic%20Reactions%20Using%20Self-Corrected%20Transformer%20Neural%20Networks/"
-                        >使用自纠正Transformer神经网络预测逆合成反应</a>
-                        <span class="article-date">09-14</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
+            $archive-year-font-size = 1.8rem;
+$archive-year-count-font-size = 1.2rem;
+$article-title-font-size = 1.2rem;
+$article-date-font-size = 1rem;
+
+.archive-list-container {
+
+  .archive-item {
+    margin-bottom: $component-spacing-value;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-item-header {
+      margin-bottom: 10px;
+
+      .archive-year {
+        font-size: $archive-year-font-size;
+
+        +keep-tablet() {
+          font-size: $archive-year-font-size - 0.2rem;
+        }
+
+        color: var(--second-text-color);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+
+      .archive-year-post-count {
+        font-size: $archive-year-count-font-size;
+        font-weight: 500;
+        color: var(--second-text-color);
+
+        +keep-tablet() {
+          font-size: $archive-year-count-font-size * 0.9;
+        }
+      }
+
+    }
+
+
+    .article-list {
+
+      padding-left: 10px;
+
+      +keep-tablet() {
+        padding-left: 0;
+      }
+
+      .article-item {
+        font-size: 1rem;
+        margin-top: 18px;
+
+        +keep-tablet() {
+          margin-top: 16px;
+        }
+
+        +keep-mobile() {
+          margin-top: 14px;
+        }
+
+        &:hover {
+          a.article-title, .article-date {
+            color: var(--primary-color);
+          }
+        }
+
+
+        a.article-title {
+          color: var(--default-text-color);
+        }
+
+        .article-date {
+          font-size: $article-date-font-size;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+
 
         </div>
     </div>
@@ -398,20 +440,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

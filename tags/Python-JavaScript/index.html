@@ -169,27 +169,90 @@
         <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;Python. JavaScript
         </div>
         <div class="tag-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/04/19/%E6%AF%8F%E6%97%A5%E7%AE%97%E6%B3%95/"
-                        >每日算法</a>
-                        <span class="article-date">04-19</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
+            $archive-year-font-size = 1.8rem;
+$archive-year-count-font-size = 1.2rem;
+$article-title-font-size = 1.2rem;
+$article-date-font-size = 1rem;
+
+.archive-list-container {
+
+  .archive-item {
+    margin-bottom: $component-spacing-value;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-item-header {
+      margin-bottom: 10px;
+
+      .archive-year {
+        font-size: $archive-year-font-size;
+
+        +keep-tablet() {
+          font-size: $archive-year-font-size - 0.2rem;
+        }
+
+        color: var(--second-text-color);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+
+      .archive-year-post-count {
+        font-size: $archive-year-count-font-size;
+        font-weight: 500;
+        color: var(--second-text-color);
+
+        +keep-tablet() {
+          font-size: $archive-year-count-font-size * 0.9;
+        }
+      }
+
+    }
+
+
+    .article-list {
+
+      padding-left: 10px;
+
+      +keep-tablet() {
+        padding-left: 0;
+      }
+
+      .article-item {
+        font-size: 1rem;
+        margin-top: 18px;
+
+        +keep-tablet() {
+          margin-top: 16px;
+        }
+
+        +keep-mobile() {
+          margin-top: 14px;
+        }
+
+        &:hover {
+          a.article-title, .article-date {
+            color: var(--primary-color);
+          }
+        }
+
+
+        a.article-title {
+          color: var(--default-text-color);
+        }
+
+        .article-date {
+          font-size: $article-date-font-size;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+
 
         </div>
     </div>
@@ -377,20 +440,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

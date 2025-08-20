@@ -170,90 +170,79 @@
             <i class="fas fa-folder"></i>&nbsp;Reading Note
         </div>
         <div class="category-post-list">
-            $archive-year-font-size = 1.8rem;
-$archive-year-count-font-size = 1.2rem;
-$article-title-font-size = 1.2rem;
-$article-date-font-size = 1rem;
-
-.archive-list-container {
-
-  .archive-item {
-    margin-bottom: $component-spacing-value;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .archive-item-header {
-      margin-bottom: 10px;
-
-      .archive-year {
-        font-size: $archive-year-font-size;
-
-        +keep-tablet() {
-          font-size: $archive-year-font-size - 0.2rem;
-        }
-
-        color: var(--second-text-color);
-        font-weight: 600;
-        margin-right: 6px;
-      }
-
-
-      .archive-year-post-count {
-        font-size: $archive-year-count-font-size;
-        font-weight: 500;
-        color: var(--second-text-color);
-
-        +keep-tablet() {
-          font-size: $archive-year-count-font-size * 0.9;
-        }
-      }
-
-    }
-
-
-    .article-list {
-
-      padding-left: 10px;
-
-      +keep-tablet() {
-        padding-left: 0;
-      }
-
-      .article-item {
-        font-size: 1rem;
-        margin-top: 18px;
-
-        +keep-tablet() {
-          margin-top: 16px;
-        }
-
-        +keep-mobile() {
-          margin-top: 14px;
-        }
-
-        &:hover {
-          a.article-title, .article-date {
-            color: var(--primary-color);
-          }
-        }
-
-
-        a.article-title {
-          color: var(--default-text-color);
-        }
-
-        .article-date {
-          font-size: $article-date-font-size;
-          float: right;
-        }
-      }
-    }
-  }
-}
-
-
+            
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2021</span>
+                <span class="archive-year-post-count">[6]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/11/15/%E9%89%B4%E5%AE%9A%203,%204-%E4%BA%8C%E5%8F%96%E4%BB%A3%E5%90%A1%E5%95%B6%E8%A1%8D%E7%94%9F%E7%89%A9%E4%BD%9C%E4%B8%BA%E6%96%B0%E5%9E%8BCDK8%E6%8A%91%E5%88%B6%E5%89%82/"
+                        >鉴定 3, 4-二取代吡啶衍生物作为新型CDK8抑制剂</a>
+                        <span class="article-date">11-15</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/11/11/Molecular%20Machine%20Learning-The%20Future%20of%20Synthetic%20Chemistry/"
+                        >分子机器学习：合成化学的未来？</a>
+                        <span class="article-date">11-11</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/11/09/State_of_the_art%20augmented%20NLP%20transformer%20models%20for%20direct%20and%20single-step%20retrosynthesis/"
+                        >用于直接和单步逆合成的SOTA增强 NLP Transformer模型</a>
+                        <span class="article-date">11-09</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/11/07/%E4%BD%BF%E7%94%A8%E9%AA%A8%E6%9E%B6%E8%B7%83%E8%BF%81%E5%92%8C%E7%BB%93%E6%9E%84%E8%8D%AF%E7%89%A9%E8%AE%BE%E8%AE%A1%E5%8F%91%E7%8E%B0%E5%8F%A3%E6%9C%8DBET%E6%8A%91%E5%88%B6%E5%89%82%E5%8F%8A%E5%85%B6%E4%B8%B4%E5%BA%8A%E5%89%8D%E8%8D%AF%E7%90%86%E5%AD%A6/"
+                        >使用骨架跃迁和结构药物设计发现口服BET抑制剂及其临床前药理学</a>
+                        <span class="article-date">11-07</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/10/27/Predicting%20retrosynthetic%20pathways%20using%20transformer-based%20models%20and%20a%20hyper-graph%20exploration%20strategy/"
+                        >使用Transformer与超图搜索策略预测逆合成路线</a>
+                        <span class="article-date">10-27</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2021/09/14/Predicting%20Retrosynthetic%20Reactions%20Using%20Self-Corrected%20Transformer%20Neural%20Networks/"
+                        >使用自纠正Transformer神经网络预测逆合成反应</a>
+                        <span class="article-date">09-14</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2020</span>
+                <span class="archive-year-post-count">[1]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2020/11/09/Label-Free%20Estimation%20of%20Therapeutic%20Efficacy%20on%203D%20Cancer%20Spheres%20Using%20Convolutional%20Neural%20Network%20Image%20Analysis/"
+                        >Label-Free Estimation of Therapeutic Efficacy on 3D Cancer Spheres Using Convolutional Neural Network Image Analysis</a>
+                        <span class="article-date">11-09</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
+</div>
 
         </div>
     </div>
@@ -440,5 +429,20 @@ $article-date-font-size = 1rem;
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
